@@ -1,0 +1,108 @@
+{
+    "id": 12,
+    "user": {
+        "id": 1,
+        "firstName": "KEMISSI",
+        "lastName": "Neal",
+        "email": "neal.k@hotmail.fr",
+        "password": "test",
+        "bookings": [
+            {
+                "id": 12,
+                "firstName": "KEMISSI",
+                "lastName": "Neal",
+                "email": "neal.k@hotmail.fr",
+                "dateBegin": "23/06/2019",
+                "dateEnd": "02/07/2019",
+                "events": [
+                    {
+                        "id": 11,
+                        "name": "Anniversaire Chloé",
+                        "date": "01/07/2019",
+                        "description": "Pour Chloé, le PA Hotel organise son anniversaire dans la cours principale"
+                    },
+                    {
+                        "id": 23,
+                        "name": "PA Concert",
+                        "date": "26/06/2019",
+                        "description": "Le PA Concert Annuel se tiendra cette année le 26/06/2019"
+                    }
+                ],
+                "rooms": [
+                    {
+                        "id": 123,
+                        "floor": 1,
+                        "places": 4,
+                        "equipments": [
+                            "TV",
+                            "climatisation",
+                            "fibre",
+                            "radio",
+                            "mini bar"
+                        ],
+                        "isAvailable": true,
+                        "isClean": true
+                    },
+                    {
+                        "id": 111,
+                        "floor": 1,
+                        "places": 2,
+                        "equipments": [
+                            "TV",
+                            "climatisation",
+                            "radio"
+                        ],
+                        "isAvailable": true,
+                        "isClean": false
+                    }
+                ],
+                "isPaid": false
+            }
+        ]
+    },
+    "dateBegin": "23/06/2019",
+    "dateEnd": "02/07/2019",
+    "events": [
+        {
+            "id": 11,
+            "name": "Anniversaire Chloé",
+            "date": "01/07/2019",
+            "description": "Pour Chloé, le PA Hotel organise son anniversaire dans la cours principale"
+        },
+        {
+            "id": 23,
+            "name": "PA Concert",
+            "date": "26/06/2019",
+            "description": "Le PA Concert Annuel se tiendra cette année le 26/06/2019"
+        }
+    ],
+    "rooms": [
+        {
+            "id": 123,
+            "floor": 1,
+            "places": 4,
+            "equipments": [
+                "TV",
+                "climatisation",
+                "fibre",
+                "radio",
+                "mini bar"
+            ],
+            "isAvailable": true,
+            "isClean": true
+        },
+        {
+            "id": 111,
+            "floor": 1,
+            "places": 2,
+            "equipments": [
+                "TV",
+                "climatisation",
+                "radio"
+            ],
+            "isAvailable": true,
+            "isClean": false
+        }
+    ],
+    "isPaid": false
+}

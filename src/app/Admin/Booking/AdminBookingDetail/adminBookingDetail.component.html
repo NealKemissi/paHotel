@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="container">
+            <h2>
+                <strong>CLIENT</strong>
+            </h2>
+            <br /><br />
+            <div class="my-div-left-content">
+                <h6>
+                    Nom : <strong>{{booking?.user.firstName}}</strong>
+                    <br /><br />
+                    Prénom : <strong>{{booking?.user.lastName}}</strong>
+                    <br /><br />
+                    Mail : <strong>{{booking?.user.email}}</strong>
+                    <br /><br /><br />
+                    ID de la Réservation : <strong>{{booking?.id}}</strong>
+                    <br /><br />
+                    Facture payé : <strong>{{booking?.isPaid  | boolTransform}}</strong>
+                    <br /><br /><br />
+                </h6>
+            </div>
+            <button class="btn btn-danger my-2 my-sm-0" (click)="convertPDF()">Convertir la facture en PDF</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-7">
+        <div class="container">
+            <h2>
+                <strong>CHAMBRE(S)</strong>
+            </h2>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Numéro</th>
+                        <th scope="col">Etage</th>
+                        <th scope="col">Personne(s)</th>
+                        <th scope="col">Equipement(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let room of booking?.rooms">
+                        <td>n°{{room?.id}}</td>
+                        <td>{{room?.floor}}</td>
+                        <td>{{room?.places}}</td>
+                        <td>
+                            <span *ngFor="let equipment of room?.equipments">
+                                [{{equipment}}]
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+<!--==================================================================================================================================-->
+<!--========================================================== ROW ===================================================================-->
+<!--==================================================================================================================================-->
+<div class="row">
+    <div class="col-md-3">
+        <div class="container">
+            <h2>
+                <strong>DATES</strong>
+            </h2>
+            <br /><br />
+            <div class="my-div-left-content">
+                <h6>
+                    Début du séjour : <strong>{{booking?.dateBegin}}</strong>
+                    <br /><br />
+                    Fin du séjour : <strong>{{booking?.dateEnd}}</strong>
+                    <br /><br />
+                </h6>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>EVENEMENT(S)</strong>
+            </h2>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let event of booking?.events">
+                        <td>{{event?.name}}</td>
+                        <td>{{event?.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-5">
+        <div class="container">
+            <h2>
+                <strong>SERVICE(S)</strong>
+            </h2>
+            <br /><br />
+        </div>
+    </div>
+</div>

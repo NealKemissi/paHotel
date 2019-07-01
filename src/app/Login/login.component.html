@@ -1,0 +1,26 @@
+<div class="col-md-4 col offset-md-4">
+  <div class="container">
+    <h2>
+      <strong>CONNEXION</strong>
+    </h2>
+    <br /><br />
+    <div style="text-align:center; padding-left:15%; padding-right: 15%;">
+      <form>
+        <div class="form-group">
+          <h5><label>Email</label></h5>
+          <input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Mot de passe</label></h5>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+        </div>
+        <br /><br />
+        <button type="submit" class="btn btn-lg btn-info btn-block" (click)="onLogin(email, password)">Connexion</button>
+      </form>
+      <!--<br />
+      Mot de passe oublié ?-->
+      <br /><br />
+    </div>
+  </div>
+</div>

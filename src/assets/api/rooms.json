@@ -1,0 +1,62 @@
+[
+  {
+    "id": 147,
+    "floor": 1,
+    "places": 1,
+    "equipments": [
+      "climatisation"
+    ],
+    "isAvailable": true,
+    "isClean": false
+  },
+  {
+    "id": 123,
+    "floor": 1,
+    "places": 4,
+    "equipments": [
+      "TV",
+      "climatisation",
+      "fibre",
+      "radio",
+      "mini bar"
+    ],
+    "isAvailable": true,
+    "isClean": true
+  },
+  {
+    "id": 111,
+    "floor": 1,
+    "places": 2,
+    "equipments": [
+      "TV",
+      "climatisation",
+      "radio"
+    ],
+    "isAvailable": true,
+    "isClean": false
+  },
+  {
+    "id": 239,
+    "floor": 2,
+    "places": 2,
+    "equipments": [
+      "TV",
+      "fibre",
+      "radio",
+      "mini bar"
+    ],
+    "isAvailable": true,
+    "isClean": true
+  },
+  {
+    "id": 274,
+    "floor": 2,
+    "places": 4,
+    "equipments": [
+      "climatisation",
+      "fibre"
+    ],
+    "isAvailable": true,
+    "isClean": false
+  }
+]

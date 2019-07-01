@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-7">
+    <div class="container">
+      <h2>
+        <strong>RESERVATION</strong>
+      </h2>
+      <br /><br />
+      <!------------------------------------------------------------------ FORM RESERVATION ---------------------------------------------------------------->
+      <form *ngIf="hasAccount" class="my-div-center-content">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Début</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateBegin" name="dateBegin" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Fin</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateEnd" name="dateEnd" disabled>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Nom</label></h5>
+            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Prénom</label></h5>
+            <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Email</label></h5>
+          <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+        </div>
+        <div class="form-group">
+          <h5><label>Mot de passe</label></h5>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+        </div>
+        <br />
+        <div class="my-ref" (click)="onChange()">Je ne possède pas de compte</div>
+        <br /><br />
+        <button class="btn btn-lg btn-success btn-block">Réserver</button>
+      </form>
+      <!------------------------------------------------------------------ FORM RESERVATION - INSCRIPTION ---------------------------------------------------------------->
+      <form *ngIf="!hasAccount" class="my-div-center-content">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Début</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateBegin" name="dateBegin" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Fin</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateEnd" name="dateEnd" disabled>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Nom</label></h5>
+            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Prénom</label></h5>
+            <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Email</label></h5>
+          <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Mot de passe</label></h5>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Confirmation mot de passe</label></h5>
+          <input type="password" class="form-control" id="confirm" placeholder="Mot de passe" name="confirm" required>
+        </div>
+        <div class="my-ref" (click)="onChange()">Je possède déjà un compte</div>
+        <br /><br />
+        <button class="btn btn-lg btn-info btn-block">Réserver</button>
+      </form>
+      <br /><br />
+    </div>
+  </div>
+  <!------------------------------------------------------------------ INFOS CHAMBRE ---------------------------------------------------------------->
+  <div class="col-md-5">
+    <div class="container">
+      <h2>
+        <strong>CHAMBRE</strong>
+      </h2>
+      <br /><br />
+      <div class="my-div-left-content">
+        <h4>
+          Chambre n° <strong>{{room.id}}</strong>
+          <br /><br />
+          Etage <strong>{{room.floor}}</strong>
+          <br /><br />
+          Capacité : <strong>{{room.places}} personnes</strong>
+          <br /><br />
+          Equipements :
+          <br /><br />
+          <ul *ngFor="let equipment of room.equipments">
+            <li>
+              <strong>{{equipment}}</strong>
+            </li>
+          </ul>
+          <br /><br />
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>

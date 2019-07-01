@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="container">
+            <h2>
+                <strong>DETAILS</strong>
+            </h2>
+            <br /><br />
+            <div class="my-div-left-content">
+                <h6>
+                    Numéro : <strong>n°{{room.id}}</strong>
+                    <br /><br />
+                    Etage : <strong>{{room.floor}}</strong>
+                    <br /><br />
+                    Capacité : <strong>{{room.places}} personne(s)</strong>
+                    <br /><br />
+                    Equipements :
+                    <br /><br />
+                    <ul *ngFor="let equipment of room.equipments">
+                        <li>
+                            <strong>{{equipment}}</strong>
+                        </li>
+                    </ul>
+                    <br />
+                    Libre : <strong>{{room.isAvailable | boolTransform}}</strong>
+                    <br /><br />
+                    Etat : <strong>{{room.isClean | isClean}}</strong>
+                    <br /><br /><br />
+                </h6>
+            </div>
+            <button class="btn btn-primary" (click)="onClean()">
+                <span *ngIf="!room.isClean">Valider nettoyage femme de ménage</span><span *ngIf="room.isClean">Rendre la chambre sale</span>
+            </button>
+            &nbsp;
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer la chambre</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-7">
+        <div class="container">
+            <h2>
+                <strong>SERVICE(S)</strong>
+            </h2>
+            <br /><br />
+        </div>
+    </div>
+</div>
+<br />
+<!--==================================================================================================================================-->
+<!--========================================================== ROW ===================================================================-->
+<!--==================================================================================================================================-->
+<div *ngIf="msgDelete" class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="alert alert-danger">
+            <h3>
+                <strong>ATTENTION</strong>
+            </h3>
+            <br />
+            <h6>
+                La chambre sera définitivement supprimée, êtes-vous sur ?
+                <br /><br />
+                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirmDelete(1)">Oui</button>
+                &nbsp;
+                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirmDelete(0)">Non</button>
+            </h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="msgClean" class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="alert alert-primary">
+            <h3>
+                <strong>VALIDATION ...</strong>
+            </h3>
+            <br />
+            <h6>
+                <spinner></spinner>
+            </h6>
+        </div>
+    </div>
+</div>

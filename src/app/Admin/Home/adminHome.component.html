@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>RESERVATIONS</strong>
+            </h2>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-6 col offset-md-3">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Numéro de réservation"
+                        [(ngModel)]="bookingId" name="bookingId">
+                </div>
+            </div>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Début</th>
+                        <th scope="col">Fin</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of bookings | filter: 'id' : bookingId | paginate: { id: '1', itemsPerPage: 4, currentPage: page1 }"><!-- | slice:0-5-->
+                        <td innerHTML="{{booking.id | highlight : bookingId }}"></td>
+                        <td>{{booking.dateBegin}}</td>
+                        <td>{{booking.dateEnd}}</td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail()">Détail</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page1 = $event" id="1" responsive="true"></pagination-controls>
+            <button class="btn btn-info my-2 my-sm-0">+ Ajouter nouvelle réservation</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>CHAMBRES</strong>
+            </h2>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-6 col offset-md-3">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Numéro de chambre" [(ngModel)]="roomId"
+                        name="roomId">
+                </div>
+            </div>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Numéro</th>
+                        <th scope="col">Disponible</th>
+                        <th scope="col">Etat</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let room of rooms | filter: 'id' : roomId | paginate: {  id: '2', itemsPerPage: 4, currentPage: page2 }">
+                        <td innerHTML="n°{{room.id | highlight : roomId }}"></td>
+                        <td>{{room.isAvailable | boolTransform}}</td>
+                        <td>{{room.isClean | isClean}}</td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onRoomDetail()">Détail</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page2 = $event" id="2"></pagination-controls>
+            <button class="btn btn-info my-2 my-sm-0" (click)="onRoomCreate()">+ Ajouter nouvelle chambre</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>EVENEMENTS</strong>
+            </h2>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-6 col offset-md-3">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Date de l'évenement"
+                        [(ngModel)]="eventDate" name="eventDate">
+                </div>
+            </div>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let event of events | filter: 'date' : eventDate | paginate: {  id: '3', itemsPerPage: 4, currentPage: page3 }">
+                        <td innerHTML="{{event.date | highlight : eventDate }}"></td>
+                        <td>{{event.name}}</td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onEventDetail()">Détail</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page3 = $event" id="3"></pagination-controls>
+            <button class="btn btn-info my-2 my-sm-0" (click)="onEventCreate()">+ Ajouter nouvel évenement</button>
+        </div>
+    </div>
+</div>

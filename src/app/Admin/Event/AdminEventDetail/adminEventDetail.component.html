@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="container">
+            <h2>
+                <strong>INFORMATIONS</strong>
+            </h2>
+            <br /><br />
+            <div class="my-div-left-content">
+                <h6>
+                    ID : <strong>{{event.id}}</strong>
+                    <br /><br />
+                    Nom : <strong>{{event.name}}</strong>
+                    <br /><br />
+                    Date : <strong>{{event.date}}</strong>
+                    <br /><br />
+                    <br /><br /><br />
+                </h6>
+            </div>
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onUpdate()">Modifier l'évenement</button>
+            &nbsp;
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer l'évenement</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-7">
+        <div class="container">
+            <h2>
+                <strong>DESCRIPTION</strong>
+            </h2>
+            <br /><br />
+            <h6>
+                {{event.description}}
+            </h6>
+        </div>
+    </div>
+</div>
+<br />
+<!--==================================================================================================================================-->
+<!--========================================================== ROW ===================================================================-->
+<!--==================================================================================================================================-->
+<div *ngIf="msgConfirm" class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="alert alert-danger">
+            <h3>
+                <strong>ATTENTION</strong>
+            </h3><br />
+            <h6>
+                L'évenement sera définitivement supprimé, êtes-vous sur ?
+                <br /><br />
+                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+                &nbsp;
+                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+            </h6>
+        </div>
+    </div>
+</div>

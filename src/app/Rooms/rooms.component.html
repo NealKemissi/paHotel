@@ -1,0 +1,61 @@
+<div class="col-md-8 col offset-md-2">
+    <div class="container">
+        <h2>
+            <strong>NOS CHAMBRES</strong>
+        </h2>
+        <br /><br />
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <h5><label>Début séjour <span class="my-required">*</span></label></h5>
+                    <input type="date" class="form-control" [(ngModel)]="dateBegin" name="dateBegin">
+                </div>
+                <div class="form-group col-md-3">
+                    <h5><label>Fin séjour <span class="my-required">*</span></label></h5>
+                    <input type="date" class="form-control" [(ngModel)]="dateEnd" name="dateEnd">
+                </div>
+                <div class="form-group col-md-2">
+                    <h5><label>Personne(s) <span class="my-required">*</span></label></h5>
+                    <select class="form-control" [(ngModel)]="nbPeople" name="nbPeople">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <button class="btn btn-lg btn-info btn-block" (click)="onSearch()">Chercher</button>
+            </div>
+        </form>
+    </div>
+    <br />
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Personne(s)</th>
+                    <th scope="col">Etage</th>
+                    <th scope="col">Equipement(s)</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of rooms">
+                    <td><img src="./assets/img/room-logo.png"></td>
+                    <td>n°{{room.id}}</td>
+                    <td>{{room.places}}</td>
+                    <td>{{room.floor}}</td>
+                    <td>
+                        <span *ngFor="let equipment of room.equipments">
+                            [{{equipment}}]
+                        </span>
+                    </td>
+                    <td><button class="btn btn-primary my-2 my-sm-0"
+                            (click)="onBook()">Réserver</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

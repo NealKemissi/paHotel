@@ -1,0 +1,14 @@
+{
+    "id": 123,
+    "floor": 1,
+    "places": 4,
+    "equipments": [
+        "TV",
+        "climatisation",
+        "fibre",
+        "radio",
+        "mini bar"
+    ],
+    "isAvailable": true,
+    "isClean": true
+}

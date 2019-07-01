@@ -1,0 +1,40 @@
+<div class="col-md-6 col offset-md-3">
+  <div class="container">
+    <h2>
+      <strong>INSCRIPTION</strong>
+    </h2>
+    <br /><br />
+    <div class="my-div-center-content">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Nom</label></h5>
+            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Prénom</label></h5>
+            <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Email</label></h5>
+          <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Mot de passe</label></h5>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Confirmation mot de passe</label></h5>
+          <input type="password" class="form-control" id="confirm" placeholder="Mot de passe" name="confirm" required>
+        </div>
+        <br /><br />
+        <button class="btn btn-lg btn-info btn-block" (click)="onRegister(nom, prenom, email, password, confirm)">Inscription</button>
+      </form>
+      <br /><br />
+    </div>
+  </div>
+</div>

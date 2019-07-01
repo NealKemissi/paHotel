@@ -1,0 +1,22 @@
+.container {
+  /*width: 35%;*/
+  border: 1.5px solid #7f8c8d;
+  /**box-shadow: 2px 2px 2px #8395a7;**/
+  padding: 2%;
+  background-color: white;
+  text-align:center;
+}
+  /**titre*/
+  h2, h4 {
+  color: #21368B; /** #01a3a4 */
+  text-align: center;
+  }
+  /**labels*/
+  h5 {
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+  }
+  
