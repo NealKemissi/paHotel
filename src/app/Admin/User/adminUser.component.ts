@@ -40,7 +40,7 @@ export class AdminUserComponent {
     }
 
     onUpdate() {
-        this.router.navigate(['/adminUserUpdate']);
+        this.router.navigate(['/adminUserUpdate'], {queryParams : { email: this.user.email } });
     }
 
     onDelete() {

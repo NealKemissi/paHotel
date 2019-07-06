@@ -1,3 +1,14 @@
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
 <div class="col-md-6 col offset-md-3">
     <div class="container">
         <h2>
@@ -9,29 +20,34 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <h5><label>Nom</label></h5>
-                        <input type="text" class="form-control" [(ngModel)]="firstNameUser" name="firstNameUser"
+                        <input type="text" class="form-control" [(ngModel)]="firstname" name="firstname"
                             required>
                     </div>
                     <div class="form-group col-md-6">
                         <h5><label>Prénom</label></h5>
-                        <input type="text" class="form-control" [(ngModel)]="lastNameUser" name="lastNameUser" required>
+                        <input type="text" class="form-control" [(ngModel)]="lastname" name="lastname" required>
                     </div>
                 </div>
                 <br />
                 <div class="form-group">
+                    <h5><label>Date de naissance</label></h5>
+                    <input type="date" class="form-control" [(ngModel)]="birthday" name="birthday">
+                </div>
+                <br />
+                <div class="form-group">
                     <h5><label>Email</label></h5>
-                    <input type="email" class="form-control" [(ngModel)]="emailUser" name="emailUser" required>
+                    <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
                 </div>
                 <br />
                 <div class="form-group">
                     <h5><label>Mot de passe</label></h5>
-                    <input type="password" class="form-control" [(ngModel)]="passwordUser" name="passwordUser" required>
+                    <input type="password" class="form-control" [(ngModel)]="password1" name="password1" required>
                 </div>
                 <br />
                 <div class="form-group">
                     <h5><label>Confirmation mot de passe</label></h5>
-                    <input type="password" class="form-control" [(ngModel)]="confirmPasswordUser"
-                        name="confirmPasswordUser" required>
+                    <input type="password" class="form-control" [(ngModel)]="password2"
+                        name="password2" required>
                 </div>
                 <br /><br />
                 <button class="btn btn-lg btn-success btn-block" (click)="onCreate()">Créer le compte</button>

@@ -3,15 +3,15 @@
         "id": 12,
         "user": {
             "id": 1,
-            "firstName": "KEMISSI",
-            "lastName": "Neal",
+            "firstname": "KEMISSI",
+            "lastname": "Neal",
             "email": "neal.k@hotmail.fr",
             "password": "test",
             "bookings": [
                 {
                     "id": 12,
-                    "firstName": "KEMISSI",
-                    "lastName": "Neal",
+                    "firstname": "KEMISSI",
+                    "lastname": "Neal",
                     "email": "neal.k@hotmail.fr",
                     "dateBegin": "23/06/2019",
                     "dateEnd": "02/07/2019",
@@ -108,15 +108,15 @@
         "id": 11,
         "user": {
             "id": 11,
-            "firstName": "CHERAKI",
-            "lastName": "Ahmed-Mouadh",
+            "firstname": "CHERAKI",
+            "lastname": "Ahmed-Mouadh",
             "email": "ahmed.c@hotmail.fr",
             "password": "test",
             "bookings": [
                 {
                     "id": 11,
-                    "firstName": "CHERAKI",
-                    "lastName": "Ahmed-Mouadh",
+                    "firstname": "CHERAKI",
+                    "lastname": "Ahmed-Mouadh",
                     "email": "ahmed.c@hotmail.fr",
                     "dateBegin": "26/06/2019",
                     "dateEnd": "04/07/2019",
@@ -176,15 +176,15 @@
         "id": 20,
         "user": {
             "id": 20,
-            "firstName": "TAKO",
-            "lastName": "Guillaume",
+            "firstname": "TAKO",
+            "lastname": "Guillaume",
             "email": "guillaume.t@hotmail.fr",
             "password": "test",
             "bookings": [
                 {
                     "id": 20,
-                    "firstName": "TAKO",
-                    "lastName": "Guillaume",
+                    "firstname": "TAKO",
+                    "lastname": "Guillaume",
                     "email": "guillaume.t@hotmail.fr",
                     "dateBegin": "20/06/2019",
                     "dateEnd": "25/06/2019",
@@ -272,15 +272,15 @@
         "id": 23,
         "user": {
             "id": 23,
-            "firstName": "RAYNAL",
-            "lastName": "Benjamin",
+            "firstname": "RAYNAL",
+            "lastname": "Benjamin",
             "email": "bejamin.r@hotmail.fr",
             "password": "test",
             "bookings": [
                 {
                     "id": 23,
-                    "firstName": "RAYNAL",
-                    "lastName": "Benjamin",
+                    "firstname": "RAYNAL",
+                    "lastname": "Benjamin",
                     "email": "bejamin.r@hotmail.fr",
                     "dateBegin": "01/07/2019",
                     "dateEnd": "04/08/2019",

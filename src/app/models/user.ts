@@ -1,16 +1,21 @@
-import { Booking } from "./booking";
-
 export class User {
   /***/
   id : number;
   /***/
-  firstName : string;
+  lastname : string;
   /***/
-  lastName : string;
+  firstname : string;
   /***/
   email : string;
   /***/
   password : string;
   /***/
-  bookings : Array<Booking>;
+  date_insc : string;
+  /***/
+  birthday : string;
+  /***/
+  admin : number;
+  /***/
+  enabled : number;
+  /***/
 }

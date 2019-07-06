@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Reservé",
+        "id_room_status": 1
+    },
+    {
+        "id": 2,
+        "name": "En cours",
+        "id_room_status": 2
+    },
+    {
+        "id": 3,
+        "name": "Terminé",
+        "id_room_status": 3
+    }
+]

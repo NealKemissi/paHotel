@@ -3,21 +3,21 @@
         <h2>
             <strong>MODIFIER LE CLIENT</strong>
             <br />
-            {{user?.firstName}} {{user?.lastName}}
+            {{user?.firstname}} {{user?.lastname}}
         </h2>
         <br /><br />
         <div class="my-div-center-content" *ngIf="!error">
             <form>
                 <div class="form-group col-md-10 col offset-md-1">
                     <h5><label>Nom</label></h5>
-                    <input type="text" class="form-control" [(ngModel)]="user.firstName" name="user.firstName"
-                        value="{{user?.firstName}}">
+                    <input type="text" class="form-control" [(ngModel)]="user.firstname" name="user.firstname"
+                        value="{{user?.firstname}}">
                 </div>
                 <br />
                 <div class="form-group col-md-10 col offset-md-1">
                     <h5><label>Prénom</label></h5>
-                    <input type="text" class="form-control" [(ngModel)]="user.lastName" name="user.lastName"
-                        value="{{user?.lastName}}">
+                    <input type="text" class="form-control" [(ngModel)]="user.lastname" name="user.lastname"
+                        value="{{user?.lastname}}">
                 </div>
                 <br />
                 <div class="form-group col-md-10 col offset-md-1">

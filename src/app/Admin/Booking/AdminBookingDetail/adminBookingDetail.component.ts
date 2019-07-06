@@ -44,7 +44,7 @@ export class AdminBookingDetailComponent {
   }
 
   stringBooking(): string {
-    var infoUser = 'Facture n°' + this.booking.id + '\n\nClient : ' + this.booking.user.firstName.toUpperCase() + ' ' + this.booking.user.lastName + '\nEmail : ' + this.booking.user.email;
+    var infoUser = 'Facture n°' + this.booking.id + '\n\nClient : ' + this.booking.user.firstname.toUpperCase() + ' ' + this.booking.user.lastname + '\nEmail : ' + this.booking.user.email;
     var infoDate = 'Du ' + this.booking.dateBegin + ' au ' + this.booking.dateBegin;
     var infoRooms = 'Chambre(s) louée(s) : \n' + this.stringifyObject(this.booking.rooms, '');
     var infoEvents = 'Evenement(s) participé(s) : \n' + this.stringifyObject(this.booking.events, '');

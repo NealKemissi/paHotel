@@ -22,20 +22,24 @@ export class AdminUserUpdateComponent {
     constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
     ngOnInit() {
-        this.userService.getUser().subscribe(
-            data => {
-                this.user = data;
-                this.loading = false;
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-            });
+        this.route.queryParams.forEach(params => {
+            this.userService.getUser(params['email']).subscribe(
+                data => {
+                    this.user = data;
+                    this.loading = false;
+                    console.log('email user'+this.user.email);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+        })
+
     }
 
     onUpdate() {
         if (!this.msgUpdate) {
-            console.log("nom :" + this.user.firstName + ", prenom :" + this.user.lastName + ", email :" + this.user.email);
+            console.log("nom :" + this.user.firstname + ", prenom :" + this.user.lastname + ", email :" + this.user.email);
             this.msgUpdate = true;
             setTimeout(() => {
                 //requete http update ...

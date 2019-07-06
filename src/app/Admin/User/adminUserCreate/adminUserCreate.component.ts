@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { UserDTO } from 'src/app/models/dto/userDTO';
 
 @Component({
     selector: 'adminUserCreate',
@@ -11,15 +11,19 @@ import { UserService } from 'src/app/services/user.service';
 export class AdminUserCreateComponent {
 
     /** utilisateur */
-    firstNameUser: string;
+    email: string;
     /***/
-    lastNameUser: string;
+    password1: string;
     /***/
-    emailUser: string;
+    password2: string;
     /***/
-    passwordUser: string;
+    lastname: string;
     /***/
-    confirmPasswordUser: string;
+    firstname: string;
+    /***/
+    birthday: string;
+    /***/
+    error: string;
 
     constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
@@ -27,6 +31,8 @@ export class AdminUserCreateComponent {
     }
 
     onCreate() {
-        console.log("nom :" + this.firstNameUser + ", prenom :" + this.lastNameUser + ", email :" + this.emailUser+ ", password :" + this.passwordUser);
+        console.log("nom :" + this.firstname + ", prenom :" + this.lastname + ", email :" + this.email+ ", password :" + this.password1+ ", date :" + this.birthday);
+        let user: UserDTO = new UserDTO(this.email, this.password1, this.password2, this.lastname, this.firstname, this.birthday);
+        this.userService.createUser(user).subscribe(data => user = data, error => this.error = error);
     }
 }

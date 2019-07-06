@@ -1,14 +1,14 @@
 {
     "id": 1,
-    "firstName": "KEMISSI",
-    "lastName": "Neal",
+    "firstname": "KEMISSI",
+    "lastname": "Neal",
     "email": "neal.k@hotmail.fr",
     "password": "test",
     "bookings": [
         {
             "id": 12,
-            "firstName": "KEMISSI",
-            "lastName": "Neal",
+            "firstname": "KEMISSI",
+            "lastname": "Neal",
             "email": "neal.k@hotmail.fr",
             "dateBegin": "23/06/2019",
             "dateEnd": "02/07/2019",

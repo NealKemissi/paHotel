@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../models/user';
+import { UserDTO } from '../models/dto/userDTO';
 
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    'Access-Control-Allow-Origin':'*',
+    'Content-type':'application/json'
+  })
+};
 
 @Injectable()
 export class UserService {
 
-  GET_ALL_USERS = 'assets/api/users.json';
-  GET_USER = 'assets/api/user.json';
+  GET_ALL_USERS = 'http://localhost:8090/user';
+  GET_USER = 'http://localhost:8090/user?email=';
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +26,15 @@ export class UserService {
   }
 
   /** Retourne un objet de type User **/
-  getUser(): Observable<User> {
-    return this.http.get<User>(this.GET_USER).pipe(catchError(this.handleError));
+  getUser(user_email : string): Observable<User> {
+    return this.http.get<User[]>(this.GET_USER + user_email)
+      .pipe(map(res => res.find(user => user.email == user_email)), 
+        catchError(this.handleError));
+  }
+
+  /** Créer un utilisateur */
+  createUser(userDTO: UserDTO) : Observable<any> {
+    return this.http.post(this.GET_ALL_USERS + '/register', JSON.stringify(userDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/
