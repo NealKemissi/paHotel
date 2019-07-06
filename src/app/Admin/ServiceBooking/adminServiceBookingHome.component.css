@@ -12,25 +12,12 @@
     background-color: white;
     text-align:center;
   }
-  table {
-    width: 100%;
-  }
-  td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 0;
-  }
   /** titre */
   h2 {
     color: #21368B; /** #01a3a4 */
     text-align: center;
   }
-  /** labels */
-  h5 {
-    text-align: center;
-  }
-  /** les infos de la chambres */
-  strong {
-    color: #21368B;
-  }
+    /** labels */
+    h5 {
+      text-align: center;
+    }

@@ -16,6 +16,9 @@ import { EventsComponent } from './Events/events.component';
 import { AdminUserComponent } from './Admin/User/adminUser.component';
 import { AdminUserUpdateComponent } from './Admin/User/adminUserUpdate/adminUserUpdate.component';
 import { AdminUserCreateComponent } from './Admin/User/adminUserCreate/adminUserCreate.component';
+import { AdminServiceBookingHomeComponent } from './Admin/ServiceBooking/adminServiceBookingHome.component';
+import { AdminServiceBookingUpdateComponent } from './Admin/ServiceBooking/adminServiceBookingUpdate/adminServiceBookingUpdate.component';
+import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/adminHotelDashboardUpdate.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -26,12 +29,15 @@ const routes: Routes = [
   { path: 'roomBooking', component: RoomBookingComponent },
   { path: 'events', component: EventsComponent },
   { path: 'adminHome', component: AdminHomeComponent },
+  { path: 'adminHotelDashboardUpdate', component: AdminHotelDashboardUpdateComponent },
   { path: 'adminUserCreate', component: AdminUserCreateComponent},
   { path: 'adminUser', component: AdminUserComponent },
   { path: 'adminUserUpdate', component: AdminUserUpdateComponent },
   { path: 'adminBookingDetail', component: AdminBookingDetailComponent },
   { path: 'adminRoomDetail', component: AdminRoomDetailComponent },
   { path: 'adminRoomCreate', component: AdminRoomCreateComponent },
+  { path: 'adminServiceBookingHome', component: AdminServiceBookingHomeComponent},
+  { path: 'adminServiceBookingUpdate', component: AdminServiceBookingUpdateComponent},
   { path: 'adminEventDetail', component: AdminEventDetailComponent },
   { path: 'adminEventCreate', component: AdminEventCreateComponent },
   { path: 'adminEventUpdate', component: AdminEventUpdateComponent }

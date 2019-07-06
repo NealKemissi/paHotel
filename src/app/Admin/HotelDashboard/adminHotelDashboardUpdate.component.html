@@ -1,0 +1,44 @@
+<div class="col-md-6 col offset-md-3">
+    <div class="container">
+        <h2>
+            <strong>MODIFIER LA DESCRIPTON </strong>
+        </h2>
+        <br /><br />
+        <div class="my-div-center-content" *ngIf="!error">
+            <form>
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Description</label></h5>
+                    <textarea class="form-control" rows="3"
+                        value="description..."></textarea>
+                </div>
+                <br /><br />
+                <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
+                    la description</button>
+            </form>
+            <br />
+        </div>
+    </div>
+    <br />
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>

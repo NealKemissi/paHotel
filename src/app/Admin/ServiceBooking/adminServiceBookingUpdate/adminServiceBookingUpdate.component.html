@@ -1,0 +1,47 @@
+<div class="col-md-6 col offset-md-3">
+    <div class="container" *ngIf="!loading">
+        <h2>
+            <strong>MODIFIER LE SERVICE</strong>
+            <br />
+            {{service?.name}}
+        </h2>
+        <br /><br />
+        <div class="my-div-center-content" *ngIf="!error">
+            <form>
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Nom</label></h5>
+                    <input type="text" class="form-control" [(ngModel)]="service.name" name="service.name"
+                        value="{{service?.name}}">
+                </div>
+                <br />
+                <br /><br />
+                <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
+                    le service</button>
+            </form>
+            <br />
+        </div>
+    </div>
+    <br />
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
