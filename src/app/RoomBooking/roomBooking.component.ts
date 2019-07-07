@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from '../models/room';
 import { RoomService } from '../services/room.service';
+import { map, find } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'roomBooking',
@@ -14,8 +16,10 @@ export class RoomBookingComponent {
   @Input() dateBegin: string;
   /***/
   @Input() dateEnd: string;
+  /***/
+  @Input() id: number;
   /** infos utilisateurs */
-  hasAccount : boolean = false;
+  hasAccount: boolean = false;
   /***/
   nom: string;
   /***/
@@ -23,11 +27,13 @@ export class RoomBookingComponent {
   /***/
   email: string;
   /** infos inscription utilisateurs **/
-  password : string;
+  password: string;
   /***/
-  confirm : string;
+  confirm: string;
   /** infos chambre */
   room: Room;
+  /***/
+  loading: boolean = false;
   /***/
   error: string;
 
@@ -36,9 +42,19 @@ export class RoomBookingComponent {
   ngOnInit() {
     this.dateBegin = this.route.snapshot.paramMap.get('dateBegin');
     this.dateEnd = this.route.snapshot.paramMap.get('dateEnd');
-    console.log("Begin :"+this.dateBegin+", End :"+this.dateEnd);
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("Begin :" + this.dateBegin + ", End :" + this.dateEnd+ ", room id :" + this.id);
 
-    this.roomService.getRoom().subscribe(data => this.room = data, error => this.error = error);
+    this.roomService.getRoom(this.id).subscribe(
+      data => {
+          this.room = data;
+          this.loading = false;
+          console.log('room number :' + this.room.number);
+      },
+      error => {
+          this.error = error;
+          this.loading = false;
+      });
   }
 
   onChange(): void {

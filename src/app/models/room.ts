@@ -2,13 +2,13 @@ export class Room {
     /***/
     id: number;
     /***/
-    floor: number;
+    number: string;
     /***/
-    places: number;
+    description: string;
     /***/
-    equipments: Array<String>;
-    /** A SUPPRIMER*/
-    isAvailable: boolean;
+    seats: number;
     /***/
-    isClean: boolean;
+    cleared: boolean;
+    /***/
+    id_room_status: number;
 }

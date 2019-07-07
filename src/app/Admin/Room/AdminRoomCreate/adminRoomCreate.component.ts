@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/app/models/room';
 import { RoomService } from 'src/app/services/room.service';
+import { RoomDTO } from 'src/app/models/dto/roomDTO';
 
 @Component({
     selector: 'adminRoomCreate',
@@ -13,22 +14,21 @@ export class AdminRoomCreateComponent {
     /** chambre */
     numRoom: number;
     /***/
-    id: number;
+    number: number;
     /***/
     floor: number;
     /***/
-    places: number;
+    seats: number;
     /***/
-    equipementRoom: string;
+    tool: string;
     /***/
-    equipments: string[] = []
+    description: string[] = []
     /***/
-    isAvailable: boolean;
-    /***/
-    isClean: boolean;
+    status: boolean;
     /***/
     error: string;
     /***/
+    msgCreating: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private roomService: RoomService) { }
 
@@ -36,7 +36,28 @@ export class AdminRoomCreateComponent {
     }
 
     onCreate() {
-        console.log(this.floor);
+        console.log(this.status);
+        if (this.number == undefined && this.seats == undefined && this.status == undefined) {
+            this.error = 'Tous les champs doivent être remplis !'
+        } else {
+            this.error = undefined;
+            console.log(this.floor);
+            let cleared : boolean = (status=='Propre') ? true : false;
+            let roomDTO: RoomDTO = new RoomDTO(
+                null,
+                this.number.toString(),
+                this.description.toString(),
+                this.seats,
+                cleared,
+                3
+            );
+            this.msgCreating = true;
+            this.roomService.createRoom(roomDTO).subscribe(data => roomDTO = data, error => this.error = error);
+            setTimeout(() => {
+                //requete http create ...
+                this.router.navigate(['/adminHome']);
+            }, 2500);
+        }
     }
 
     preventInput() {
@@ -52,19 +73,19 @@ export class AdminRoomCreateComponent {
     }
 
     setIdFromInput() {
-        if(this.floor!=undefined && this.numRoom!=undefined) {
-            this.id = parseInt((this.floor+this.numRoom).toString());
+        if (this.floor != undefined && this.numRoom != undefined) {
+            this.number = parseInt((this.floor + this.numRoom).toString());
         }
     }
 
-    addEquipment(equipementRoom : string) {
-        if(equipementRoom!=undefined && this.equipments.length < 3){
-            this.equipments.push(equipementRoom);
+    addEquipment(tool: string) {
+        if (tool != undefined && this.description.length < 3) {
+            this.description.push(tool);
         }
     }
 
-    deleteEquipment(equipment: string) {
-        let i = this.equipments.indexOf(equipment);
-        this.equipments.splice(i, 1);
+    deleteEquipment(tool: string) {
+        let i = this.description.indexOf(tool);
+        this.description.splice(i, 1);
     }
 }

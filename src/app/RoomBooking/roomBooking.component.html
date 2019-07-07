@@ -96,19 +96,15 @@
       <br /><br />
       <div class="my-div-left-content">
         <h4>
-          Chambre n° <strong>{{room.id}}</strong>
+          Chambre n° <strong>{{room.number}}</strong>
           <br /><br />
-          Etage <strong>{{room.floor}}</strong>
+          Etage <strong>{{room.number | slice:0:1}}</strong>
           <br /><br />
-          Capacité : <strong>{{room.places}} personnes</strong>
+          Capacité : <strong>{{room.seats}} personnes</strong>
           <br /><br />
           Equipements :
           <br /><br />
-          <ul *ngFor="let equipment of room.equipments">
-            <li>
-              <strong>{{equipment}}</strong>
-            </li>
-          </ul>
+          <td>{{room.description}}</td>
           <br /><br />
         </h4>
       </div>

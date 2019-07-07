@@ -29,11 +29,11 @@ export class RoomsComponent {
   onSearch(): void {
     console.log("Begin :"+this.dateBegin+", End :"+this.dateEnd+", for "+this.nbPeople+" people");
     if(this.nbPeople != undefined && this.dateBegin != undefined && this.dateBegin != undefined) {
-      this.roomService.getAllRooms().subscribe(data => this.rooms = data, error => this.error = error);
+      this.roomService.getRoomsInTermsOfSeats(this.nbPeople).subscribe(data => this.rooms = data, error => this.error = error);
     } 
   }
 
-  onBook(): void {
-    this.router.navigate(['/roomBooking', { dateBegin: this.dateBegin, dateEnd: this.dateEnd }]);
+  onBook(room_id : number): void {
+    this.router.navigate(['/roomBooking', { dateBegin: this.dateBegin, dateEnd: this.dateEnd, id: room_id }]);
   }
 }

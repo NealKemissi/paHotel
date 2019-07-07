@@ -11,6 +11,21 @@ export class BoolTransformPipe implements PipeTransform {
 }
 
 @Pipe({
+    name: 'roomStatus'
+})
+@Injectable()
+export class RoomStatusPipe implements PipeTransform {
+    transform(value: number): any {
+        if(value == 1){
+            return 'Reservé';
+        } else if(value == 2){
+            return 'En cours';
+        }
+        return 'Terminé';
+    }
+}
+
+@Pipe({
     name: 'isClean'
 })
 @Injectable()

@@ -27,7 +27,7 @@ export class AdminHomeComponent {
   /***/
   error: string;
   /** filtres */
-  roomId: number;
+  number: string;
   /***/
   eventDate: string;
   /***/
@@ -45,8 +45,8 @@ export class AdminHomeComponent {
     this.router.navigate(['/adminBookingDetail']);
   }
 
-  onRoomDetail() {
-    this.router.navigate(['/adminRoomDetail']);
+  onRoomDetail(id_room : number) {
+    this.router.navigate(['/adminRoomDetail'], {queryParams : { id: id_room } });
   }
 
   onRoomCreate(){

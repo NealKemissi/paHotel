@@ -7,28 +7,22 @@
             <br /><br />
             <div class="my-div-left-content">
                 <h6>
-                    Numéro : <strong>n°{{room.id}}</strong>
+                    Numéro : <strong>n°{{room.number}}</strong>
                     <br /><br />
-                    Etage : <strong>{{room.floor}}</strong>
+                    Etage : <strong>{{room.number | slice:0:1}}</strong>
                     <br /><br />
-                    Capacité : <strong>{{room.places}} personne(s)</strong>
+                    Capacité : <strong>{{room.seats}} personne(s)</strong>
                     <br /><br />
-                    Equipements :
+                    Equipements : <strong>{{room.description}}</strong>
                     <br /><br />
-                    <ul *ngFor="let equipment of room.equipments">
-                        <li>
-                            <strong>{{equipment}}</strong>
-                        </li>
-                    </ul>
-                    <br />
-                    Libre : <strong>{{room.isAvailable | boolTransform}}</strong>
+                    Statut : <strong>{{room.id_room_status | roomStatus}}</strong>
                     <br /><br />
-                    Etat : <strong>{{room.isClean | isClean}}</strong>
+                    Etat : <strong>{{room.cleared | isClean}}</strong>
                     <br /><br /><br />
                 </h6>
             </div>
             <button class="btn btn-primary" (click)="onClean()">
-                <span *ngIf="!room.isClean">Valider nettoyage femme de ménage</span><span *ngIf="room.isClean">Rendre la chambre sale</span>
+                <span *ngIf="!room.cleared">Valider nettoyage femme de ménage</span><span *ngIf="room.cleared">Signaler que la chambre est sale</span>
             </button>
             &nbsp;
             <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer la chambre</button>

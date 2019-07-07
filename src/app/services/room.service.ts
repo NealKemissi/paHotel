@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Room } from '../models/room';
+import { RoomDTO } from '../models/dto/roomDTO';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    'Access-Control-Allow-Origin':'*',
+    'Content-type':'application/json'
+  })
+};
 
 @Injectable()
 export class RoomService {
 
-  GET_ALL_ROOMS = 'assets/api/rooms.json';
-  GET_ROOM = 'assets/api/room.json';
+  GET_ALL_ROOMS = 'http://localhost:8090/room';
+  GET_ROOM = 'http://localhost:8090/room?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -17,9 +25,28 @@ export class RoomService {
     return this.http.get<Room[]>(this.GET_ALL_ROOMS).pipe(catchError(this.handleError));
   }
 
+  /** Retourne la liste de toutes les chambres de l'hotel en fonction des places **/
+  getRoomsInTermsOfSeats(seats : number): Observable<Room[]> {
+    return this.http.get<Room[]>(this.GET_ALL_ROOMS + '?seats=' + seats).pipe(catchError(this.handleError));
+  }
+
   /** Retourne un objet de type Room **/
-  getRoom(): Observable<Room> {
-    return this.http.get<Room>(this.GET_ROOM).pipe(catchError(this.handleError));
+  getRoom(room_id :number): Observable<Room> {
+    return this.http.get<Room[]>(this.GET_ROOM + room_id)
+      .pipe(map(res => res.find(room => room.id == room_id)), 
+        catchError(this.handleError));
+  }
+
+  /** Créer une Room **/
+  createRoom(roomDTO : RoomDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_ROOMS + '/add', JSON.stringify(roomDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** Met à jour objet de type Room **/
+  updateRoom(roomDTO : RoomDTO): Observable<any> {
+    console.log("cleared from "+!roomDTO.cleared+" to "+roomDTO.cleared);
+    return this.http.post(this.GET_ALL_ROOMS + '/update', JSON.stringify(roomDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

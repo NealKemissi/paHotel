@@ -25,7 +25,7 @@ import { AdminBookingDetailComponent } from './Admin/Booking/AdminBookingDetail/
 import { AdminRoomDetailComponent } from './Admin/Room/AdminRoomDetail/adminRoomDetail.component';
 import { AdminEventDetailComponent } from './Admin/Event/AdminEventDetail/adminEventDetail.component';
 import { AdminRoomCreateComponent } from './Admin/Room/AdminRoomCreate/adminRoomCreate.component';
-import { BoolTransformPipe, isCleanPipe } from './pipe/boolean.pipe';
+import { BoolTransformPipe, isCleanPipe, RoomStatusPipe } from './pipe/boolean.pipe';
 import { AdminEventCreateComponent } from './Admin/Event/AdminEventCreate/adminEventCreate.component';
 import { AdminEventUpdateComponent } from './Admin/Event/AdminEventUpdate/adminEventUpdate.component';
 import { EventsComponent } from './Events/events.component';
@@ -78,6 +78,7 @@ import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/admin
     SearchFilterPipe,
     HighLightPipe,
     BoolTransformPipe,
+    RoomStatusPipe,
     isCleanPipe
   ],
   imports: [

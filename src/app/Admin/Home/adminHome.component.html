@@ -43,8 +43,8 @@
             <br /><br />
             <div class="row">
                 <div class="col-md-6 col offset-md-3">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Numéro de chambre" [(ngModel)]="roomId"
-                        name="roomId">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Numéro de chambre" [(ngModel)]="number"
+                        name="number">
                 </div>
             </div>
             <br /><br />
@@ -52,17 +52,17 @@
                 <thead>
                     <tr>
                         <th scope="col">Numéro</th>
-                        <th scope="col">Disponible</th>
+                        <th scope="col">Disponibilité</th>
                         <th scope="col">Etat</th>
                         <th scope="col">Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let room of rooms | filter: 'id' : roomId | paginate: {  id: '2', itemsPerPage: 4, currentPage: page2 }">
-                        <td innerHTML="n°{{room.id | highlight : roomId }}"></td>
-                        <td>{{room.isAvailable | boolTransform}}</td>
-                        <td>{{room.isClean | isClean}}</td>
-                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onRoomDetail()">Détail</button></td>
+                    <tr *ngFor="let room of rooms | filter: 'number' : number | paginate: {  id: '2', itemsPerPage: 4, currentPage: page2 }">
+                        <td innerHTML="n°{{room.number | highlight : number }}"></td>
+                        <td>{{room.id_room_status | roomStatus}}</td>
+                        <td>{{room.cleared | isClean}}</td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onRoomDetail(room.id)">Détail</button></td>
                     </tr>
                 </tbody>
             </table>

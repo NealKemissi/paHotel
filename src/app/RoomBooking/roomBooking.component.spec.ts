@@ -29,7 +29,7 @@ describe('RoomBookingComponent', () => {
     app.room = {
         id: 12,
         floor: 1,
-        places: 4,
+        seats: 4,
         equipments: ["TV", "climatisation", "fibre"],
         isAvailable: true
     }
@@ -48,7 +48,7 @@ describe('RoomBookingComponent', () => {
     compiled.room = {
         id: 12,
         floor: 1,
-        places: 4,
+        seats: 4,
         equipments: ["TV", "climatisation", "fibre"],
         isAvailable: true
     }

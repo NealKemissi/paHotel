@@ -44,16 +44,12 @@
             <tbody>
                 <tr *ngFor="let room of rooms">
                     <td><img src="./assets/img/room-logo.png"></td>
-                    <td>n°{{room.id}}</td>
-                    <td>{{room.places}}</td>
-                    <td>{{room.floor}}</td>
-                    <td>
-                        <span *ngFor="let equipment of room.equipments">
-                            [{{equipment}}]
-                        </span>
-                    </td>
+                    <td>n°{{room.number}}</td>
+                    <td>{{room.seats}}</td>
+                    <td>{{room.number | slice:0:1}}</td>
+                    <td>{{room.description}}</td>
                     <td><button class="btn btn-primary my-2 my-sm-0"
-                            (click)="onBook()">Réserver</button></td>
+                            (click)="onBook(room.id)">Réserver</button></td>
                 </tr>
             </tbody>
         </table>
