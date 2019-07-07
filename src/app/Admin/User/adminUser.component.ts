@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminUserComponent {
 
+    /** pagination */
+    page: number = 1;
     /** utilisateurs */
     users: User[] = [];
     /** detail utilisateur */

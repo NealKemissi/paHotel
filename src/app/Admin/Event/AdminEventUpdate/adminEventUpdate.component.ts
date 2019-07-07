@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
+import { EventDTO } from 'src/app/models/dto/eventDTO';
 
 @Component({
     selector: 'adminEventUpdate',
@@ -22,24 +23,34 @@ export class AdminEventUpdateComponent {
     constructor(private route: ActivatedRoute, private router: Router, private eventService: EventService) { }
 
     ngOnInit() {
-        this.eventService.getEvent().subscribe(
-            data => {
-                this.event = data;
-                this.loading = false;
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-            });
+        this.route.queryParams.forEach(params => {
+            this.eventService.getEvent(params['id']).subscribe(
+                data => {
+                    this.event = data;
+                    this.loading = false;
+                    console.log('event :' + this.event.name);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+        })
     }
 
     onUpdate() {
         if (!this.msgUpdate) {
-            console.log("date :" + this.event.date + ", nom :" + this.event.name + ", description :" + this.event.description);
+            console.log("date :" + this.event.beginning + ", nom :" + this.event.name + ", description :" + this.event.description);
             this.msgUpdate = true;
+            let eventDTO : EventDTO = new EventDTO(
+                this.event.id,
+                this.event.name,
+                this.event.beginning,
+                this.event.description
+            );
+            this.eventService.updateEvent(eventDTO).subscribe(data => eventDTO = data, error => this.error = error);
             setTimeout(() => {
                 //requete http update ...
-                this.router.navigate(['/adminEventDetail']);
+                this.router.navigate(['/adminEventDetail'], {queryParams : { id: this.event.id } });
             }, 2500);
         }
     }

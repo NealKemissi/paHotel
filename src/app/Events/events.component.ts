@@ -10,6 +10,8 @@ import { EventService } from '../services/event.service';
 })
 export class EventsComponent {
 
+  /** pagination */
+  page: number = 1;
   /***/
   events: Event[] = [];
   /***/

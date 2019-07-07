@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
+import { EventDTO } from 'src/app/models/dto/eventDTO';
 
 @Component({
     selector: 'adminEventCreate',
@@ -11,11 +12,15 @@ import { EventService } from 'src/app/services/event.service';
 export class AdminEventCreateComponent {
 
     /** évenement */
-    dateEvent: string;
+    beginning: string;
     /***/
-    nameEvent: string;
+    name: string;
     /***/
-    descriptionEvent: string;
+    description: string;
+    /***/
+    error : string;
+    /***/
+    msgCreating: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private eventService: EventService) { }
 
@@ -23,6 +28,23 @@ export class AdminEventCreateComponent {
     }
 
     onCreate() {
-        console.log("date :" + this.dateEvent + ", nom :" + this.nameEvent + ", description :" + this.descriptionEvent);
+        if(this.beginning == undefined || this.name == undefined || this.description == undefined){
+            this.error = 'Tous les champs obligatoires doivent être remplis !';
+        } else {
+            this.error = undefined;
+            console.log("date :" + this.beginning + ", nom :" + this.name + ", description :" + this.description);
+            let eventDTO: EventDTO = new EventDTO(
+                null,
+                this.name,
+                this.beginning,
+                this.description
+            );
+            this.msgCreating = true;
+            this.eventService.createEvent(eventDTO).subscribe(data => eventDTO = data, error => this.error = error);
+            setTimeout(() => {
+                //requete http create ...
+                this.router.navigate(['/adminHome']);
+            }, 2500);
+        }
     }
 }

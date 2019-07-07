@@ -44,7 +44,8 @@
                   | filter: 'id' : id
                   | filter: 'lastname' : lastname
                   | filter: 'firstname' : firstname
-                  | filter: 'email' : email">
+                  | filter: 'email' : email
+                  | paginate: { id: '1', itemsPerPage: 4, currentPage: page }">
                         <td innerHTML="{{user.id | highlight : id}}"></td>
                         <td innerHTML="{{user.firstname | highlight : firstname}}"></td>
                         <td innerHTML="{{user.lastname | highlight : lastname}}"></td>
@@ -53,6 +54,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true"></pagination-controls>
             <br />
         </div>
     </div>

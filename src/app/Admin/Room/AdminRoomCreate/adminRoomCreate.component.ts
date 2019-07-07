@@ -37,8 +37,8 @@ export class AdminRoomCreateComponent {
 
     onCreate() {
         console.log(this.status);
-        if (this.number == undefined && this.seats == undefined && this.status == undefined) {
-            this.error = 'Tous les champs doivent être remplis !'
+        if (this.number == undefined || this.seats == undefined || this.status == undefined) {
+            this.error = 'Tous les champs obligatoires doivent être remplis !';
         } else {
             this.error = undefined;
             console.log(this.floor);

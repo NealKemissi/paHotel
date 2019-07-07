@@ -4,7 +4,7 @@ export class Event {
     /***/
     name: string;
     /***/
-    date: string;
+    beginning: string;
     /***/
     description: string;
 }

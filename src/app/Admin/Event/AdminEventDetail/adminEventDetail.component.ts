@@ -16,23 +16,36 @@ export class AdminEventDetailComponent {
     error: string;
     /***/
     msgConfirm: boolean = false;
+    /***/
+    loading: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private eventService: EventService) { }
 
     ngOnInit() {
-        this.eventService.getEvent().subscribe(data => this.event = data, error => this.error = error);
+        this.route.queryParams.forEach(params => {
+            this.eventService.getEvent(params['id']).subscribe(
+                data => {
+                    this.event = data;
+                    this.loading = false;
+                    console.log('event :' + this.event.name);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+        })
     }
 
     onUpdate() {
-        this.router.navigate(['/adminEventUpdate']);
+        this.router.navigate(['/adminEventUpdate'], {queryParams : { id: this.event.id } });
     }
 
     onDelete() {
         this.msgConfirm = true;
     }
 
-    onConfirm(value : number) {
-        if(value == 0){
+    onConfirm(value: number) {
+        if (value == 0) {
             this.msgConfirm = false;
         } else {
             //requete http suppression ...

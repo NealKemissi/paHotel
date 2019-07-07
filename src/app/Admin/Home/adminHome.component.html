@@ -94,9 +94,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let event of events | filter: 'date' : eventDate | paginate: {  id: '3', itemsPerPage: 4, currentPage: page3 }">
-                        <td innerHTML="{{event.date | highlight : eventDate }}"></td>
+                        <td innerHTML="{{event.beginning | highlight : eventDate }}"></td>
                         <td>{{event.name}}</td>
-                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onEventDetail()">Détail</button></td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onEventDetail(event.id)">Détail</button></td>
                     </tr>
                 </tbody>
             </table>

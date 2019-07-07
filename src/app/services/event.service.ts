@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Event } from '../models/event';
+import { EventDTO } from '../models/dto/eventDTO';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    'Access-Control-Allow-Origin':'*',
+    'Content-type':'application/json'
+  })
+};
 
 @Injectable()
 export class EventService {
 
-  GET_ALL_EVENTS = 'assets/api/events.json';
-  GET_EVENT = 'assets/api/event.json';
+  GET_ALL_EVENTS = 'http://localhost:8090/event';
+  GET_EVENT = 'http://localhost:8090/event?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +26,22 @@ export class EventService {
   }
 
   /** Retourne un objet de type Event **/
-  getEvent(): Observable<Event> {
-    return this.http.get<Event>(this.GET_EVENT).pipe(catchError(this.handleError));
+  getEvent(event_id : number): Observable<Event> {
+    return this.http.get<Event[]>(this.GET_EVENT + event_id)
+      .pipe(map(res => res.find(event => event.id == event_id)), 
+        catchError(this.handleError));
+  }
+
+  /** Créer un Event **/
+  createEvent(eventDTO : EventDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_EVENTS + '/add', JSON.stringify(eventDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** Créer un Event **/
+  updateEvent(eventDTO : EventDTO): Observable<any> {
+    console.log("updating ...");
+    return this.http.post(this.GET_ALL_EVENTS + '/update', JSON.stringify(eventDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

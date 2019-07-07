@@ -32,7 +32,11 @@ export class AdminUserCreateComponent {
 
     onCreate() {
         console.log("nom :" + this.firstname + ", prenom :" + this.lastname + ", email :" + this.email+ ", password :" + this.password1+ ", date :" + this.birthday);
-        let user: UserDTO = new UserDTO(this.email, this.password1, this.password2, this.lastname, this.firstname, this.birthday);
+        let user: UserDTO = new UserDTO(null, this.email, this.password1, this.password2, this.lastname, this.firstname, this.birthday);
         this.userService.createUser(user).subscribe(data => user = data, error => this.error = error);
+        setTimeout(() => {
+            //requete http create ...
+            this.router.navigate(['/adminUser']);
+        }, 2500);
     }
 }

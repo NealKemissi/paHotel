@@ -53,8 +53,8 @@ export class AdminHomeComponent {
     this.router.navigate(['/adminRoomCreate']);
   }
 
-  onEventDetail() {
-    this.router.navigate(['/adminEventDetail']);
+  onEventDetail(id_event : number) {
+    this.router.navigate(['/adminEventDetail'], {queryParams : { id: id_event } });
   }
 
   onEventCreate() {
