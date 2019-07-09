@@ -33,10 +33,10 @@ import { AdminUserComponent } from './Admin/User/adminUser.component';
 import { AdminUserUpdateComponent } from './Admin/User/adminUserUpdate/adminUserUpdate.component';
 import { AdminUserCreateComponent } from './Admin/User/adminUserCreate/adminUserCreate.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AdminServiceBookingHomeComponent } from './Admin/ServiceBooking/adminServiceBookingHome.component';
-import { ServiceBookingService } from './services/serviceBooking.service';
-import { AdminServiceBookingUpdateComponent } from './Admin/ServiceBooking/adminServiceBookingUpdate/adminServiceBookingUpdate.component';
+import { adminServiceHomeComponent } from './Admin/Service/adminServiceHome.component';
+import { adminServiceUpdateComponent } from './Admin/Service/adminServiceUpdate/adminServiceUpdate.component';
 import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/adminHotelDashboardUpdate.component';
+import { ServiceService } from './services/service.service';
 
 @NgModule({
   declarations: [
@@ -66,8 +66,8 @@ import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/admin
     AdminRoomDetailComponent,
     AdminRoomCreateComponent,
     /***/
-    AdminServiceBookingHomeComponent,
-    AdminServiceBookingUpdateComponent,
+    adminServiceHomeComponent,
+    adminServiceUpdateComponent,
     /***/
     AdminEventDetailComponent,
     AdminEventCreateComponent,
@@ -95,8 +95,8 @@ import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/admin
     UserService,
     RoomService,
     EventService,
-    BookingService,
-    ServiceBookingService
+    ServiceService,
+    BookingService
   ],
   bootstrap: [AppComponent]
 })

@@ -57,7 +57,7 @@
                             "isClean": false
                         }
                     ],
-                    "isPaid": false
+                    "is_paid": false
                 }
             ]
         },
@@ -102,7 +102,7 @@
                 "isClean": false
             }
         ],
-        "isPaid": false
+        "is_paid": false
     },
     {
         "id": 11,
@@ -143,7 +143,7 @@
                             "isClean": true
                         }
                     ],
-                    "isPaid": true
+                    "is_paid": true
                 }
             ]
         },
@@ -170,7 +170,7 @@
                 "isClean": true
             }
         ],
-        "isPaid": true
+        "is_paid": true
     },
     {
         "id": 20,
@@ -225,7 +225,7 @@
                             "isClean": true
                         }
                     ],
-                    "isPaid": true
+                    "is_paid": true
                 }
             ]
         },
@@ -266,7 +266,7 @@
                 "isClean": true
             }
         ],
-        "isPaid": true
+        "is_paid": true
     },
     {
         "id": 23,
@@ -329,7 +329,7 @@
                             "isClean": true
                         }
                     ],
-                    "isPaid": false
+                    "is_paid": false
                 }
             ]
         },
@@ -378,6 +378,6 @@
                 "isClean": true
             }
         ],
-        "isPaid": false
+        "is_paid": false
     }
 ]

@@ -55,7 +55,7 @@
                         "isClean": false
                     }
                 ],
-                "isPaid": false
+                "is_paid": false
             }
         ]
     },
@@ -96,7 +96,7 @@
                         "isClean": true
                     }
                 ],
-                "isPaid": true
+                "is_paid": true
             }
         ]
     },
@@ -151,7 +151,7 @@
                         "isClean": true
                     }
                 ],
-                "isPaid": true
+                "is_paid": true
             }
         ]
     },
@@ -214,7 +214,7 @@
                         "isClean": true
                     }
                 ],
-                "isPaid": false
+                "is_paid": false
             }
         ]
     }

@@ -14,6 +14,17 @@
                         value="{{service?.name}}">
                 </div>
                 <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Prix</label></h5>
+                    <input type="number" class="form-control" [(ngModel)]="service.price" name="service.price" min="0"
+                    value="{{service?.price}}" max="99">
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Description</label></h5>
+                    <textarea class="form-control" [(ngModel)]="service.description" name="service.description" rows="3"
+                        value="{{service?.description}}"></textarea>
+                </div>
                 <br /><br />
                 <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
                     le service</button>

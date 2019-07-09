@@ -24,9 +24,9 @@
                 <tbody>
                     <tr *ngFor="let booking of bookings | filter: 'id' : bookingId | paginate: { id: '1', itemsPerPage: 4, currentPage: page1 }"><!-- | slice:0-5-->
                         <td innerHTML="{{booking.id | highlight : bookingId }}"></td>
-                        <td>{{booking.dateBegin}}</td>
-                        <td>{{booking.dateEnd}}</td>
-                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail()">Détail</button></td>
+                        <td>{{booking.start_date}}</td>
+                        <td>{{booking.end_date}}</td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail(booking.id)">Détail</button></td>
                     </tr>
                 </tbody>
             </table>

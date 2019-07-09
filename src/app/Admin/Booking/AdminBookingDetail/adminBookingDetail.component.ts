@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Booking } from 'src/app/models/booking';
 import { BookingService } from 'src/app/services/booking.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 declare let jsPDF; // on l'import grace au script ajouté dans index.html
 
 @Component({
@@ -14,12 +16,36 @@ export class AdminBookingDetailComponent {
   /** reservation */
   booking: Booking;
   /***/
+  user : User;
+  /***/
   error: string;
+  /***/
+  loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private bookingService: BookingService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private bookingService: BookingService, private userService: UserService) { }
 
   ngOnInit() {
-    this.bookingService.getBooking().subscribe(data => this.booking = data, error => this.error = error);
+    this.route.queryParams.forEach(params => {
+      this.bookingService.getBooking(params['id']).subscribe(
+          data => {
+              this.booking = data;
+              this.loading = false;
+              console.log('id booking : ' + this.booking.id);
+              this.userService.getUserById(this.booking.id_user).subscribe(
+                data => {
+                  this.user = data;
+                  console.log('user : ' + this.user.firstname);
+              },
+              error => {
+                  this.error = error;
+              })
+
+          },
+          error => {
+              this.error = error;
+              this.loading = false;
+          })
+  })
   }
 
   convertPDF() {

@@ -16,8 +16,8 @@ import { EventsComponent } from './Events/events.component';
 import { AdminUserComponent } from './Admin/User/adminUser.component';
 import { AdminUserUpdateComponent } from './Admin/User/adminUserUpdate/adminUserUpdate.component';
 import { AdminUserCreateComponent } from './Admin/User/adminUserCreate/adminUserCreate.component';
-import { AdminServiceBookingHomeComponent } from './Admin/ServiceBooking/adminServiceBookingHome.component';
-import { AdminServiceBookingUpdateComponent } from './Admin/ServiceBooking/adminServiceBookingUpdate/adminServiceBookingUpdate.component';
+import { adminServiceHomeComponent } from './Admin/Service/adminServiceHome.component';
+import { adminServiceUpdateComponent } from './Admin/Service/adminServiceUpdate/adminServiceUpdate.component';
 import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/adminHotelDashboardUpdate.component';
 
 const routes: Routes = [
@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'adminBookingDetail', component: AdminBookingDetailComponent },
   { path: 'adminRoomDetail', component: AdminRoomDetailComponent },
   { path: 'adminRoomCreate', component: AdminRoomCreateComponent },
-  { path: 'adminServiceBookingHome', component: AdminServiceBookingHomeComponent},
-  { path: 'adminServiceBookingUpdate', component: AdminServiceBookingUpdateComponent},
+  { path: 'adminServiceHome', component: adminServiceHomeComponent},
+  { path: 'adminServiceUpdate', component: adminServiceUpdateComponent},
   { path: 'adminEventDetail', component: AdminEventDetailComponent },
   { path: 'adminEventCreate', component: AdminEventCreateComponent },
   { path: 'adminEventUpdate', component: AdminEventUpdateComponent }

@@ -1,20 +1,20 @@
-import { Event } from "./event";
-import { Room } from "./room";
-import { User } from "./user";
-
 export class Booking {
     /***/
     id : number;
     /***/
-    user : User;
+    date_booking : string;
     /***/
-    dateBegin : string;
+    start_date : string;
     /***/
-    dateEnd : string;
+    end_date : string;
     /***/
-    events : Array<Event>;
+    staying_days : number;
     /***/
-    rooms : Array<Room>;
+    active: number;
     /***/
-    isPaid : boolean;
+    id_booking_status: number;
+    /***/
+    id_user: number;
+    /***/
+    is_paid : boolean;
 }

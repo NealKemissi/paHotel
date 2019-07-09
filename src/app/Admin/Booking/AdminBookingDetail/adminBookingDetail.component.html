@@ -7,15 +7,15 @@
             <br /><br />
             <div class="my-div-left-content">
                 <h6>
-                    Nom : <strong>{{booking?.user.firstname}}</strong>
+                    Nom : <strong>{{user?.lastname}}</strong>
                     <br /><br />
-                    Prénom : <strong>{{booking?.user.lastname}}</strong>
+                    Prénom : <strong>{{user?.firstname}}</strong>
                     <br /><br />
-                    Mail : <strong>{{booking?.user.email}}</strong>
+                    Mail : <strong>{{user?.email}}</strong>
                     <br /><br /><br />
                     ID de la Réservation : <strong>{{booking?.id}}</strong>
                     <br /><br />
-                    Facture payé : <strong>{{booking?.isPaid  | boolTransform}}</strong>
+                    Facture payé : <strong>{{booking?.is_paid  | boolTransform}}</strong>
                     <br /><br /><br />
                 </h6>
             </div>

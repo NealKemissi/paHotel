@@ -54,7 +54,7 @@
                     "isClean": false
                 }
             ],
-            "isPaid": false
+            "is_paid": false
         }
     ]
 }

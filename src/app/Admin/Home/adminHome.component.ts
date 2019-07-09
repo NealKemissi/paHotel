@@ -41,8 +41,8 @@ export class AdminHomeComponent {
     this.eventService.getAllEvents().subscribe(data => this.events = data, error => this.error = error);
   }
 
-  onBookingDetail() {
-    this.router.navigate(['/adminBookingDetail']);
+  onBookingDetail(id_booking : number) {
+    this.router.navigate(['/adminBookingDetail'], {queryParams : { id: id_booking } });
   }
 
   onRoomDetail(id_room : number) {

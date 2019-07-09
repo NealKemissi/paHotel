@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Booking } from '../models/booking';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    'Access-Control-Allow-Origin':'*',
+    'Content-type':'application/json'
+  })
+};
 
 @Injectable()
 export class BookingService {
 
-  GET_ALL_BOOKING = 'assets/api/bookings.json';
-  GET_BOOKING = 'assets/api/booking.json';
+  GET_ALL_BOOKING = 'http://localhost:8090/booking';
+  GET_BOOKING = 'http://localhost:8090/booking?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +25,10 @@ export class BookingService {
   }
 
   /** Retourne un objet de type Booking **/
-  getBooking(): Observable<Booking> {
-    return this.http.get<Booking>(this.GET_BOOKING).pipe(catchError(this.handleError));
+  getBooking(id_booking : number): Observable<Booking> {
+    return this.http.get<Booking[]>(this.GET_BOOKING + id_booking)
+      .pipe(map(res => res.find(booking => booking.id == id_booking)), 
+        catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/
