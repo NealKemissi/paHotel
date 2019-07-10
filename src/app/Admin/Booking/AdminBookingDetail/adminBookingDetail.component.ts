@@ -170,6 +170,10 @@ export class AdminBookingDetailComponent {
     });
   }
 
+  onServiceBookingDetail(){
+    this.router.navigate(['/adminAddServiceBooking'], {queryParams : { id: this.booking.id } });
+  }
+
   convertPDF() {
     if (this.booking != undefined) {
       /** methode 1*/

@@ -40,6 +40,7 @@ import { ServiceService } from './services/service.service';
 import { RoomBookingService } from './services/room_booking.service';
 import { EventBookingService } from './services/event_booking.service';
 import { ServiceBookingService } from './services/service_booking.service';
+import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddServiceBooking/adminAddServiceBooking.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ServiceBookingService } from './services/service_booking.service';
     AdminUserUpdateComponent,
     /***/
     AdminBookingDetailComponent,
+    AdminAddServiceBookingComponent,
     /***/
     AdminRoomDetailComponent,
     AdminRoomCreateComponent,

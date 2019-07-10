@@ -19,6 +19,7 @@ import { AdminUserCreateComponent } from './Admin/User/adminUserCreate/adminUser
 import { adminServiceHomeComponent } from './Admin/Service/adminServiceHome.component';
 import { adminServiceUpdateComponent } from './Admin/Service/adminServiceUpdate/adminServiceUpdate.component';
 import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/adminHotelDashboardUpdate.component';
+import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddServiceBooking/adminAddServiceBooking.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'adminUser', component: AdminUserComponent },
   { path: 'adminUserUpdate', component: AdminUserUpdateComponent },
   { path: 'adminBookingDetail', component: AdminBookingDetailComponent },
+  { path: 'adminAddServiceBooking', component: AdminAddServiceBookingComponent },
   { path: 'adminRoomDetail', component: AdminRoomDetailComponent },
   { path: 'adminRoomCreate', component: AdminRoomCreateComponent },
   { path: 'adminServiceHome', component: adminServiceHomeComponent},

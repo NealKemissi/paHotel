@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ServiceBooking } from '../models/service_booking';
+import { ServiceBookingDTO } from '../models/dto/service_bookingDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -29,11 +30,18 @@ export class ServiceBookingService {
     return this.http.get<ServiceBooking[]>(this.GET_ALL_SERVICE_BOOKING + '?id_booking=' + id_booking).pipe(catchError(this.handleError));
   }
 
-  /** Retourne un objet de type EventBooking **/
+  /** Retourne un objet de type ServiceBooking **/
   getServiceBooking(id_service_booking : number): Observable<ServiceBooking> {
     return this.http.get<ServiceBooking[]>(this.GET_SERVICE_BOOKING + id_service_booking)
       .pipe(map(res => res.find(room_booking => room_booking.id == id_service_booking)), 
         catchError(this.handleError));
+  }
+
+  /** Créer un ServiceBooking **/
+  createServiceBooking(service_bookingDTO : ServiceBookingDTO): Observable<any> {
+    console.log("creating ...");
+    console.log('id : '+service_bookingDTO.id+',booked_at : '+service_bookingDTO.booked_at+',realised_at : '+service_bookingDTO.realised_at+',id_service : '+service_bookingDTO.id_service+',id_booking : '+service_bookingDTO.id_booking+',id_service_booking_status : '+service_bookingDTO.id_service_booking_status)
+    return this.http.post(this.GET_ALL_SERVICE_BOOKING + '/add', JSON.stringify(service_bookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

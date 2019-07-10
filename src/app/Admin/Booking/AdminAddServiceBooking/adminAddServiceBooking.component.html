@@ -1,0 +1,83 @@
+<div *ngIf="msgConfirm" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ATTENTION</strong>
+        </h3><br />
+        <h6>
+            Le service sera définitivement retiré de la facture, êtes-vous sur ?
+            <br /><br />
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+            &nbsp;
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div class="col-md-6 col offset-md-3">
+    <div class="container" *ngIf="!loading">
+        <h2>
+            <strong>SERVICE(S) DU CLIENT</strong>
+        </h2>
+        <br /><br />
+        <div class="my-div-center-content" *ngIf="!error">
+            <form>
+                <br />
+                <h5><label>Service(s) actuel(s)</label></h5>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let service of services">
+                            <td>{{service?.id}}</td>
+                            <td>{{service?.name}}</td>
+                            <td>{{service?.price}} €</td>
+                            <td><button class="btn btn-danger" (click)="deleteServiceFromBooking()">x</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="form-group">
+                    <h5><label>Ajouter Service</label></h5>
+                    <select class="form-control" [(ngModel)]="name" name="name" required>
+                        <option *ngFor="let service of allServicesAvailable">
+                            {{service?.name}}
+                        </option>
+                    </select>
+                </div>
+                <br /><br />
+                <button *ngIf="name" class="btn btn-lg btn-primary btn-block" (click)="addService()"
+                    type="submit">Ajouter le service '{{name}}' à la
+                    réservation</button>
+            </form>
+            <br />
+        </div>
+    </div>
+    <br />
+</div>
