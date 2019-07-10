@@ -40,6 +40,10 @@ export class AdminBookingDetailComponent {
   events: Event[] = [];
   /***/
   services: Service[] = [];
+  /** pagination */
+  page1: number = 1;
+  page2: number = 1;
+  page3: number = 1;
   /***/
   error: string;
   /***/

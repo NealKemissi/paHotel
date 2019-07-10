@@ -12,6 +12,8 @@ export class Booking {
     /***/
     active: number;
     /***/
+    comment: string;
+    /***/
     id_booking_status: number;
     /***/
     id_user: number;

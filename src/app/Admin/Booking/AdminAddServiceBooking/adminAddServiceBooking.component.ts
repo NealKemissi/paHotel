@@ -92,34 +92,47 @@ export class AdminAddServiceBookingComponent {
       this.msgConfirm = false;
 
       var id: string;
-      this.route
-      .queryParams
-      .subscribe(params => {
-        id = params['id'];
+      this.route.queryParams.subscribe(params => {
+        id = params["id"];
       });
       this.msgUpdate = true;
       setTimeout(() => {
         //requete http suppression ...
-        this.router.navigate(['/adminBookingDetail'], {queryParams : { id: id } });
-    }, 2500);
+        this.router.navigate(["/adminBookingDetail"], {
+          queryParams: { id: id }
+        });
+      }, 2500);
     }
   }
 
-  addService(){
+  addService() {
     var id_booking: string;
-    this.route
-    .queryParams
-    .subscribe(params => {
-        id_booking = params['id'];
+    this.route.queryParams.subscribe(params => {
+      id_booking = params["id"];
     });
-    let service: Service = this.allServicesAvailable.find(s => s.name == this.name);
-    let service_booking: ServiceBookingDTO = new ServiceBookingDTO(null, null, null, service.id, parseInt(id_booking));
-    console.log('service id '+service.id+', id_booking '+parseInt(id_booking));
-    this.serviceBookingService.createServiceBooking(service_booking);
+    let service: Service = this.allServicesAvailable.find(
+      s => s.name == this.name
+    );
+    console.log("service ici : " + service.name + "(id=" + service.id + ")");
+    let service_booking: ServiceBookingDTO = new ServiceBookingDTO(
+      null,
+      null,
+      null,
+      service.id,
+      parseInt(id_booking)
+    );
+    console.log(
+      "service id " + service.id + ", id_booking " + parseInt(id_booking)
+    );
+    this.serviceBookingService
+      .createServiceBooking(service_booking)
+      .subscribe(data => (service = data), error => (this.error = error));
     this.msgUpdate = true;
     setTimeout(() => {
-        //requete http create ...
-        this.router.navigate(['/adminBookingDetail'], {queryParams : { id: id_booking } });
+      //requete http create ...
+      this.router.navigate(["/adminBookingDetail"], {
+        queryParams: { id: id_booking }
+      });
     }, 2500);
   }
 }
