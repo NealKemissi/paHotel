@@ -37,6 +37,9 @@ import { adminServiceHomeComponent } from './Admin/Service/adminServiceHome.comp
 import { adminServiceUpdateComponent } from './Admin/Service/adminServiceUpdate/adminServiceUpdate.component';
 import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/adminHotelDashboardUpdate.component';
 import { ServiceService } from './services/service.service';
+import { RoomBookingService } from './services/room_booking.service';
+import { EventBookingService } from './services/event_booking.service';
+import { ServiceBookingService } from './services/service_booking.service';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,11 @@ import { ServiceService } from './services/service.service';
     RoomService,
     EventService,
     ServiceService,
-    BookingService
+    /***/
+    BookingService,
+    RoomBookingService,
+    EventBookingService,
+    ServiceBookingService
   ],
   bootstrap: [AppComponent]
 })

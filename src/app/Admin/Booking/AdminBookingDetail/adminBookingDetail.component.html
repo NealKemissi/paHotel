@@ -39,15 +39,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let room of booking?.rooms">
-                        <td>n°{{room?.id}}</td>
-                        <td>{{room?.floor}}</td>
+                    <tr *ngFor="let room of rooms">
+                        <td>n°{{room?.number}}</td>
+                        <td>{{room?.number | slice:0:1}}</td>
                         <td>{{room?.seats}}</td>
-                        <td>
-                            <span *ngFor="let equipment of room?.equipments">
-                                [{{equipment}}]
-                            </span>
-                        </td>
+                        <td>{{room?.description}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -67,9 +63,9 @@
             <br /><br />
             <div class="my-div-left-content">
                 <h6>
-                    Début du séjour : <strong>{{booking?.dateBegin}}</strong>
+                    Début du séjour : <strong>{{booking?.start_date}}</strong>
                     <br /><br />
-                    Fin du séjour : <strong>{{booking?.dateEnd}}</strong>
+                    Fin du séjour : <strong>{{booking?.end_date}}</strong>
                     <br /><br />
                 </h6>
             </div>
@@ -90,7 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let event of booking?.events">
+                    <tr *ngFor="let event of events">
                         <td>{{event?.name}}</td>
                         <td>{{event?.beginning}}</td>
                     </tr>
@@ -105,6 +101,22 @@
                 <strong>SERVICE(S)</strong>
             </h2>
             <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let service of services">
+                        <td>{{service?.id}}</td>
+                        <td>{{service?.name}}</td>
+                        <td>{{service?.price}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
