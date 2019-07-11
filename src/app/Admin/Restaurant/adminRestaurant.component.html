@@ -1,8 +1,47 @@
+<div *ngIf="msgConfirm" class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="alert alert-primary">
+            <h3>
+                <strong>CONFIRMATION</strong>
+            </h3><br />
+            <h6>
+                La table re-passera à un état "libre" et sera de nouveau disponnible, êtes-vous sur ?
+                <br /><br />
+                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+                &nbsp;
+                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+            </h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="msgDeleting" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------------------>
 <div class="row">
     <div class="col-md-7">
         <div class="container">
             <h2>
-                <strong>RESTAURANTS</strong>
+                <strong>RESTAURANT DE L'HOTEL</strong>
             </h2>
             <br /><br />
             <!-- ngIf="item == libre" class="couleur-vert" |||||||| ngIf="item == occupé" class="couleur-rouge"-->
@@ -10,31 +49,13 @@
             <br />
             <div class="my-resto">
                 <div *ngFor="let x of restaurant">
-                    <div *ngFor="let y of x" class="table-resto">
-                        n°{{y.id}}
+                    <div *ngFor="let y of x" class="table-resto" (click)="onTableBookingDetail(y.id)">
+                        <img src="./assets/img/table.png" style="max-width:40px; max-height:80px;">
+                        &nbsp;
+                        <span>n°<strong>{{y.id}}</strong></span>
                     </div>
                 </div>
             </div>
-            <!-- <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">X</th>
-                        <th scope="col">Y</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let table of tables
-                  | paginate: { id: '1', itemsPerPage: 4, currentPage: page }">
-                        <td innerHTML="{{table.id}}"></td>
-                        <td innerHTML="{{table.x_pos}}"></td>
-                        <td innerHTML="{{table.y_pos}}"></td>
-                        <td><button class="btn btn-info my-2 my-sm-0">Détail</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true"></pagination-controls> -->
             <br />
         </div>
     </div>
@@ -42,49 +63,28 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong>INFOS DE LA TABLE</strong>
+                <strong>INFOS DE LA TABLE <span *ngIf="id>0">n°{{id}}</span></strong>
             </h2>
             <br /><br />
-            <div *ngIf="user!=undefined" class="my-div-left-content">
-                <h4>
-                    Nom : <strong>{{user.firstname}}</strong>
+            <h4>
+                <div *ngIf="table_info==undefined" class="my-div-left-content">
+                    <strong style="color:#28a745;">Cette table est libre</strong>
                     <br /><br />
-                    Prénom : <strong>{{user.lastname}}</strong>
+                    <button class="btn btn-info my-2 my-sm-0" (click)="onCreate()">Reserver la table</button>
+                </div>
+                <div *ngIf="table_info!=undefined" class="my-div-left-content">
+                    <strong *ngIf="!is_eating_now" style="color:#fd7e14;">Cette table est réservée pour bientôt</strong>
+                    <strong *ngIf="is_eating_now" style="color:#dc3545;">Cette table est occupée</strong>
                     <br /><br />
-                    Email : <strong>{{user.email}}</strong>
+                    Arrivée du client : <strong>{{table_info.arrival}}</strong>
                     <br /><br />
-                    Réservation(s) :
+                    Prix total à payer : <strong>{{table_info.total_price}} €</strong>
                     <br /><br />
-                    <ul *ngFor="let booking of user.bookings">
-                        <li>
-                            <strong><button class="btn btn-primary my-2 my-sm-0"
-                                    (click)="onBookingDetail()">{{booking.id}}</button></strong>
-                        </li>
-                    </ul>
-                    <br />
-                </h4>
-                <button class="btn btn-primary my-2 my-sm-0" (click)="onUpdate()">Modifier le compte</button>
-                &nbsp;
-                <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer le compte</button>
-            </div>
-        </div>
-        <br />
-        <button class="btn btn-info my-2 my-sm-0" (click)="onCreate()">+ Reservé une table</button>
-    </div>
-</div>
-<div *ngIf="msgConfirm" class="row">
-    <div class="col-md-4 offset-md-4">
-        <div class="alert alert-danger">
-            <h3>
-                <strong>ATTENTION</strong>
-            </h3><br />
-            <h6>
-                Le compte client sera définitivement supprimé, êtes-vous sur ?
-                <br /><br />
-                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
-                &nbsp;
-                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
-            </h6>
+                    A payé : <strong>{{table_info.done}}</strong>
+                    <br /><br />
+                    <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Valider le paiement</button>
+                </div>
+            </h4>
         </div>
     </div>
 </div>

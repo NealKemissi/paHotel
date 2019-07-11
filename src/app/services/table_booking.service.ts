@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TableBooking } from '../models/table_booking';
+import { TableBookingDTO } from '../models/dto/table_bookingDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -29,6 +30,17 @@ export class TableBookingService {
     return this.http.get<TableBooking[]>(this.GET_TABLE_BOOKING + table_booking_id)
       .pipe(map(res => res.find(table_booking => table_booking.id == table_booking_id)), 
         catchError(this.handleError));
+  }
+
+  /** Créer une TableBooking **/
+  createTableBooking(tableBookingDTO : TableBookingDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_TABLE_BOOOKING + '/add', JSON.stringify(tableBookingDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** Met à jour objet de type TableBooking **/
+  updateTableBooking(tableBookingDTO : TableBookingDTO): Observable<any> {
+    return this.http.post(this.GET_ALL_TABLE_BOOOKING + '/update', JSON.stringify(tableBookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

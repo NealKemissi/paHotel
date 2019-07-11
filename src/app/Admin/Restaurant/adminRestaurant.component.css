@@ -28,9 +28,17 @@ h5 {
   grid-template-rows: 15% 15% 15% 15% 15%;
 }
 .table-resto {
+  color: black;
+  padding: 1.0em 0;
+  font-size: 1.5em;
+  background: #f7f1e3;
+  border: 1.20px solid #84817a;
+}
+.table-resto:hover {
   color: white;
   padding: 1.0em 0;
   font-size: 1.5em;
-  background: #20bf6b;
-  border: 1.20px solid white;
+  background: #ccae62;
+  border: 1.20px solid #84817a;
+  cursor: pointer;
 }

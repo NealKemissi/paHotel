@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Table } from "src/app/models/table";
 import { TableService } from "src/app/services/table.service";
+import { TableBooking } from "src/app/models/table_booking";
+import { TableBookingService } from "src/app/services/table_booking.service";
 
 @Component({
   selector: "adminRestaurant",
@@ -12,36 +14,55 @@ export class AdminRestaurantComponent {
   /***/
   tables: Table[] = [];
   /***/
+  tables_booking: TableBooking[] = [];
+  /***/
+  table_info: TableBooking;
+  /***/
+  id: number = 0;
+  /***/
+  is_eating_now: boolean = false;
+  /***/
   error: string;
   /***/
   loading: boolean = false;
   /***/
   restaurant = []; // objet table
-  /** pagination */
-  page: number = 1;
+  /***/
+  msgConfirm: boolean = false;
+  /***/
+  msgDeleting: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private tableService: TableService
+    private tableService: TableService,
+    private tableBookingService: TableBookingService
   ) {}
 
   ngOnInit() {
     this.tableService.getAllTables().subscribe(
       data => {
-        this.tables = data,
-        console.log('id table :'+this.tables[0].id)
+        (this.tables = data),
+          this.tableBookingService.getAllTablesBooking().subscribe(
+            data => {
+              this.tables_booking = data;
+            },
+            error => {
+              this.error = error;
+            }
+          );
+        console.log("id table :" + this.tables[0].id);
         this.loadMapRestaurant();
       },
       error => {
         this.error = error;
       }
     );
-    //this.tables.forEach(t => console.log("id table : " + t.id));
   }
 
   loadMapRestaurant() {
-    for (var i: number = 0; i < Math.sqrt(this.tables.length); i++) { // 25 tables => resto 5x5, 36 tables => resto 6x6 etc..
+    for (var i: number = 0; i < Math.sqrt(this.tables.length); i++) {
+      // 25 tables => resto 5x5, 36 tables => resto 6x6 etc..
       this.restaurant.push([]);
       for (var j: number = 0; j < Math.sqrt(this.tables.length); j++) {
         this.setCoordonates(i, j);
@@ -50,13 +71,48 @@ export class AdminRestaurantComponent {
   }
 
   setCoordonates(i: number, j: number) {
-    console.log('for ('+i+', '+j+')');
-    let table: Table = this.tables.find(t =>
-      t.x_pos == i && t.y_pos == j);
-      if(table !== undefined){
-        console.log('seting table n°'+table.id);
-        this.restaurant[i][j] = table;
-        console.log('ok');
-      }
+    console.log("for (" + i + ", " + j + ")");
+    let table: Table = this.tables.find(t => t.x_pos == i && t.y_pos == j);
+    if (table !== undefined) {
+      console.log("setting table n°" + table.id);
+      this.restaurant[i][j] = table;
+      console.log("ok");
+    }
+  }
+
+  onTableBookingDetail(id_table: number) {
+    this.id = id_table;
+    this.table_info = this.tables_booking.find(
+      t => t.id_table == id_table && t.done == false
+    );
+    if (this.table_info != undefined) {
+      this.checkIfTableAvailable();
+    }
+  }
+
+  checkIfTableAvailable() {
+    var now: Date = new Date();
+    var date_table_booking = new Date(this.table_info.arrival);
+    if (now.getHours() == date_table_booking.getUTCHours()) {
+      this.is_eating_now = true;
+    } else this.is_eating_now = false;
+  }
+
+  onDelete() {
+    this.msgConfirm = true;
+  }
+
+  onConfirm(value: number) {
+    if (value == 0) {
+      this.msgConfirm = false;
+    } else {
+      this.msgConfirm = false;
+      this.msgDeleting = true;
+      //
+      setTimeout(() => {
+        //requete http suppression ...
+        window.location.reload();
+      }, 2500);
+    }
   }
 }
