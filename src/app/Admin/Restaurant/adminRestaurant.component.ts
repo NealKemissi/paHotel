@@ -48,6 +48,7 @@ export class AdminRestaurantComponent {
           this.tableBookingService.getAllTablesBooking().subscribe(
             data => {
               this.tables_booking = data;
+              this.setStatus();
             },
             error => {
               this.error = error;
@@ -60,6 +61,15 @@ export class AdminRestaurantComponent {
         this.error = error;
       }
     );
+  }
+
+  setStatus(){
+    this.tables.forEach(tab => {
+      let temp = this.tables_booking.find(t => t.id_table == tab.id && t.done == false);
+      if(temp != undefined){
+        tab.status = "#b33939";
+      }
+    })
   }
 
   loadMapRestaurant() {
@@ -95,6 +105,7 @@ export class AdminRestaurantComponent {
   checkIfTableAvailable() {
     var now: Date = new Date();
     var date_table_booking = new Date(this.table_info.arrival);
+    console.log('date now :'+now.getHours()+'date '+date_table_booking.getUTCHours());
     if (now.getHours() == date_table_booking.getUTCHours()) {
       this.is_eating_now = true;
     } else this.is_eating_now = false;

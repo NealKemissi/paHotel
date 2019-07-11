@@ -5,4 +5,6 @@ export class Table {
   x_pos: number;
   /***/
   y_pos: number;
+  /***/
+  status: string;
 }

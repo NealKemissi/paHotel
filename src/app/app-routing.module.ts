@@ -22,6 +22,7 @@ import { AdminHotelDashboardUpdateComponent } from './Admin/HotelDashboard/admin
 import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddServiceBooking/adminAddServiceBooking.component';
 import { AdminRestaurantComponent } from './Admin/Restaurant/adminRestaurant.component';
 import { AdminRestaurantBookingCreate } from './Admin/Restaurant/adminRestaurantBookingCreate/adminRestaurantBookingCreate.component';
+import { AdminMenuComponent } from './Admin/Menu/adminMenu.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -46,7 +47,8 @@ const routes: Routes = [
   { path: 'adminEventCreate', component: AdminEventCreateComponent },
   { path: 'adminEventUpdate', component: AdminEventUpdateComponent },
   { path: 'adminRestaurant', component: AdminRestaurantComponent},
-  { path: 'adminRestaurantBookingCreate', component: AdminRestaurantBookingCreate}
+  { path: 'adminRestaurantBookingCreate', component: AdminRestaurantBookingCreate},
+  { path: 'adminMenu', component: AdminMenuComponent}
 ];
 
 @NgModule({
