@@ -4,6 +4,8 @@ import { Table } from "src/app/models/table";
 import { TableService } from "src/app/services/table.service";
 import { TableBooking } from "src/app/models/table_booking";
 import { TableBookingService } from "src/app/services/table_booking.service";
+import { ServiceBookingDTO } from "src/app/models/dto/service_bookingDTO";
+import { TableBookingDTO } from "src/app/models/dto/table_bookingDTO";
 
 @Component({
   selector: "adminRestaurant",
@@ -103,12 +105,27 @@ export class AdminRestaurantComponent {
   }
 
   onConfirm(value: number) {
-    if (value == 0) {
-      this.msgConfirm = false;
-    } else {
+    this.msgConfirm = false;
+    if (value != 0) {
       this.msgConfirm = false;
       this.msgDeleting = true;
-      //
+
+      let table_bookingDTO: TableBookingDTO = new TableBookingDTO(
+        this.table_info.id,
+        this.table_info.arrival,
+        this.table_info.total_price,
+        true,
+        this.table_info.id_table,
+        this.table_info.id_hotel_booking,
+        this.table_info.id_booking
+      );
+
+      this.tableBookingService
+        .updateTableBooking(table_bookingDTO)
+        .subscribe(
+          data => (table_bookingDTO = data),
+          error => (this.error = error)
+        );
       setTimeout(() => {
         //requete http suppression ...
         window.location.reload();

@@ -67,7 +67,7 @@
             </h2>
             <br /><br />
             <h4>
-                <div *ngIf="table_info==undefined" class="my-div-left-content">
+                <div *ngIf="table_info==undefined && id>0" class="my-div-left-content">
                     <strong style="color:#28a745;">Cette table est libre</strong>
                     <br /><br />
                     <button class="btn btn-info my-2 my-sm-0" (click)="onCreate()">Reserver la table</button>
