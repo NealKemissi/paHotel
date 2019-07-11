@@ -39,13 +39,21 @@
         <a class="nav-link" routerLink="adminHome">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="">Restauration</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" routerLink="adminUser">Clients</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="adminServiceHome">Services</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Restauration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="adminRestaurant">Reservations</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">Menus</a>
+        </div>
       </li>
     </ul>
     <button *ngIf="!login" class="btn btn-info my-2 my-sm-0" type="submit" routerLink="register">Inscription</button>

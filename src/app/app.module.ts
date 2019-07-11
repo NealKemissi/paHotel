@@ -41,6 +41,9 @@ import { RoomBookingService } from './services/room_booking.service';
 import { EventBookingService } from './services/event_booking.service';
 import { ServiceBookingService } from './services/service_booking.service';
 import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddServiceBooking/adminAddServiceBooking.component';
+import { AdminRestaurantComponent } from './Admin/Restaurant/adminRestaurant.component';
+import { TableService } from './services/table.service';
+import { TableBookingService } from './services/table_booking.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +81,8 @@ import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddService
     AdminEventCreateComponent,
     AdminEventUpdateComponent,
     /***/
+    AdminRestaurantComponent,
+    /***/
     SpinnerComponent,
     /***/
     SearchFilterPipe,
@@ -105,7 +110,10 @@ import { AdminAddServiceBookingComponent } from './Admin/Booking/AdminAddService
     BookingService,
     RoomBookingService,
     EventBookingService,
-    ServiceBookingService
+    ServiceBookingService,
+    /***/
+    TableService,
+    TableBookingService
   ],
   bootstrap: [AppComponent]
 })
