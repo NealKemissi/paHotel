@@ -35,6 +35,7 @@ export class TableBookingService {
   /** Créer une TableBooking **/
   createTableBooking(tableBookingDTO : TableBookingDTO): Observable<any> {
     console.log("creating ...");
+    console.log(tableBookingDTO.id+' '+tableBookingDTO.arrival+' '+tableBookingDTO.total_price+' '+tableBookingDTO.done+' '+tableBookingDTO.id_hotel_booking+' '+tableBookingDTO.id_booking);
     return this.http.post(this.GET_ALL_TABLE_BOOOKING + '/add', JSON.stringify(tableBookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
@@ -53,7 +54,7 @@ export class TableBookingService {
       /** The response body may contain clues as to what went wrong, **/
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was: ${error.message}`);
     }
     /** return an observable with a user-facing error message **/
     return throwError(

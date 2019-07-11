@@ -73,12 +73,12 @@ export class AdminRestaurantComponent {
   }
 
   setCoordonates(i: number, j: number) {
-    console.log("for (" + i + ", " + j + ")");
+    //console.log("for (" + i + ", " + j + ")");
     let table: Table = this.tables.find(t => t.x_pos == i && t.y_pos == j);
     if (table !== undefined) {
-      console.log("setting table n°" + table.id);
+      //console.log("setting table n°" + table.id);
       this.restaurant[i][j] = table;
-      console.log("ok");
+      //console.log("ok");
     }
   }
 
@@ -98,6 +98,10 @@ export class AdminRestaurantComponent {
     if (now.getHours() == date_table_booking.getUTCHours()) {
       this.is_eating_now = true;
     } else this.is_eating_now = false;
+  }
+
+  onCreate(){
+    this.router.navigate(["/adminRestaurantBookingCreate"], {queryParams: { id: this.id }});
   }
 
   onDelete() {

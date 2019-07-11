@@ -14,7 +14,7 @@ export class TableBookingDTO {
     /***/
     id_booking: number;
 
-    constructor(id:number, arrival:string, total_price:number, done:boolean, id_table:number, id_hotel_booking:number, id_booking){
+    constructor(id:number, arrival:string, total_price:number, done:boolean, id_table:number, id_hotel_booking:number, id_booking:number){
         this.id = id;
         this.arrival = arrival;
         this.total_price = total_price;
