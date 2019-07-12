@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>PLATS</strong>
+            </h2>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-6 col offset-md-3">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Nom du plat"
+                        [(ngModel)]="filter_dish_name" name="filter_dish_name">
+                </div>
+            </div>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let dish of dishes | filter: 'name' : filter_dish_name | paginate: {  id: '2', itemsPerPage: 4, currentPage: page2 }">
+                        <td>{{dish.id}}</td>
+                        <td innerHTML="{{dish.name | highlight : filter_dish_name }}"></td>
+                        <td>{{dish.price}} €</td>
+                        <td><button class="btn btn-danger my-2 my-sm-0" (click)="onDishDelete(dish.id)">X</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page2 = $event" id="2"></pagination-controls>
+            <button class="btn btn-info my-2 my-sm-0">+ Créer un nouveau plat</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>MENUS</strong>
+            </h2>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-6 col offset-md-3">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Nom du menu"
+                        [(ngModel)]="filter_menu_name" name="filter_menu_name">
+                </div>
+            </div>
+            <br /><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let menu of menus 
+                    | filter: 'name' : filter_menu_name 
+                    | paginate: { id: '1', itemsPerPage: 4, currentPage: page1 }">
+                        <!-- | slice:0-5-->
+                        <td>{{menu.id}}</td>
+                        <td innerHTML="{{menu.name | highlight : filter_menu_name }}"></td>
+                        <td><button class="btn btn-primary my-2 my-sm-0" (click)="onMenuDetail(menu.id)">Détail</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls style="text-align: center;" (pageChange)="page1 = $event" id="1" responsive="true">
+            </pagination-controls>
+            <button class="btn btn-info my-2 my-sm-0">+ Créer un nouveau menu</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div *ngIf="menu_detail!=undefined" class="container">
+            <h2>
+                <strong>INFOS DU MENU</strong>
+            </h2>
+            <br /><br />
+            <h4>
+                <div class="my-div-left-content">
+                    <ul *ngFor="let dish of menu_detail">
+                        <li>{{dish.name}}</li>
+                    </ul>
+                    <br /><br />
+                    <button class="btn btn-primary my-2 my-sm-0" (click)="onMenuUpdate()">Modifier</button>
+                    &nbsp;
+                    <button class="btn btn-danger my-2 my-sm-0" (click)="onMenuDelete()">Supprimer</button>
+                </div>
+            </h4>
+        </div>
+    </div>
+</div>

@@ -46,6 +46,7 @@ import { TableService } from './services/table.service';
 import { TableBookingService } from './services/table_booking.service';
 import { AdminRestaurantBookingCreate } from './Admin/Restaurant/adminRestaurantBookingCreate/adminRestaurantBookingCreate.component';
 import { AdminMenuComponent } from './Admin/Menu/adminMenu.component';
+import { MenuDishBookingService } from './services/menu_dish_booking.service';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { AdminMenuComponent } from './Admin/Menu/adminMenu.component';
     ServiceBookingService,
     /***/
     TableService,
-    TableBookingService
+    TableBookingService,
+    MenuDishBookingService
   ],
   bootstrap: [AppComponent]
 })
