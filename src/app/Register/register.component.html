@@ -1,3 +1,25 @@
+<div *ngIf="msgCreating" class="col-md-4 offset-md-4">
+  <div class="alert alert-primary">
+    <h3>
+      <strong>VALIDATION ...</strong>
+    </h3>
+    <br />
+    <h6>
+      <spinner></spinner>
+    </h6>
+  </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+  <div class="alert alert-danger">
+    <h3>
+      <strong>ERREUR</strong>
+    </h3>
+    <br />
+    <h6>
+      {{error}}
+    </h6>
+  </div>
+</div>
 <div class="col-md-6 col offset-md-3">
   <div class="container">
     <h2>
@@ -8,31 +30,37 @@
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <h5><label>Nom</label></h5>
-            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
+            <h5><label>Nom <span class="my-required">*</span></label></h5>
+            <input type="text" class="form-control" [(ngModel)]="nom" name="nom" placeholder="Nom" required>
           </div>
           <div class="form-group col-md-6">
-            <h5><label>Prénom</label></h5>
-            <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
+            <h5><label>Prénom <span class="my-required">*</span></label></h5>
+            <input type="text" class="form-control" [(ngModel)]="prenom" name="prenom" placeholder="Prénom"  required>
           </div>
         </div>
         <br />
         <div class="form-group">
-          <h5><label>Email</label></h5>
-          <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+          <h5><label>Date de naissance <span class="my-required">*</span></label></h5>
+          <input type="date" class="form-control" [(ngModel)]="birthday" name="birthday" required>
         </div>
         <br />
         <div class="form-group">
-          <h5><label>Mot de passe</label></h5>
-          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+          <h5><label>Email <span class="my-required">*</span></label></h5>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Email" required>
         </div>
         <br />
         <div class="form-group">
-          <h5><label>Confirmation mot de passe</label></h5>
-          <input type="password" class="form-control" id="confirm" placeholder="Mot de passe" name="confirm" required>
+          <h5><label>Mot de passe <span class="my-required">*</span></label></h5>
+          <input type="password" class="form-control" [(ngModel)]="password"  name="password" placeholder="Mot de passe" required>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Confirmation mot de passe <span class="my-required">*</span></label></h5>
+          <input type="password" class="form-control" [(ngModel)]="confirm" name="confirm" placeholder="Mot de passe" required>
         </div>
         <br /><br />
-        <button class="btn btn-lg btn-info btn-block" (click)="onRegister(nom, prenom, email, password, confirm)">Inscription</button>
+        <button class="btn btn-lg btn-info btn-block"
+          (click)="onRegister()">Inscription</button>
       </form>
       <br /><br />
     </div>

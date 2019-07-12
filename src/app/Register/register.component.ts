@@ -1,26 +1,103 @@
-import { Component } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { Component } from "@angular/core";
+import { UserService } from "../services/user.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { UserDTO } from "../models/dto/userDTO";
 
 @Component({
-  selector: 'register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: "register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent {
-
   nom: string;
+  /***/
   prenom: string;
+  /***/
+  birthday: string;
+  /***/
   email: string;
+  /***/
   password: string;
+  /***/
   confirm: string;
-  
+  /***/
+  error: string;
+  /***/
+  msgCreating: boolean = false;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onRegister(
+  ){
+    this.msgCreating = true;
+    console.log(
+      "nom: " +
+        this.nom +
+        ", prenom: " +
+        this.prenom +
+        ", email: " +
+        this.email +
+        ", birthday: " +
+        this.birthday +
+        ", password : " +
+        this.password +
+        " = confirm: " +
+        this.confirm
+    );
+    if (this.email == undefined || this.nom == undefined || this.prenom || this.password == undefined || this.confirm == undefined || this.birthday == undefined) {
+      this.msgCreating = false;
+      console.log("Veuillez renseigner tous les champs");
+      this.error = "Veuillez renseigner tous les champs";
+      console.log(
+        "nom: " +
+          this.nom +
+          ", prenom: " +
+          this.prenom +
+          ", email: " +
+          this.email +
+          ", birthday: " +
+          this.birthday +
+          ", password : " +
+          this.password +
+          " = confirm: " +
+          this.confirm
+      );
+    } else if (this.password != this.confirm) {
+      this.msgCreating = false;
+      this.error = "Les mots de passe ne correspondent pas";
+    } else {
+      console.log("ok");
+      let userDTO = new UserDTO(
+        null,
+        this.email,
+        this.password,
+        this.confirm,
+        this.nom,
+        this.prenom,
+        this.birthday
+      );
+      this.userService.createUser(userDTO).subscribe(
+        data => {
+          userDTO = data;
+          this.finish();
+        },
+        error => {
+          this.error = error;
+          this.msgCreating = false;
+        }
+      );
+    }
   }
-  
-  onRegister(nom: string, prenom: string, email: string, password: string, confirm: string): void {
-    console.log("nom : " + nom + ", prenom : " + prenom + ", email : " + email + ", password : " + password + " = confirm : " + confirm);
+
+  finish(){
+    setTimeout(() => {
+      this.router.navigate(["/dashboard"]);
+    }, 2500);
   }
 }

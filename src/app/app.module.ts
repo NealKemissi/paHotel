@@ -50,6 +50,7 @@ import { MenuDishBookingService } from './services/menu_dish_booking.service';
 import { AdminDishCreate } from './Admin/Menu/adminDishCreate/adminDishCreate.component';
 import { AdminMenuCreate } from './Admin/Menu/adminMenuCreate/adminMenuCreate.component';
 import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.component';
+import { HotelServicesComponent } from './HotelServices/hotel-services-component/hotelServices.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.co
     RoomBookingComponent,
     /***/
     EventsComponent,
-    /****************/
+    HotelServicesComponent,
+    /***************************************************/
     AdminHomeComponent,
     /***/
     AdminHotelDashboardUpdateComponent,
@@ -100,7 +102,7 @@ import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.co
     HighLightPipe,
     BoolTransformPipe,
     RoomStatusPipe,
-    isCleanPipe
+    isCleanPipe,
   ],
   imports: [
     BrowserModule,

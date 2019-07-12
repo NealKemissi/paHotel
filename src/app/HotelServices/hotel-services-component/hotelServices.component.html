@@ -1,0 +1,51 @@
+<div class="col-md-8 col offset-md-2">
+  <div class="container">
+    <h2>
+      <strong>NOS SERVICES</strong>
+    </h2>
+    <br /><br />
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <h5><label>Nom</label></h5>
+          <input type="text" class="form-control" [(ngModel)]="name" placeholder="Filtre.." name="name">
+        </div>
+        <div class="form-group col-md-3">
+          <h5><label>Prix</label></h5>
+          <input type="text" class="form-control" [(ngModel)]="price" placeholder="Filtre.." name="price">
+        </div>
+        <div class="form-group col-md-6">
+          <h5><label>Description</label></h5>
+          <input type="text" class="form-control" [(ngModel)]="description" placeholder="Filtre.." name="description">
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of services
+                | filter: 'name' : name
+                | filter: 'price' : price
+                | filter: 'description' : description
+                | paginate: { id: '1', itemsPerPage: 5, currentPage: page }">
+          <td><img src="./assets/img/service-logo.png"></td>
+          <td innerHTML="{{service.name | highlight : name}}"></td>
+          <td innerHTML="{{service.price | highlight : price}} €"></td>
+          <td innerHTML="{{service.description | highlight : description}}" title="{{service.description}}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true">
+    </pagination-controls>
+  </div>
+</div>

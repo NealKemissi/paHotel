@@ -26,31 +26,44 @@ import { AdminMenuComponent } from './Admin/Menu/adminMenu.component';
 import { AdminDishCreate } from './Admin/Menu/adminDishCreate/adminDishCreate.component';
 import { AdminMenuCreate } from './Admin/Menu/adminMenuCreate/adminMenuCreate.component';
 import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.component';
+import { HotelServicesComponent } from './HotelServices/hotel-services-component/hotelServices.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
+  /***/
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  /***/
   { path: 'rooms', component: RoomsComponent },
   { path: 'roomBooking', component: RoomBookingComponent },
+  /***/
   { path: 'events', component: EventsComponent },
+  { path: 'hotelServices', component: HotelServicesComponent},
+  /*************************************************************************************/
   { path: 'adminHome', component: AdminHomeComponent },
   { path: 'adminHotelDashboardUpdate', component: AdminHotelDashboardUpdateComponent },
+  /***/
   { path: 'adminUserCreate', component: AdminUserCreateComponent},
   { path: 'adminUser', component: AdminUserComponent },
   { path: 'adminUserUpdate', component: AdminUserUpdateComponent },
+  /***/
   { path: 'adminBookingDetail', component: AdminBookingDetailComponent },
   { path: 'adminAddServiceBooking', component: AdminAddServiceBookingComponent },
+  /***/
   { path: 'adminRoomDetail', component: AdminRoomDetailComponent },
   { path: 'adminRoomCreate', component: AdminRoomCreateComponent },
+  /***/
   { path: 'adminServiceHome', component: adminServiceHomeComponent},
   { path: 'adminServiceUpdate', component: adminServiceUpdateComponent},
+  /***/
   { path: 'adminEventDetail', component: AdminEventDetailComponent },
   { path: 'adminEventCreate', component: AdminEventCreateComponent },
   { path: 'adminEventUpdate', component: AdminEventUpdateComponent },
+  /***/
   { path: 'adminRestaurant', component: AdminRestaurantComponent},
   { path: 'adminRestaurantBookingCreate', component: AdminRestaurantBookingCreate},
+  /***/
   { path: 'adminMenu', component: AdminMenuComponent},
   { path: 'adminDishCreate', component: AdminDishCreate},
   { path: 'adminMenuCreate', component: AdminMenuCreate},
