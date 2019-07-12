@@ -11,7 +11,5 @@ export class TableBooking {
     id_table: number;
     /***/
     id_hotel_booking: number;
-    /***/
-    id_booking: number;
   }
   

@@ -35,7 +35,7 @@ export class TableBookingService {
   /** Créer une TableBooking **/
   createTableBooking(tableBookingDTO : TableBookingDTO): Observable<any> {
     console.log("creating ...");
-    console.log(tableBookingDTO.id+' '+tableBookingDTO.arrival+' '+tableBookingDTO.total_price+' '+tableBookingDTO.done+' '+tableBookingDTO.id_hotel_booking+' '+tableBookingDTO.id_booking);
+    console.log(tableBookingDTO.id+' '+tableBookingDTO.arrival+' '+tableBookingDTO.total_price+' '+tableBookingDTO.done+' '+tableBookingDTO.id_hotel_booking);
     return this.http.post(this.GET_ALL_TABLE_BOOOKING + '/add', JSON.stringify(tableBookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 

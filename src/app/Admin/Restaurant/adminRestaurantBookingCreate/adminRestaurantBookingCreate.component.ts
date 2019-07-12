@@ -78,8 +78,7 @@ export class AdminRestaurantBookingCreate {
         0,
         false,
         this.id_table,
-        1,
-        1
+        this.id_booking
       );
       this.tableBookingService
         .createTableBooking(table_bookingDTO)

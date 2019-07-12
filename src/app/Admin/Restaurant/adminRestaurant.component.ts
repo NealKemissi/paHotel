@@ -131,8 +131,7 @@ export class AdminRestaurantComponent {
         this.table_info.total_price,
         true,
         this.table_info.id_table,
-        this.table_info.id_hotel_booking,
-        this.table_info.id_booking
+        this.table_info.id_hotel_booking
       );
 
       this.tableBookingService
