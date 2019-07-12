@@ -29,7 +29,10 @@ export class RoomsComponent {
   onSearch(): void {
     console.log("Begin :"+this.dateBegin+", End :"+this.dateEnd+", for "+this.nbPeople+" people");
     if(this.nbPeople != undefined && this.dateBegin != undefined && this.dateBegin != undefined) {
-      this.roomService.getRoomsInTermsOfSeats(this.nbPeople).subscribe(data => this.rooms = data, error => this.error = error);
+      this.roomService.getRoomsInTermsOfSeats(this.nbPeople).subscribe(data => {
+        this.rooms = data.filter(r => r.id_room_status != 2); // TODO prise en compte des dates
+      }, error => {
+        this.error = error});
     } 
   }
 

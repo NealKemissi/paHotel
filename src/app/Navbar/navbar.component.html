@@ -1,4 +1,4 @@
-<nav *ngIf="!isAdmin" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="!is_admin" class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="dashboard">
     <img src="./assets/img/logo.png" style="max-width:40px; max-height:80px;">
   </a>
@@ -14,18 +14,18 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="events">Evenements</a>
       </li>
-      <li *ngIf="login" class="nav-item">
+      <li *ngIf="token" class="nav-item">
         <a class="nav-link">Services</a>
       </li>
     </ul>
-    <button *ngIf="!login" class="btn btn-info my-2 my-sm-0" type="submit" routerLink="register">Inscription</button>
+    <button *ngIf="!token" class="btn btn-info my-2 my-sm-0" routerLink="register">Inscription</button>
     &nbsp;
-    <button *ngIf="!login" class="btn btn-primary my-2 my-sm-1" type="submit" routerLink="login">Connexion</button>
-    <button *ngIf="login" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="onLogout()">Déconnexion</button>
+    <button *ngIf="!token" class="btn btn-primary my-2 my-sm-1" routerLink="login">Connexion</button>
+    <button *ngIf="token" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="onLogout()">Déconnexion</button>
   </div>
 </nav>
 <!-------------------------------------------- ADMIN ----------------------------------------------------------------->
-<nav *ngIf="isAdmin" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="is_admin" class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="dashboard">
     <img src="./assets/img/logo.png" style="max-width:40px; max-height:80px;">
   </a>
@@ -56,9 +56,9 @@
         </div>
       </li>
     </ul>
-    <button *ngIf="!login" class="btn btn-info my-2 my-sm-0" type="submit" routerLink="register">Inscription</button>
+    <button *ngIf="!token" class="btn btn-info my-2 my-sm-0" type="submit" routerLink="register">Inscription</button>
     &nbsp;
-    <button *ngIf="!login" class="btn btn-primary my-2 my-sm-1" type="submit" routerLink="login">Connexion</button>
-    <button *ngIf="login" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="onLogout()">Déconnexion</button>
+    <button *ngIf="!token" class="btn btn-primary my-2 my-sm-1" type="submit" routerLink="login">Connexion</button>
+    <button *ngIf="token" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="onLogout()">Déconnexion</button>
   </div>
 </nav>

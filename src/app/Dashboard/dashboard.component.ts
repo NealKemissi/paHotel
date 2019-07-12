@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { global } from '../globals';
+//import { global } from '../globals';
 
 @Component({
   selector: 'my-dashboard',
@@ -9,8 +9,9 @@ import { global } from '../globals';
 })
 export class DashboardComponent {
   
-  titre = "My-Template";
-  isAdmin : boolean = global.IS_ADMIN;
+  token : string = localStorage.getItem('token');
+  is_admin : boolean = (localStorage.getItem('admin') == undefined || localStorage.getItem('admin') == '0') ? false : true;
+  id_user : number = parseInt(localStorage.getItem('id'));
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -19,7 +20,7 @@ export class DashboardComponent {
   }
 
   onEditDashboard():void {
-    if(this.isAdmin == true){
+    if(true == true){
       this.router.navigate(['/adminHotelDashboardUpdate']);
     }
   }

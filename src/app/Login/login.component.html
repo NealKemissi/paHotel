@@ -1,3 +1,25 @@
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+  <div class="alert alert-primary">
+      <h3>
+          <strong>VALIDATION ...</strong>
+      </h3>
+      <br />
+      <h6>
+          <spinner></spinner>
+      </h6>
+  </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+  <div class="alert alert-danger">
+      <h3>
+          <strong>ERREUR</strong>
+      </h3>
+      <br />
+      <h6>
+          {{error}}
+      </h6>
+  </div>
+</div>
 <div class="col-md-4 col offset-md-4">
   <div class="container">
     <h2>
@@ -8,15 +30,15 @@
       <form>
         <div class="form-group">
           <h5><label>Email</label></h5>
-          <input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
+          <input type="text" class="form-control" id="email" placeholder="Email" [(ngModel)]="email" name="email" required>
         </div>
         <br />
         <div class="form-group">
           <h5><label>Mot de passe</label></h5>
-          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required>
         </div>
         <br /><br />
-        <button type="submit" class="btn btn-lg btn-info btn-block" (click)="onLogin(email, password)">Connexion</button>
+        <button type="submit" class="btn btn-lg btn-info btn-block" (click)="onLogin()">Connexion</button>
       </form>
       <!--<br />
       Mot de passe oublié ?-->

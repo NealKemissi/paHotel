@@ -4,6 +4,7 @@ import { TableBookingService } from "src/app/services/table_booking.service";
 import { BookingService } from "src/app/services/booking.service";
 import { Booking } from "src/app/models/booking";
 import { TableBookingDTO } from "src/app/models/dto/table_bookingDTO";
+import { TableBooking } from "src/app/models/table_booking";
 
 @Component({
   selector: "adminRestaurantBookingCreate",
@@ -13,6 +14,8 @@ import { TableBookingDTO } from "src/app/models/dto/table_bookingDTO";
 export class AdminRestaurantBookingCreate {
   /** id Table **/
   id_table: number = 0;
+  /** toutes les reservations de ces tables **/
+  next_tables_booking: TableBooking[] = [];
   /***/
   arrival: string;
   /***/
@@ -36,6 +39,13 @@ export class AdminRestaurantBookingCreate {
   ngOnInit() {
     this.route.queryParams.forEach(params => {
       this.id_table = params["id"];
+      this.tableBookingService.getAllTablesBooking()
+    .subscribe(data => {
+      this.next_tables_booking = data.filter(d => d.id == params["id"] && d.done == false);
+    },
+    error => {
+      this.error = error;
+    })
     });
   }
 

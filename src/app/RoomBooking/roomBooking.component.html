@@ -1,3 +1,25 @@
+<div *ngIf="msgCreating" class="col-md-4 offset-md-4">
+  <div class="alert alert-primary">
+      <h3>
+          <strong>VALIDATION ...</strong>
+      </h3>
+      <br />
+      <h6>
+          <spinner></spinner>
+      </h6>
+  </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+  <div class="alert alert-danger">
+      <h3>
+          <strong>ERREUR</strong>
+      </h3>
+      <br />
+      <h6>
+          {{error}}
+      </h6>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-7">
     <div class="container">
@@ -6,7 +28,7 @@
       </h2>
       <br /><br />
       <!------------------------------------------------------------------ FORM RESERVATION ---------------------------------------------------------------->
-      <form *ngIf="hasAccount" class="my-div-center-content">
+      <form *ngIf="hasAccount && !token" class="my-div-center-content">
         <div class="form-row">
           <div class="form-group col-md-6">
             <h5><label>Début</label></h5>
@@ -15,17 +37,6 @@
           <div class="form-group col-md-6">
             <h5><label>Fin</label></h5>
             <input type="text" class="form-control" [(ngModel)]="dateEnd" name="dateEnd" disabled>
-          </div>
-        </div>
-        <br />
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <h5><label>Nom</label></h5>
-            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
-          </div>
-          <div class="form-group col-md-6">
-            <h5><label>Prénom</label></h5>
-            <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
           </div>
         </div>
         <br />
@@ -33,17 +44,13 @@
           <h5><label>Email</label></h5>
           <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
         </div>
-        <div class="form-group">
-          <h5><label>Mot de passe</label></h5>
-          <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
-        </div>
         <br />
         <div class="my-ref" (click)="onChange()">Je ne possède pas de compte</div>
         <br /><br />
         <button class="btn btn-lg btn-success btn-block">Réserver</button>
       </form>
       <!------------------------------------------------------------------ FORM RESERVATION - INSCRIPTION ---------------------------------------------------------------->
-      <form *ngIf="!hasAccount" class="my-div-center-content">
+      <form *ngIf="!hasAccount && !token" class="my-div-center-content">
         <div class="form-row">
           <div class="form-group col-md-6">
             <h5><label>Début</label></h5>
@@ -64,6 +71,10 @@
             <h5><label>Prénom</label></h5>
             <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom" required>
           </div>
+        </div>
+        <div class="form-group col-md-6">
+          <h5><label>Date de naissance</label></h5>
+          <input type="text" class="form-control" [(ngModel)]="birthday" name="birthday" required>
         </div>
         <br />
         <div class="form-group">
@@ -83,6 +94,36 @@
         <div class="my-ref" (click)="onChange()">Je possède déjà un compte</div>
         <br /><br />
         <button class="btn btn-lg btn-info btn-block">Réserver</button>
+      </form>
+      <!------------------------------------------------------------------ FORM RESERVATION - AUTHENTIFIE ---------------------------------------------------------------->
+      <form *ngIf="user" class="my-div-center-content">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Début</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateBegin" name="dateBegin" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Fin</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="dateEnd" name="dateEnd" disabled>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5><label>Nom</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="user.lastname" name="user.lastname" value="{{user?.lastname}}" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <h5><label>Prénom</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="user.firstname" name="user.firstname" value="{{user?.firstname}}" disabled>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label>Email</label></h5>
+          <input type="email" class="form-control" [(ngModel)]="user.email" name="user.email" value="{{user?.email}}" disabled>
+        </div><br /><br />
+        <button class="btn btn-lg btn-info btn-block" (click)="onBooking()">Réserver</button>
       </form>
       <br /><br />
     </div>

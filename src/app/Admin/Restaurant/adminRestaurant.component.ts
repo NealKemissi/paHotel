@@ -20,6 +20,8 @@ export class AdminRestaurantComponent {
   /***/
   table_info: TableBooking;
   /***/
+  restaurant = []; // objet table
+  /***/
   id: number = 0;
   /***/
   is_eating_now: boolean = false;
@@ -27,8 +29,6 @@ export class AdminRestaurantComponent {
   error: string;
   /***/
   loading: boolean = false;
-  /***/
-  restaurant = []; // objet table
   /***/
   msgConfirm: boolean = false;
   /***/

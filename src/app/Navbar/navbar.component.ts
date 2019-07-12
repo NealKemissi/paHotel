@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { global } from '../globals';
+//import { global } from '../globals';
 
 @Component({
   selector: 'my-navbar',
@@ -9,13 +9,20 @@ import { global } from '../globals';
 })
 export class NavbarComponent {
  
-    login : boolean = true;
-    isAdmin : boolean = global.IS_ADMIN;
+    token : string = localStorage.getItem('token');
+    is_admin : boolean = (localStorage.getItem('admin') == undefined || localStorage.getItem('admin') == '0') ? false : true;
+    id_user : number = parseInt(localStorage.getItem('id'));
 
     constructor(private route: ActivatedRoute, private router: Router) { }
 
+    ngOnInit() {
+      
+      console.log('from NAVBAR : admin ici : '+localStorage.getItem('admin')+', is admin : '+this.is_admin);
+    }
+
     onLogout(): void {
-      this.login = false;
-        this.router.navigate(['/dashboard']);
+      localStorage.clear();
+      window.location.reload();
+      //this.router.navigate(['/dashboard']);
     }
 }

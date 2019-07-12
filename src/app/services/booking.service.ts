@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Booking } from '../models/booking';
+import { BookingDTO } from '../models/dto/bookingDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -31,6 +32,12 @@ export class BookingService {
         catchError(this.handleError));
   }
 
+  /** Créer un Booking **/
+  createBooking(bookingDTO : BookingDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_BOOKING + '/add', JSON.stringify(bookingDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
   /** Gestion  d'erreur **/
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -41,7 +48,7 @@ export class BookingService {
       /** The response body may contain clues as to what went wrong, **/
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was: ${error.message}`);
     }
     /** return an observable with a user-facing error message **/
     return throwError(

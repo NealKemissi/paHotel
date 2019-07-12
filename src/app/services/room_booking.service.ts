@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { RoomBooking } from '../models/room_booking';
+import { RoomBookingDTO } from '../models/dto/room_bookingDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -34,6 +35,12 @@ export class RoomBookingService {
     return this.http.get<RoomBooking[]>(this.GET_ROOM_BOOKING + id_room_booking)
       .pipe(map(res => res.find(room_booking => room_booking.id == id_room_booking)), 
         catchError(this.handleError));
+  }
+
+  /** Créer un RoomBooking **/
+  createRoomBooking(room_bookingDTO : RoomBookingDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_ROOM_BOOKING + '/add', JSON.stringify(room_bookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

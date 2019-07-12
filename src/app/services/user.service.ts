@@ -4,6 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { UserDTO } from '../models/dto/userDTO';
+import { UserLoginDTO } from '../models/dto/user_loginDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -45,6 +46,11 @@ export class UserService {
     return this.http.post(this.GET_ALL_USERS + '/register', JSON.stringify(userDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
+  /** Login **/
+  login(user_loginDTO: UserLoginDTO) : Observable<any> {
+    return this.http.post(this.GET_ALL_USERS + '/login', JSON.stringify(user_loginDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
   /** Gestion  d'erreur **/
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -55,7 +61,7 @@ export class UserService {
       /** The response body may contain clues as to what went wrong, **/
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was: ${error.message}`);
     }
     /** return an observable with a user-facing error message **/
     return throwError(
