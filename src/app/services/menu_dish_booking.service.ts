@@ -4,6 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Menu } from '../models/menu';
 import { Dishes } from '../models/dishes';
+import { DishesDTO } from '../models/dto/dishesDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -57,6 +58,12 @@ export class MenuDishBookingService {
   /** Retourne la liste de tous les plats d'un menu **/
   getDishesOfMenu(menu_id : number): Observable<Dishes[]> {
     return this.http.get<Dishes[]>(this.GET_DISHES_OF_MENU + menu_id).pipe(catchError(this.handleError));
+  }
+
+  /** creer un plat */
+  createDish(dishDTO : DishesDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_DISHES + '/add', JSON.stringify(dishDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /***************************************************************************************************************/
