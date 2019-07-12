@@ -25,6 +25,7 @@ import { AdminRestaurantBookingCreate } from './Admin/Restaurant/adminRestaurant
 import { AdminMenuComponent } from './Admin/Menu/adminMenu.component';
 import { AdminDishCreate } from './Admin/Menu/adminDishCreate/adminDishCreate.component';
 import { AdminMenuCreate } from './Admin/Menu/adminMenuCreate/adminMenuCreate.component';
+import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -52,7 +53,8 @@ const routes: Routes = [
   { path: 'adminRestaurantBookingCreate', component: AdminRestaurantBookingCreate},
   { path: 'adminMenu', component: AdminMenuComponent},
   { path: 'adminDishCreate', component: AdminDishCreate},
-  { path: 'adminMenuCreate', component: AdminMenuCreate}
+  { path: 'adminMenuCreate', component: AdminMenuCreate},
+  { path: 'adminMenuUpdate', component: AdminMenuUpdate}
 ];
 
 @NgModule({

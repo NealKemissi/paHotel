@@ -22,6 +22,8 @@ export class AdminMenuComponent {
   /***/
   menu_detail : Dishes[];
   /***/
+  menu_detail_id : number = 0;
+  /***/
   dishes : Dishes[];
   /***/
   filter_dish_name: string;
@@ -57,6 +59,7 @@ export class AdminMenuComponent {
     this.menu_detail = this.dishes.filter(
       d => d.id_menu == menu_id
     );
+    this.menu_detail_id = menu_id;
   }
 
   onDishCreate(){
@@ -65,6 +68,12 @@ export class AdminMenuComponent {
 
   onMenuCreate(){
     this.router.navigate(["/adminMenuCreate"]);
+  }
+
+  onMenuUpdate(){
+    this.router.navigate(["/adminMenuUpdate"], {
+      queryParams: { id: this.menu_detail_id }
+    });
   }
 
   onDishDelete(dish_id: number){

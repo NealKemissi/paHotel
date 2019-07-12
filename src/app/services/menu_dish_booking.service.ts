@@ -41,10 +41,16 @@ export class MenuDishBookingService {
         catchError(this.handleError));
   }
 
-  /** creer un plat */
+  /** creer un menu */
   createMenu(menuDTO : MenuDTO): Observable<any> {
     console.log("creating ...");
     return this.http.post(this.GET_ALL_MENU + '/add', JSON.stringify(menuDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** modifie un menu */
+  updateMenu(menuDTO : MenuDTO): Observable<any> {
+    console.log("updatating ...");
+    return this.http.post(this.GET_ALL_MENU + '/update', JSON.stringify(menuDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
 
@@ -71,6 +77,12 @@ export class MenuDishBookingService {
   createDish(dishDTO : DishesDTO): Observable<any> {
     console.log("creating ...");
     return this.http.post(this.GET_ALL_DISHES + '/add', JSON.stringify(dishDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** met à jour un plat */
+  updateDish(dishDTO : DishesDTO): Observable<any> {
+    console.log("udpating ...");
+    return this.http.post(this.GET_ALL_DISHES + '/update', JSON.stringify(dishDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /***************************************************************************************************************/

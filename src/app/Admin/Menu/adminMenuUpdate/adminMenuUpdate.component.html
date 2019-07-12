@@ -1,0 +1,66 @@
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div class="col-md-6 col offset-md-3">
+    <div class="container" *ngIf="!loading">
+        <h2>
+            <strong>MODIFIER LE MENU</strong>
+            <br />
+            {{menu?.name}}
+        </h2>
+        <br /><br />
+        <div class="my-div-center-content" *ngIf="!error">
+            <form>
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Plats :</label></h5>
+                    <ul *ngFor="let dish of menu_detail">
+                        <li>{{dish.name}}</li>
+                    </ul>
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Nom</label></h5>
+                    <input type="text" class="form-control" [(ngModel)]="menu.name" name="menu.name"
+                        value="{{menu?.name}}">
+                </div>
+                <br />
+                <div class="form-group">
+                    <h5><label>Ajouter un plat</label></h5>
+                    <select class="form-control" [(ngModel)]="dish" name="dish" required>
+                        <option *ngFor="let d of dishes">{{d.name}}</option>
+                    </select>
+                    <span *ngIf="dish!=undefined">
+                        <br />
+                        Le plat {{dish}} sera ajouté à : {{menu?.name}}
+                    </span>
+                    <br /><br />
+                    <button class="btn btn-danger" (click)="revert()">Annuler</button>
+                </div>
+                <br /><br />
+                <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
+                    le menu</button>
+            </form>
+            <br />
+        </div>
+    </div>
+    <br />
+</div>
