@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Menu } from '../models/menu';
 import { Dishes } from '../models/dishes';
 import { DishesDTO } from '../models/dto/dishesDTO';
+import { MenuDTO } from '../models/dto/menuDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -38,6 +39,12 @@ export class MenuDishBookingService {
     return this.http.get<Menu[]>(this.GET_MENU + menu_id)
       .pipe(map(res => res.find(menu => menu.id == menu_id)), 
         catchError(this.handleError));
+  }
+
+  /** creer un plat */
+  createMenu(menuDTO : MenuDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_MENU + '/add', JSON.stringify(menuDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
 

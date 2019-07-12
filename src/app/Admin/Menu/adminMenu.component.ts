@@ -63,6 +63,10 @@ export class AdminMenuComponent {
     this.router.navigate(["/adminDishCreate"]);
   }
 
+  onMenuCreate(){
+    this.router.navigate(["/adminMenuCreate"]);
+  }
+
   onDishDelete(dish_id: number){
 
   }

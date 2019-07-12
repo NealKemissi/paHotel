@@ -1,0 +1,42 @@
+<div *ngIf="msgCreating" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div class="col-md-6 col offset-md-3">
+    <div class="container">
+        <h2>
+            <strong>NOUVEAU MENU</strong>
+        </h2>
+        <br /><br />
+        <div class="my-div-center-content">
+            <form>
+                <div class="form-group col-md-6 col offset-md-3">
+                    <h5><label>Nom <span class="my-required">*</span></label></h5>
+                    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+                </div>
+                <br />
+                <br />
+                <button class="btn btn-lg btn-info btn-block" (click)="onCreate()" type="submit">Créer</button>
+            </form>
+            <br /><br />
+        </div>
+    </div>
+</div>
