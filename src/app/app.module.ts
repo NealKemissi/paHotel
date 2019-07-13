@@ -52,6 +52,7 @@ import { AdminMenuCreate } from './Admin/Menu/adminMenuCreate/adminMenuCreate.co
 import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.component';
 import { HotelServicesComponent } from './HotelServices/hotel-services-component/hotelServices.component';
 import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBooking/adminAddEventBooking.component';
+import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestaurantOrderDetail/adminRestaurantOrder.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBook
     /***/
     AdminRestaurantComponent,
     AdminRestaurantBookingCreate,
+    AdminRestaurantOrderComponent,
     AdminMenuComponent,
     AdminDishCreate,
     AdminMenuCreate,

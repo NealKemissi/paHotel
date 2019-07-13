@@ -6,6 +6,8 @@ import { Menu } from '../models/menu';
 import { Dishes } from '../models/dishes';
 import { DishesDTO } from '../models/dto/dishesDTO';
 import { MenuDTO } from '../models/dto/menuDTO';
+import { DishBooking } from '../models/dish_booking';
+import { DishBookingDTO } from '../models/dto/dish_bookingDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -28,6 +30,8 @@ export class MenuDishBookingService {
   GET_DISH_BOOKING = 'http://localhost:8090/dish_booking?id=';
 
   constructor(private http: HttpClient) { }
+
+  /********************************************** MENU *****************************************************************/
 
   /** Retourne la liste de tous les menus de l'hotel **/
   getAllMenus(): Observable<Menu[]> {
@@ -54,7 +58,7 @@ export class MenuDishBookingService {
   }
 
 
-  /***************************************************************************************************************/
+  /********************************************** DISH *****************************************************************/
 
   /** Retourne la liste de tous les plats de l'hotel **/
   getAllDishes(): Observable<Dishes[]> {
@@ -83,6 +87,34 @@ export class MenuDishBookingService {
   updateDish(dishDTO : DishesDTO): Observable<any> {
     console.log("udpating ...");
     return this.http.post(this.GET_ALL_DISHES + '/update', JSON.stringify(dishDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /********************************************** DISH_BOOKINGS *****************************************************************/
+
+  /** Retourne la liste de toutes les commandes de l'hotel **/
+  getAllDishesBooking(): Observable<DishBooking[]> {
+    return this.http.get<DishBooking[]>(this.GET_ALL_DISHES_BOOKING).pipe(catchError(this.handleError));
+  }
+
+  /** Retourne un objet de type DishBOOKING **/
+  getDishBooking(dish_booking_id : number): Observable<DishBooking> {
+    return this.http.get<DishBooking[]>(this.GET_DISH_BOOKING + dish_booking_id)
+      .pipe(map(res => res.find(dish_booking => dish_booking.id == dish_booking_id)), 
+        catchError(this.handleError));
+  }
+
+  /** recupère toutes les commandes d'une table */
+  getAllDishesBookingOfATableBooking(id_table_booking : number): Observable<DishBooking[]> {
+    return this.http.get<DishBooking[]>(this.GET_ALL_DISHES_BOOKING)
+    .pipe(map(res => res.filter(dish_booking => dish_booking.id_table_booking == id_table_booking)), 
+        catchError(this.handleError));
+  }
+
+  /** créer une commande de plat */
+  createDishBooking(dish_bookingDTO : DishBookingDTO): Observable<any> {
+    console.log("udpating ...");
+    console.log(JSON.stringify(dish_bookingDTO));
+    return this.http.post(this.GET_ALL_DISHES_BOOKING + '/add', JSON.stringify(dish_bookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /***************************************************************************************************************/

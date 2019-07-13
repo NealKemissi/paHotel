@@ -1,0 +1,105 @@
+<div *ngIf="msgConfirm" class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="alert alert-primary">
+            <h3>
+                <strong>CONFIRMATION</strong>
+            </h3><br />
+            <h6>
+                La table re-passera à un état "libre" et sera de nouveau disponnible, êtes-vous sur ?
+                <br /><br />
+                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+                &nbsp;
+                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+            </h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="msgDeleting" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------------------>
+<div class="row">
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>TABLE n°{{table_booking?.id_table}}</strong>
+            </h2>
+            <h4>
+                <div class="my-div-center-content">
+                    <br /><br />
+                    Arrivée du client : <strong>{{table_booking?.arrival}}</strong>
+                    <br /><br />
+                    Prix total à payer : <strong>{{final_price}} €</strong>
+                    <br /><br />
+                    <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Valider le paiement</button>
+                </div>
+            </h4>
+
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4">
+        <div class="container">
+            <h2>
+                <strong>DETAIL DE LA COMMANDE</strong>
+            </h2>
+            <br /><br />
+            <h4>
+                <div class="my-div-left-content">
+                    <strong>Commande n°{{table_booking?.id}} :</strong>
+                    <br /><br />
+                    <ul *ngFor="let dish of dishes_of_the_table">
+                        <li>{{dish.name}}</li>
+                    </ul>
+                    <br /><br />
+                    <button class="btn btn-info my-2 my-sm-0" (click)="onAdd()">+ Ajouter un plat</button>
+                </div>
+            </h4>
+
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4" *ngIf="creating">
+        <div class="container">
+            <h2>
+                <strong>AJOUTER UN PLAT</strong>
+            </h2>
+            <br /><br />
+            <h4>
+                <div class="my-div-center-content">
+                    <div class="form-group">
+                        <h5><label>Choisir</label></h5>
+                        <select class="form-control" [(ngModel)]="name" name="name" required>
+                            <option *ngFor="let dish of all_dishes_of_restaurant">
+                                {{dish?.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <br /><br />
+                    <button *ngIf="name" class="btn btn-lg btn-primary btn-block" (click)="addDish()"
+                        type="submit">Ajouter le plat '{{name}}'</button>
+                </div>
+            </h4>
+
+        </div>
+    </div>
+</div>

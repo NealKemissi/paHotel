@@ -146,4 +146,8 @@ export class AdminRestaurantComponent {
       }, 2500);
     }
   }
+
+  onDetail(){
+    this.router.navigate(["/adminRestaurantOrder"], {queryParams: { id: this.table_info.id }});
+  }
 }
