@@ -47,6 +47,12 @@ export class UserService {
     return this.http.post(this.GET_ALL_USERS + '/register', JSON.stringify(userDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
+  /** met à jour un utilisateur */
+  updateUser(userDTO: UserDTO) : Observable<any> {
+    console.log('updating : '+JSON.stringify(userDTO));
+    return this.http.post(this.GET_ALL_USERS + '/update', JSON.stringify(userDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
   /** Login **/
   login(user_loginDTO: UserLoginDTO) : Observable<any> {
     return this.http.post(this.GET_ALL_USERS + '/login', JSON.stringify(user_loginDTO), httpOptions).pipe(catchError(this.handleError));

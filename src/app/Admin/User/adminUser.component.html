@@ -75,9 +75,9 @@
                     <br /><br />
                     Réservation(s) :
                     <br /><br />
-                    <ul *ngFor="let booking of user.bookings">
+                    <ul *ngFor="let booking of bookings">
                         <li>
-                            <strong><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail()">{{booking.id}}</button></strong>
+                            <strong><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail(booking.id)">{{booking.id}}</button></strong>
                         </li>
                     </ul>
                     <br />

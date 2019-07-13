@@ -1,3 +1,14 @@
+<div *ngIf="msgCreating" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
 <div *ngIf="error" class="col-md-4 offset-md-4">
     <div class="alert alert-danger">
         <h3>
