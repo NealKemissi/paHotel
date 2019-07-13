@@ -50,30 +50,16 @@ export class RegisterComponent {
         " = confirm: " +
         this.confirm
     );
-    if (this.email == undefined || this.nom == undefined || this.prenom || this.password == undefined || this.confirm == undefined || this.birthday == undefined) {
+    if (this.email == undefined || this.nom == undefined || this.prenom == undefined || this.password == undefined || this.confirm == undefined || this.birthday == undefined) {
       this.msgCreating = false;
-      console.log("Veuillez renseigner tous les champs");
       this.error = "Veuillez renseigner tous les champs";
-      console.log(
-        "nom: " +
-          this.nom +
-          ", prenom: " +
-          this.prenom +
-          ", email: " +
-          this.email +
-          ", birthday: " +
-          this.birthday +
-          ", password : " +
-          this.password +
-          " = confirm: " +
-          this.confirm
-      );
     } else if (this.password != this.confirm) {
       this.msgCreating = false;
       this.error = "Les mots de passe ne correspondent pas";
     } else {
+      this.error = undefined;
       console.log("ok");
-      let userDTO = new UserDTO(
+      let userDTO: UserDTO = new UserDTO(
         null,
         this.email,
         this.password,

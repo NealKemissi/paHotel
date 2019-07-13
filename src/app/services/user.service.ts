@@ -43,6 +43,7 @@ export class UserService {
 
   /** Créer un utilisateur */
   createUser(userDTO: UserDTO) : Observable<any> {
+    console.log('creating : '+JSON.stringify(userDTO));
     return this.http.post(this.GET_ALL_USERS + '/register', JSON.stringify(userDTO), httpOptions).pipe(catchError(this.handleError));
   }
 

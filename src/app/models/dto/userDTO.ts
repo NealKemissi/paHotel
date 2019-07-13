@@ -4,7 +4,7 @@ export class UserDTO {
     /***/
     email : string;
     /***/
-    password1 : string;
+    password : string;
     /***/
     password2 : string;
     /***/
@@ -14,10 +14,10 @@ export class UserDTO {
     /***/
     birthday : string;
 
-    constructor(id : number, email: string, password1: string, password2: string, lastname: string, firstname: string, birthday: string) {
+    constructor(id : number, email: string, password: string, password2: string, lastname: string, firstname: string, birthday: string) {
         this.id = id;
         this.email = email;
-        this.password1 = password1;
+        this.password = password;
         this.password2 = password2;
         this.lastname = lastname;
         this.firstname = firstname;

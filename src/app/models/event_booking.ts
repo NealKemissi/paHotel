@@ -4,7 +4,7 @@ export class EventBooking {
     /***/
     booked_at: string;
     /***/
-    seats_number: string;
+    seats_number: number;
     /***/
     id_event: number;
     /***/

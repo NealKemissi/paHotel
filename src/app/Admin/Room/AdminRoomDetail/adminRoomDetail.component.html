@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6 col offset-md-3">
         <div class="container">
             <h2>
-                <strong>DETAILS</strong>
+                <strong>DETAILS DE LA CHAMBRE {{room.number}}</strong>
             </h2>
             <br /><br />
             <div class="my-div-left-content">
-                <h6>
+                <h5>
                     Numéro : <strong>n°{{room.number}}</strong>
                     <br /><br />
                     Etage : <strong>{{room.number | slice:0:1}}</strong>
@@ -19,22 +19,13 @@
                     <br /><br />
                     Etat : <strong>{{room.cleared | isClean}}</strong>
                     <br /><br /><br />
-                </h6>
+                </h5>
             </div>
             <button class="btn btn-primary" (click)="onClean()">
                 <span *ngIf="!room.cleared">Valider nettoyage femme de ménage</span><span *ngIf="room.cleared">Signaler que la chambre est sale</span>
             </button>
             &nbsp;
             <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer la chambre</button>
-        </div>
-    </div>
-    <!---------------------------------------------------------------------------------------------------------------------------------->
-    <div class="col-md-7">
-        <div class="container">
-            <h2>
-                <strong>SERVICE(S)</strong>
-            </h2>
-            <br /><br />
         </div>
     </div>
 </div>

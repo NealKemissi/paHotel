@@ -1,6 +1,6 @@
 /**Couleur de la Navbar*/
 .bg-light {
-  background-color: #21368B !important; /**#0D7E83*/ /** avant bleu foncé : #079992 */
+  background-color: #21368B !important; /**#0D7E83*/ /** avant bleu foncé : #079992 */ /*#34495e*/
   /**box-shadow: 0px 4px 4px #82ccdd;*/
 }
 /** Les titres des liens <li> sur la Navbar*/

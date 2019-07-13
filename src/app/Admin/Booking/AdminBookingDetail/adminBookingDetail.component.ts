@@ -178,6 +178,10 @@ export class AdminBookingDetailComponent {
     this.router.navigate(['/adminAddServiceBooking'], {queryParams : { id: this.booking.id } });
   }
 
+  onEventBookingDetail(){
+    this.router.navigate(['/adminAddEventBooking'], {queryParams : { id: this.booking.id } });
+  }
+
   convertPDF() {
     if (this.booking != undefined) {
       /** methode 1*/

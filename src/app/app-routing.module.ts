@@ -27,6 +27,7 @@ import { AdminDishCreate } from './Admin/Menu/adminDishCreate/adminDishCreate.co
 import { AdminMenuCreate } from './Admin/Menu/adminMenuCreate/adminMenuCreate.component';
 import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.component';
 import { HotelServicesComponent } from './HotelServices/hotel-services-component/hotelServices.component';
+import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBooking/adminAddEventBooking.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   /***/
   { path: 'adminBookingDetail', component: AdminBookingDetailComponent },
   { path: 'adminAddServiceBooking', component: AdminAddServiceBookingComponent },
+  { path: 'adminAddEventBooking', component: AdminAddEventBookingComponent},
   /***/
   { path: 'adminRoomDetail', component: AdminRoomDetailComponent },
   { path: 'adminRoomCreate', component: AdminRoomCreateComponent },
