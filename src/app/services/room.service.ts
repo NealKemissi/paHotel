@@ -5,11 +5,11 @@ import { catchError, map } from 'rxjs/operators';
 import { Room } from '../models/room';
 import { RoomDTO } from '../models/dto/roomDTO';
 
-const httpOptions = {
+var httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
     'Content-type':'application/json'
-  })
+  }).set('Authorization', localStorage.getItem("token"))
 };
 
 @Injectable()

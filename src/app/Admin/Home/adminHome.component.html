@@ -31,7 +31,7 @@
                 </tbody>
             </table>
             <pagination-controls style="text-align: center;" (pageChange)="page1 = $event" id="1" responsive="true"></pagination-controls>
-            <button class="btn btn-info my-2 my-sm-0">+ Ajouter nouvelle réservation</button>
+            <!--<button class="btn btn-info my-2 my-sm-0">+ Ajouter nouvelle réservation</button>-->
         </div>
     </div>
     <!---------------------------------------------------------------------------------------------------------------------------------->
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-md-6 col offset-md-3">
                     <input class="form-control mr-sm-2" type="text" placeholder="Date de l'évenement"
-                        [(ngModel)]="eventDate" name="eventDate">
+                        [(ngModel)]="beginning" name="beginning">
                 </div>
             </div>
             <br /><br />
@@ -93,8 +93,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let event of events | filter: 'beginning' : eventDate | paginate: {  id: '3', itemsPerPage: 4, currentPage: page3 }">
-                        <td innerHTML="{{event.beginning | highlight : eventDate }}"></td>
+                    <tr *ngFor="let event of events | filter: 'beginning' : beginning | paginate: {  id: '3', itemsPerPage: 4, currentPage: page3 }">
+                        <td innerHTML="{{event.beginning | highlight : beginning }}"></td>
                         <td>{{event.name}}</td>
                         <td><button class="btn btn-primary my-2 my-sm-0" (click)="onEventDetail(event.id)">Détail</button></td>
                     </tr>

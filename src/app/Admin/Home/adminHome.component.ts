@@ -29,7 +29,7 @@ export class AdminHomeComponent {
   /** filtres */
   number: string;
   /***/
-  eventDate: string;
+  beginning: string;
   /***/
   bookingId: number;
 

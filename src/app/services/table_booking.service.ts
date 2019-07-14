@@ -5,11 +5,11 @@ import { catchError, map } from 'rxjs/operators';
 import { TableBooking } from '../models/table_booking';
 import { TableBookingDTO } from '../models/dto/table_bookingDTO';
 
-const httpOptions = {
+var httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
     'Content-type':'application/json'
-  })
+  }).set('Authorization', localStorage.getItem("token"))
 };
 
 @Injectable()

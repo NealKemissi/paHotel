@@ -9,11 +9,11 @@ import { MenuDTO } from '../models/dto/menuDTO';
 import { DishBooking } from '../models/dish_booking';
 import { DishBookingDTO } from '../models/dto/dish_bookingDTO';
 
-const httpOptions = {
+var httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
     'Content-type':'application/json'
-  })
+  }).set('Authorization', localStorage.getItem("token"))
 };
 
 @Injectable()
