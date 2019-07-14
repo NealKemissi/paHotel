@@ -17,7 +17,7 @@ import { UserDTO } from "../models/dto/userDTO";
 })
 export class RoomBookingComponent {
   token: string = localStorage.getItem("token");
-  id_user: number = parseInt(localStorage.getItem("id"));
+  id_user: number = (localStorage.getItem("id") != null)? parseInt(localStorage.getItem("id")) : undefined;
   /** dates sejour */
   @Input() dateBegin: string;
   /***/
@@ -173,12 +173,13 @@ export class RoomBookingComponent {
     if (
       this.email == undefined ||
       this.nom == undefined ||
-      this.prenom ||
+      this.prenom == undefined ||
       this.password == undefined ||
       this.confirm == undefined ||
       this.birthday == undefined
     ) {
       this.msgCreating = false;
+      console.log(this.birthday+', '+this.nom+', '+this.prenom+', '+this.email+', '+this.password+', '+this.confirm);
       this.error = "Veuillez renseigner tous les champs";
     } else if (this.password != this.confirm) {
       this.msgCreating = false;

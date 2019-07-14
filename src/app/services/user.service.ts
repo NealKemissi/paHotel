@@ -6,11 +6,11 @@ import { User } from '../models/user';
 import { UserDTO } from '../models/dto/userDTO';
 import { UserLoginDTO } from '../models/dto/user_loginDTO';
 
-const httpOptions = {
+var httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
     'Content-type':'application/json'
-  })
+  }).set('Authorization', localStorage.getItem("token"))
 };
 
 @Injectable()
@@ -24,19 +24,22 @@ export class UserService {
 
   /** Retourne la liste de tous les clients de l'hotel **/
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.GET_ALL_USERS).pipe(catchError(this.handleError));
+    console.log(localStorage.getItem("token"))
+    //httpOptions.headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+    console.log(httpOptions.headers.keys())
+    return this.http.get<User[]>(this.GET_ALL_USERS, httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type User **/
   getUser(user_email : string): Observable<User> {
-    return this.http.get<User[]>(this.GET_USER_EMAIL + user_email)
+    return this.http.get<User[]>(this.GET_USER_EMAIL + user_email, httpOptions)
       .pipe(map(res => res.find(user => user.email == user_email)), 
         catchError(this.handleError));
   }
 
   /** Retourne un objet de type User **/
   getUserById(user_id : number): Observable<User> {
-    return this.http.get<User[]>(this.GET_USER + user_id)
+    return this.http.get<User[]>(this.GET_USER + user_id, httpOptions)
       .pipe(map(res => res.find(user => user.id == user_id)), 
         catchError(this.handleError));
   }

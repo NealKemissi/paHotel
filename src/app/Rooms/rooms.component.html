@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let room of rooms">
+                <tr *ngFor="let room of rooms | paginate: { id: '1', itemsPerPage: 3, currentPage: page }">
                     <td><img src="./assets/img/room-logo.png"></td>
                     <td>n°{{room.number}}</td>
                     <td>{{room.seats}}</td>
@@ -53,5 +53,6 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true"></pagination-controls>
     </div>
 </div>

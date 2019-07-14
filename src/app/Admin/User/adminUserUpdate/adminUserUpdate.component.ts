@@ -63,7 +63,7 @@ export class AdminUserUpdateComponent {
       );
       this.userService
         .updateUser(user_DTO)
-        .subscribe(data => (user_DTO = data), error => this.error);
+        .subscribe(data => (user_DTO = data), error => this.error = error);
       setTimeout(() => {
         //requete http update ...
         this.router.navigate(["/adminUser"]);
