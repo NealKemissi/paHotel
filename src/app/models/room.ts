@@ -10,5 +10,7 @@ export class Room {
     /***/
     cleared: boolean;
     /***/
+    price: number;
+    /***/
     id_room_status: number;
 }

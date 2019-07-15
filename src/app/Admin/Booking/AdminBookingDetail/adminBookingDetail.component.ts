@@ -16,6 +16,7 @@ import { ServiceBooking } from "src/app/models/service_booking";
 import { Service } from "src/app/models/service";
 import { ServiceBookingService } from "src/app/services/service_booking.service";
 import { ServiceService } from "src/app/services/service.service";
+import { BookingDTO } from "src/app/models/dto/bookingDTO";
 declare let jsPDF; // on l'import grace au script ajouté dans index.html
 
 @Component({
@@ -40,12 +41,16 @@ export class AdminBookingDetailComponent {
   events: Event[] = [];
   /***/
   services: Service[] = [];
+  /***/
+  total_price: number = 0;
   /** pagination */
   page1: number = 1;
   page2: number = 1;
   page3: number = 1;
   /***/
   error: string;
+  /***/
+  msgUpdate: boolean = false;
   /***/
   loading: boolean = false;
 
@@ -132,6 +137,8 @@ export class AdminBookingDetailComponent {
           let room: Room = data;
           console.log("4) room n : " + room.number);
           this.rooms.push(room);
+          this.total_price += (this.booking.staying_days<1)? (room.price) : (room.price*this.booking.staying_days);
+          console.log("4) prix room ok " + this.total_price);
         },
         error => {
           this.error = error;
@@ -166,6 +173,8 @@ export class AdminBookingDetailComponent {
           let service: Service = data;
           console.log("event n : " + service.id);
           this.services.push(service);
+          this.total_price += service.price;
+          console.log("4) prix service ok " + this.total_price);
         },
         error => {
           this.error = error;
@@ -174,12 +183,16 @@ export class AdminBookingDetailComponent {
     });
   }
 
-  onServiceBookingDetail(){
-    this.router.navigate(['/adminAddServiceBooking'], {queryParams : { id: this.booking.id } });
+  onServiceBookingDetail() {
+    this.router.navigate(["/adminAddServiceBooking"], {
+      queryParams: { id: this.booking.id }
+    });
   }
 
-  onEventBookingDetail(){
-    this.router.navigate(['/adminAddEventBooking'], {queryParams : { id: this.booking.id } });
+  onEventBookingDetail() {
+    this.router.navigate(["/adminAddEventBooking"], {
+      queryParams: { id: this.booking.id }
+    });
   }
 
   convertPDF() {
@@ -210,7 +223,7 @@ export class AdminBookingDetailComponent {
       "\n\nClient : " +
       this.user.firstname.toUpperCase() +
       " " +
-      this.user.lastname +
+      this.user.lastname.toUpperCase() +
       "\nEmail : " +
       this.user.email;
     var infoDate =
@@ -225,11 +238,51 @@ export class AdminBookingDetailComponent {
     });
     var infoServices = "Service(s) choisi(s) : \n";
     this.services.forEach(s => {
-      infoServices += "\t- " + s.name + ", pour la somme de " + s.price + "€\n";
+      infoServices += "\t- " + s.name + ", pour la somme de " + s.price + " €\n";
     });
+    var infoPrixTotal = "PRIX TOTAL DU SEJOUR : " + this.total_price + " €\n";
+    var remerciement = "Merci d'avoir séjourné au PA Hotel :)";
     return (
-      infoUser + "\n\n" + infoDate + "\n\n\n" + infoRooms + "\n\n" + infoEvents + "\n\n" + infoServices
+      infoUser +
+      "\n\n" +
+      infoDate +
+      "\n\n\n" +
+      infoRooms +
+      "\n\n" +
+      infoEvents +
+      "\n\n" +
+      infoServices +
+      "\n\n\n" +
+      infoPrixTotal +
+      "\n\n\n" +
+      remerciement
     );
+  }
+
+  validateBill(){
+    this.msgUpdate = true;
+    this.error = undefined;
+    let booking_DTO: BookingDTO = new BookingDTO(
+      this.booking.id,
+      this.booking.start_date,
+      this.booking.end_date,
+      0,
+      this.booking.comment,
+      2, // booking status
+      this.booking.id_user
+    );
+    this.bookingService.updateBooking(booking_DTO).subscribe(
+      data => {
+        booking_DTO = data
+        setTimeout(() => {
+          //requete http update ...
+          this.router.navigate(["/adminHome"]);
+        }, 2500);
+      }, error => {
+        this.msgUpdate = false;
+        this.error = error
+      }
+    )
   }
 
   stringifyObject(data: Object, str: string): string {

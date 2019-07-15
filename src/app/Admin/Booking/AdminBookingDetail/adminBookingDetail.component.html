@@ -1,3 +1,25 @@
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-5">
         <div class="container">
@@ -15,11 +37,17 @@
                     <br /><br /><br />
                     ID de la Réservation : <strong>{{booking?.id}}</strong>
                     <br /><br />
-                    Facture payé : <strong>{{booking?.is_paid  | boolTransform}}</strong>
+                    Prix total du séjour : <strong>{{total_price}} €</strong>
+                    <br /><br />
+                    Facture payé : <strong *ngIf="booking?.active==1">Non</strong><strong
+                        *ngIf="booking?.active==0">Oui</strong>
                     <br /><br /><br />
                 </h6>
             </div>
             <button class="btn btn-danger my-2 my-sm-0" (click)="convertPDF()">Convertir la facture en PDF</button>
+            &nbsp;
+            <button *ngIf="booking?.active==1" class="btn btn-dark my-2 my-sm-0" (click)="validateBill()">Valider le
+                paiement</button>
         </div>
     </div>
     <!---------------------------------------------------------------------------------------------------------------------------------->
@@ -36,6 +64,7 @@
                         <th scope="col">Etage</th>
                         <th scope="col">Personne(s)</th>
                         <th scope="col">Equipement(s)</th>
+                        <th scope="col">Prix</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +73,12 @@
                         <td>{{room?.number | slice:0:1}}</td>
                         <td>{{room?.seats}}</td>
                         <td>{{room?.description}}</td>
+                        <td>{{room?.price}} €</td>
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;" (pageChange)="page1 = $event" id="1" responsive="true"></pagination-controls>
+            <pagination-controls style="text-align: center;" (pageChange)="page1 = $event" id="1" responsive="true">
+            </pagination-controls>
         </div>
     </div>
 </div>
@@ -95,7 +126,8 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;" (pageChange)="page2 = $event" id="2" responsive="true"></pagination-controls>
+            <pagination-controls style="text-align: center;" (pageChange)="page2 = $event" id="2" responsive="true">
+            </pagination-controls>
         </div>
     </div>
     <!---------------------------------------------------------------------------------------------------------------------------------->
@@ -123,7 +155,8 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;" (pageChange)="page3 = $event" id="3" responsive="true"></pagination-controls>
+            <pagination-controls style="text-align: center;" (pageChange)="page3 = $event" id="3" responsive="true">
+            </pagination-controls>
         </div>
     </div>
 </div>
