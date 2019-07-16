@@ -1,3 +1,25 @@
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
 <div class="col-md-6 col offset-md-3">
     <div class="container">
         <h2>
@@ -7,9 +29,27 @@
         <div class="my-div-center-content" *ngIf="!error">
             <form>
                 <div class="form-group col-md-10 col offset-md-1">
-                    <h5><label>Description</label></h5>
-                    <textarea class="form-control" rows="3"
-                        value="description..."></textarea>
+                    <h4><label>Description</label></h4>
+                    <textarea class="form-control" rows="4" [(ngModel)]="description_general"
+                        name="description_general"></textarea>
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h4><label>Les chambres</label></h4>
+                    <textarea class="form-control" rows="4" [(ngModel)]="description_rooms"
+                        name="description_rooms"></textarea>
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h4><label>Les évènements</label></h4>
+                    <textarea class="form-control" rows="4" [(ngModel)]="description_events"
+                        name="description_events"></textarea>
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h4><label>Le restaurant</label></h4>
+                    <textarea class="form-control" rows="4" [(ngModel)]="description_restaurant"
+                        name="description_restaurant"></textarea>
                 </div>
                 <br /><br />
                 <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
@@ -28,17 +68,6 @@
         <br />
         <h6>
             {{error}}
-        </h6>
-    </div>
-</div>
-<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
-    <div class="alert alert-primary">
-        <h3>
-            <strong>MISE A JOUR ...</strong>
-        </h3>
-        <br />
-        <h6>
-            <spinner></spinner>
         </h6>
     </div>
 </div>

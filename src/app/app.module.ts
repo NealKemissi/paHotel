@@ -25,7 +25,7 @@ import { AdminBookingDetailComponent } from './Admin/Booking/AdminBookingDetail/
 import { AdminRoomDetailComponent } from './Admin/Room/AdminRoomDetail/adminRoomDetail.component';
 import { AdminEventDetailComponent } from './Admin/Event/AdminEventDetail/adminEventDetail.component';
 import { AdminRoomCreateComponent } from './Admin/Room/AdminRoomCreate/adminRoomCreate.component';
-import { BoolTransformPipe, isCleanPipe, RoomStatusPipe } from './pipe/boolean.pipe';
+import { BoolTransformPipe, isCleanPipe, RoomStatusPipe, myDateFormatPipe } from './pipe/boolean.pipe';
 import { AdminEventCreateComponent } from './Admin/Event/AdminEventCreate/adminEventCreate.component';
 import { AdminEventUpdateComponent } from './Admin/Event/AdminEventUpdate/adminEventUpdate.component';
 import { EventsComponent } from './Events/events.component';
@@ -53,6 +53,7 @@ import { AdminMenuUpdate } from './Admin/Menu/adminMenuUpdate/adminMenuUpdate.co
 import { HotelServicesComponent } from './HotelServices/hotel-services-component/hotelServices.component';
 import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBooking/adminAddEventBooking.component';
 import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestaurantOrderDetail/adminRestaurantOrder.component';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestauran
     BoolTransformPipe,
     RoomStatusPipe,
     isCleanPipe,
+    myDateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -119,6 +121,8 @@ import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestauran
   ],
   providers: [
     CookieService,
+    DashboardService,
+    /***/
     UserService,
     RoomService,
     EventService,

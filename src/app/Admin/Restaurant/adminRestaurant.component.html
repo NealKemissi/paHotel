@@ -70,7 +70,7 @@
                 <div *ngIf="table_info==undefined && id>0" class="my-div-left-content">
                     <strong style="color:#28a745;">Cette table est libre</strong>
                     <br /><br />
-                    <button class="btn btn-info my-2 my-sm-0" (click)="onCreate()">Reserver la table</button>
+                    <button class="btn btn-primary my-2 my-sm-0" (click)="onCreate()">Reserver la table</button>
                 </div>
                 <div *ngIf="table_info!=undefined" class="my-div-left-content">
                     <strong *ngIf="!is_eating_now" style="color:#fd7e14;">Cette table est réservée pour bientôt</strong>
@@ -83,6 +83,8 @@
                     <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Valider le paiement</button>
                     &nbsp;
                     <button class="btn btn-info my-2 my-sm-0" (click)="onDetail()">Detail de la commande</button>
+                    <br /><br />
+                    <button class="btn btn-primary my-2 my-sm-0" (click)="onCreate()">Reserver la table</button>
                 </div>
             </h4>
         </div>

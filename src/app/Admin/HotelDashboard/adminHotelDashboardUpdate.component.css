@@ -7,9 +7,9 @@
     text-align:center;
   }
   /** titre */
-  h2 {
-    color: #21368B; /** #01a3a4 */
-    text-align: center;
+  h2, h4 {
+  color: #21368B; /** #01a3a4 */
+  text-align: center;
   }
   /** labels */
   h5 {

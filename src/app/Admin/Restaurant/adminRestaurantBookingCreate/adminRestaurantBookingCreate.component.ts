@@ -41,7 +41,7 @@ export class AdminRestaurantBookingCreate {
       this.id_table = params["id"];
       this.tableBookingService.getAllTablesBooking()
     .subscribe(data => {
-      this.next_tables_booking = data.filter(d => d.id == params["id"] && d.done == false);
+      this.next_tables_booking = data.filter(d => d.id_table == params["id"] && d.done == false);
     },
     error => {
       this.error = error;

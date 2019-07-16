@@ -29,8 +29,9 @@
         <div class="my-div-center-content">
             <div class="form-group col-md-6 col offset-md-3">
                 <h5><label>Prochaines réservations sur cette table : </label></h5>
+                <span></span>
                 <ul *ngFor="let table_booking of next_tables_booking">
-                    <li>le {{table_booking.arrival}}</li>
+                    <li>le {{table_booking.arrival | myDateFormat}}</li>
                 </ul>
             </div>
             <br /><br />

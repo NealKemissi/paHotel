@@ -34,3 +34,13 @@ export class isCleanPipe implements PipeTransform {
         return (value) ? 'Propre' : 'Sale';
     }
 }
+
+@Pipe({
+    name: 'myDateFormat'
+})
+@Injectable()
+export class myDateFormatPipe implements PipeTransform {
+    transform(value: any): any {   
+        return value.toString().replace(new RegExp(':00.000Z', 'gi'), '').replace('T', ' à ');
+      }
+}
