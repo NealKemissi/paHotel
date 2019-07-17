@@ -1,44 +1,55 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from "@angular/common/http";
+import { throwError, Observable } from "rxjs";
+import { catchError, map } from "rxjs/operators";
+import { Dashboard } from "../models/dashboard";
+import { DashboardDTO } from "../models/dto/dashboardDTO";
 
-var options = { responseType: 'text' as 'json'};
+var httpOptions = {
+  headers: new HttpHeaders({
+    "Access-Control-Allow-Origin": "*",
+    "Content-type": "application/json"
+  }).set("Authorization", localStorage.getItem("token"))
+};
 
 @Injectable()
 export class DashboardService {
+  GET_HOTEL_DESCRIPTION = "http://localhost:8090/dashboard";
 
-  PATH_PRESENTATION_DESCRIPTION = './assets/doc_admin/description_presentation.txt';
-  PATH_ROOMS_DESCRIPTION = './assets/doc_admin/description_rooms.txt';
-  PATH_EVENTS_DESCRIPTION = './assets/doc_admin/description_events.txt';
-  PATH_RESTAURANT_DESCRIPTION = './assets/doc_admin/description_restaurant.txt';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /** Retourne la présentation d'intro de l'hotel **/
-  getPresentationDescription(): Observable<any> {
-    return this.http.get(this.PATH_PRESENTATION_DESCRIPTION, options);
+  getHotelDescription(id: number): Observable<Dashboard> {
+    return this.http.get<Dashboard[]>(this.GET_HOTEL_DESCRIPTION)
+      .pipe(map(res => res.find(dashboard => dashboard.id == id)), 
+        catchError(this.handleError));
   }
 
-  /** Retourne la présentation des chambres de l'hotel **/
-  getRoomsDescription(): Observable<any> {
-    return this.http.get(this.PATH_ROOMS_DESCRIPTION, options);
+  /** update la présentation d'intro de l'hotel **/
+  updateHotelDescription(dashboardDTO : DashboardDTO): Observable<any> {
+    console.log("updating ...");
+    return this.http.post(this.GET_HOTEL_DESCRIPTION + '/update', JSON.stringify(dashboardDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
-  /** Retourne la présentation des evenements l'hotel **/
-  getEventsDescription(): Observable<any> {
-    return this.http.get(this.PATH_EVENTS_DESCRIPTION, options);
+  /** Gestion  d'erreur **/
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      /** A client-side or network error occurred. Handle it accordingly. **/
+      console.error("Une erreur s'est produite : ", error.error.message);
+    } else {
+      /** The backend returned an unsuccessful response code. **/
+      /** The response body may contain clues as to what went wrong, **/
+      console.error(
+        `Backend returned code ${error.status}, ` + `body was: ${error.message}`
+      );
+    }
+    /** return an observable with a user-facing error message **/
+    return throwError(
+      "Une erreur s'est produite, veuillez réessayez plus tard."
+    );
   }
-
-  /** Retourne la présentation du restaurant de l'hotel **/
-  getRestaurantDescription(): Observable<any> {
-    return this.http.get(this.PATH_RESTAURANT_DESCRIPTION, options);
-  }
-
-  /** Update la présentation de l'hotel **/
-//   updateBooking(bookingDTO : BookingDTO): Observable<any> {
-//     console.log("updatating ...");
-//     return this.http.post(this.GET_ALL_BOOKING + '/update', JSON.stringify(bookingDTO), httpOptions2).pipe(catchError(this.handleError));
-//   }
-
 }

@@ -24,7 +24,7 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong>CLIENT</strong>
+                <strong><img src="./assets/img/user-logo.png" style="max-width:30px; max-height:70px;"> CLIENT</strong>
             </h2>
             <br /><br />
             <div class="my-div-left-content">
@@ -54,7 +54,7 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong>CHAMBRE(S)</strong>
+                <strong><img src="./assets/img/room-logo.png" style="max-width:30px; max-height:70px;"> CHAMBRE(S)</strong>
             </h2>
             <br /><br />
             <table class="table">
@@ -85,7 +85,7 @@
     <div class="col-md-3">
         <div class="container">
             <h2>
-                <strong>COMMENTAIRE DU CLIENT</strong>
+                <strong><img src="./assets/img/comment-logo.png" style="max-width:30px; max-height:70px;"> COMMENTAIRE DU CLIENT</strong>
             </h2>
             <br /><br />
             <p><strong>&#171;</strong><i> {{booking?.comment}} </i><strong>&#187;</strong></p>
@@ -101,14 +101,14 @@
     <div class="col-md-3">
         <div class="container">
             <h2>
-                <strong>DATES</strong>
+                <strong><img src="./assets/img/date-logo.png" style="max-width:30px; max-height:70px;"> DATES</strong>
             </h2>
             <br /><br />
             <div class="my-div-left-content">
                 <h6>
-                    Début du séjour : <strong>{{booking?.start_date}}</strong>
+                    Début du séjour : <strong>{{booking?.start_date | myDateFormat}}</strong>
                     <br /><br />
-                    Fin du séjour : <strong>{{booking?.end_date}}</strong>
+                    Fin du séjour : <strong>{{booking?.end_date | myDateFormat}}</strong>
                     <br /><br />
                 </h6>
             </div>
@@ -118,7 +118,7 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong>EVENEMENT(S)</strong>
+                <strong><img src="./assets/img/event-logo.png" style="max-width:30px; max-height:70px;"> EVENEMENT(S)</strong>
                 &nbsp;
                 <button class="btn btn-info" (click)="onEventBookingDetail()">Details</button>
             </h2>
@@ -133,7 +133,7 @@
                 <tbody>
                     <tr *ngFor="let event of events | paginate: { id: '2', itemsPerPage: 2, currentPage: page2 }">
                         <td>{{event?.name}}</td>
-                        <td>{{event?.beginning}}</td>
+                        <td>{{event?.beginning | myDateFormat}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -145,7 +145,7 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong>SERVICE(S)</strong>
+                <strong><img src="./assets/img/service-logo.png" style="max-width:30px; max-height:70px;"> SERVICE(S)</strong>
                 &nbsp;
                 <button class="btn btn-info" (click)="onServiceBookingDetail()">Détails</button>
             </h2>

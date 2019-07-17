@@ -2,7 +2,7 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong>INFORMATIONS</strong>
+                <strong><img src="./assets/img/event-logo.png" style="max-width:30px; max-height:70px;"> INFORMATIONS</strong>
             </h2>
             <br /><br />
             <div class="my-div-left-content">
@@ -11,7 +11,7 @@
                     <br /><br />
                     Nom : <strong>{{event.name}}</strong>
                     <br /><br />
-                    Date : <strong>{{event.beginning}}</strong>
+                    Date : <strong>{{event.beginning | myDateFormat}}</strong>
                     <br /><br />
                     <br /><br /><br />
                 </h6>
@@ -25,7 +25,7 @@
     <div class="col-md-7">
         <div class="container">
             <h2>
-                <strong>DESCRIPTION</strong>
+                <strong><img src="./assets/img/event-logo.png" style="max-width:30px; max-height:70px;"> DESCRIPTION</strong>
             </h2>
             <br /><br />
             <h6>

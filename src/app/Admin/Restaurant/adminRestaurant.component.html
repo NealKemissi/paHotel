@@ -41,7 +41,7 @@
     <div class="col-md-7">
         <div class="container">
             <h2>
-                <strong>RESTAURANT DE L'HOTEL</strong>
+                <strong><img src="./assets/img/restaurant-logo.png" style="max-width:30px; max-height:70px;"> RESTAURANT DE L'HOTEL</strong>
             </h2>
             <br /><br />
             <!-- ngIf="item == libre" class="couleur-vert" |||||||| ngIf="item == occupé" class="couleur-rouge"-->
@@ -63,7 +63,7 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong>INFOS DE LA TABLE <span *ngIf="id>0">n°{{id}}</span></strong>
+                <strong><img src="./assets/img/info-logo.png" style="max-width:30px; max-height:70px;"> INFOS DE LA TABLE <span *ngIf="id>0">n°{{id}}</span></strong>
             </h2>
             <br /><br />
             <h4>
@@ -76,7 +76,7 @@
                     <strong *ngIf="!is_eating_now" style="color:#fd7e14;">Cette table est réservée pour bientôt</strong>
                     <strong *ngIf="is_eating_now" style="color:#dc3545;">Cette table est occupée</strong>
                     <br /><br />
-                    Arrivée du client : <strong>{{table_info.arrival}}</strong>
+                    Arrivée du client : <strong>{{table_info.arrival | myDateFormat}}</strong>
                     <br /><br />
                     Prix total à payer : <strong>{{table_info.total_price}} €</strong>
                     <br /><br />

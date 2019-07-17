@@ -39,7 +39,7 @@
                   | filter: 'description' : description
                   | paginate: { id: '1', itemsPerPage: 5, currentPage: page }">
                     <td><img src="./assets/img/event-logo.png"></td>
-                    <td innerHTML="{{event.beginning | highlight : date}}"></td>
+                    <td innerHTML="{{event.beginning | highlight : date | myDateFormat}}"></td>
                     <td innerHTML="{{event.name | highlight : name}}"></td>
                     <td innerHTML="{{event.description | highlight : description}}" title="{{event.description}}"></td>
                 </tr>

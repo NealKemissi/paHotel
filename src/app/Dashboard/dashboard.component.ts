@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DashboardService } from "../services/dashboard.service";
+import { Dashboard } from "../models/dashboard";
 //import { global } from '../globals';
 
 @Component({
@@ -17,10 +18,7 @@ export class DashboardComponent {
       : true;
   id_user: number = parseInt(localStorage.getItem("id"));
   /***/
-  description_general: string;
-  description_rooms: string;
-  description_events: string;
-  description_restaurant: string;
+  dashboard: Dashboard;
   /***/
   error: string;
 
@@ -45,37 +43,14 @@ export class DashboardComponent {
   }
 
   getHotelDescription() {
-    this.dashboardService.getPresentationDescription().subscribe(
+    this.dashboardService.getHotelDescription(1).subscribe(
       data => {
-        this.description_general = data;
+        this.dashboard = data;
+        console.log('dashboard : '+this.dashboard.presentation)
       },
       error => {
         this.error = "Une erreur s'est produite, " + error.headers.message;
         //console.log('rien trouvé '+JSON.stringify(error));
-      }
-    );
-    this.dashboardService.getRoomsDescription().subscribe(
-      data => {
-        this.description_rooms = data;
-      },
-      error => {
-        this.error = "Une erreur s'est produite, " + error.headers.message;
-      }
-    );
-    this.dashboardService.getEventsDescription().subscribe(
-      data => {
-        this.description_events = data;
-      },
-      error => {
-        this.error = "Une erreur s'est produite, " + error.headers.message;
-      }
-    );
-    this.dashboardService.getRestaurantDescription().subscribe(
-      data => {
-        this.description_restaurant = data;
-      },
-      error => {
-        this.error = "Une erreur s'est produite, " + error.headers.message;
       }
     );
   }

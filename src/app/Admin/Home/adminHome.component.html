@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong>RESERVATIONS</strong>
+                <strong><img src="./assets/img/date-logo.png" style="max-width:30px; max-height:70px;"> RESERVATIONS</strong>
             </h2>
             <br /><br />
             <div class="row">
@@ -24,8 +24,8 @@
                 <tbody>
                     <tr *ngFor="let booking of bookings | filter: 'id' : bookingId | paginate: { id: '1', itemsPerPage: 4, currentPage: page1 }"><!-- | slice:0-5-->
                         <td innerHTML="{{booking.id | highlight : bookingId }}"></td>
-                        <td>{{booking.start_date}}</td>
-                        <td>{{booking.end_date}}</td>
+                        <td>{{booking.start_date | myDateFormat}}</td>
+                        <td>{{booking.end_date | myDateFormat}}</td>
                         <td><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail(booking.id)">Détail</button></td>
                     </tr>
                 </tbody>
@@ -38,7 +38,7 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong>CHAMBRES</strong>
+                <strong><img src="./assets/img/room-logo.png" style="max-width:30px; max-height:70px;"> CHAMBRES</strong>
             </h2>
             <br /><br />
             <div class="row">
@@ -74,7 +74,7 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong>EVENEMENTS</strong>
+                <strong><img src="./assets/img/event-logo.png" style="max-width:30px; max-height:70px;"> EVENEMENTS</strong>
             </h2>
             <br /><br />
             <div class="row">
@@ -94,7 +94,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let event of events | filter: 'beginning' : beginning | paginate: {  id: '3', itemsPerPage: 4, currentPage: page3 }">
-                        <td innerHTML="{{event.beginning | highlight : beginning }}"></td>
+                        <td innerHTML="{{event.beginning | highlight : beginning | myDateFormat }}"></td>
                         <td>{{event.name}}</td>
                         <td><button class="btn btn-primary my-2 my-sm-0" (click)="onEventDetail(event.id)">Détail</button></td>
                     </tr>

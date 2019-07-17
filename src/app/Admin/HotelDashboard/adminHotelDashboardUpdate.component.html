@@ -30,26 +30,32 @@
             <form>
                 <div class="form-group col-md-10 col offset-md-1">
                     <h4><label>Description</label></h4>
-                    <textarea class="form-control" rows="4" [(ngModel)]="description_general"
+                    <textarea class="form-control" rows="4" [(ngModel)]="dashboard.presentation"
                         name="description_general"></textarea>
                 </div>
                 <br />
                 <div class="form-group col-md-10 col offset-md-1">
                     <h4><label>Les chambres</label></h4>
-                    <textarea class="form-control" rows="4" [(ngModel)]="description_rooms"
-                        name="description_rooms"></textarea>
+                    <textarea class="form-control" rows="4" [(ngModel)]="dashboard.rooms"
+                        name="dashboard.rooms"></textarea>
+                </div>
+                <br />
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h4><label>Les services</label></h4>
+                    <textarea class="form-control" rows="4" [(ngModel)]="dashboard.services"
+                        name="dashboard.services"></textarea>
                 </div>
                 <br />
                 <div class="form-group col-md-10 col offset-md-1">
                     <h4><label>Les évènements</label></h4>
-                    <textarea class="form-control" rows="4" [(ngModel)]="description_events"
-                        name="description_events"></textarea>
+                    <textarea class="form-control" rows="4" [(ngModel)]="dashboard.events"
+                        name="dashboard.events"></textarea>
                 </div>
                 <br />
                 <div class="form-group col-md-10 col offset-md-1">
                     <h4><label>Le restaurant</label></h4>
-                    <textarea class="form-control" rows="4" [(ngModel)]="description_restaurant"
-                        name="description_restaurant"></textarea>
+                    <textarea class="form-control" rows="4" [(ngModel)]="dashboard.restaurant"
+                        name="dashboard.dashboard"></textarea>
                 </div>
                 <br /><br />
                 <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
