@@ -32,7 +32,7 @@
             <form>
                 <div class="form-group col-md-6 col offset-md-3">
                     <h5><label>Date</label></h5>
-                    <input type="date" class="form-control" [(ngModel)]="dateEvent" name="dateEvent">
+                    <input type="datetime-local" class="form-control" [(ngModel)]="event.beginning" name="event.beginning">
                 </div>
                 <span>Actuellement : {{event?.beginning}}</span>
                 <br /><br />

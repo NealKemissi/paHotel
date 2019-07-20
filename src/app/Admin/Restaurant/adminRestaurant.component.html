@@ -48,12 +48,10 @@
             <!------------------------------------------------------------------ TOUTES LES TABLES (wrapper)---------------------------------------------------------------->
             <br />
             <div class="my-resto">
-                <div *ngFor="let x of restaurant">
-                    <div *ngFor="let y of x" class="table-resto" [ngStyle]="{background : y.status}" (click)="onTableBookingDetail(y.id)">
+                <div *ngFor="let x of tables" class="table-resto" [ngStyle]="{background : x.status}" (click)="onTableBookingDetail(x.id)">
                         <img src="./assets/img/table.png" style="max-width:40px; max-height:80px;">
                         &nbsp;
-                        <span>n°<strong>{{y.id}}</strong></span>
-                    </div>
+                        <span>n°<strong>{{x.id}}</strong></span>
                 </div>
             </div>
             <br />
