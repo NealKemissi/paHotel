@@ -27,7 +27,7 @@ export class EventBookingService {
 
   /** Retourne la liste de toutes les reservations d'évenement d'une reservation **/
   getAllEventsBookingsByIdBooking(id_booking: number): Observable<EventBooking[]> {
-    return this.http.get<EventBooking[]>(this.GET_ALL_EVENT_BOOKING + '?id_booking=' + id_booking).pipe(catchError(this.handleError));
+    return this.http.get<EventBooking[]>(this.GET_ALL_EVENT_BOOKING + '?id_booking=' + id_booking + '&&available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type EventBooking **/
@@ -41,6 +41,12 @@ export class EventBookingService {
   createEventBooking(event_bookingDTO : EventBookingDTO): Observable<any> {
     console.log("creating ...");
     return this.http.post(this.GET_ALL_EVENT_BOOKING + '/add', JSON.stringify(event_bookingDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** Update un EventBooking **/
+  updateEventBooking(event_bookingDTO : EventBookingDTO): Observable<any> {
+    console.log("updating ...");
+    return this.http.post(this.GET_ALL_EVENT_BOOKING + '/update', JSON.stringify(event_bookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

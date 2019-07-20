@@ -56,9 +56,9 @@
                     <tbody>
                         <tr *ngFor="let event of my_events">
                             <td>{{event?.id}}</td>
-                            <td>{{event?.beginning}}</td>
+                            <td>{{event?.beginning | myDateFormat}}</td>
                             <td>{{event?.name}}</td>
-                            <td><button class="btn btn-danger" (click)="deleteEventFromBooking()">x</button></td>
+                            <td><button class="btn btn-danger" (click)="deleteEventFromBooking(event.id)">x</button></td>
                         </tr>
                     </tbody>
                 </table>

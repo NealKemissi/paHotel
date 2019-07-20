@@ -58,7 +58,7 @@
                             <td>{{service?.id}}</td>
                             <td>{{service?.name}}</td>
                             <td>{{service?.price}} €</td>
-                            <td><button class="btn btn-danger" (click)="deleteServiceFromBooking()">x</button></td>
+                            <td><button class="btn btn-danger" (click)="deleteServiceFromBooking(service.id)">x</button></td>
                         </tr>
                     </tbody>
                 </table>

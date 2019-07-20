@@ -21,6 +21,8 @@ export class AdminAddEventBookingComponent {
   /***/
   name: string;
   /***/
+  id_event_to_delete: number;
+  /***/
   error: string;
   /***/
   loading: boolean = true;
@@ -81,8 +83,9 @@ export class AdminAddEventBookingComponent {
     });
   }
 
-  deleteEventFromBooking(){
+  deleteEventFromBooking(id_event_to_delete: number){
     this.msgConfirm = true;
+    this.id_event_to_delete = id_event_to_delete;
   }
 
   onConfirm(value: number) {
@@ -96,6 +99,21 @@ export class AdminAddEventBookingComponent {
         id = params["id"];
       });
       this.msgUpdate = true;
+      let event_booking : EventBooking = this.events_booking.find(
+        s => s.id_event == this.id_event_to_delete
+      );
+      let event_bookingDTO: EventBookingDTO = new EventBookingDTO(
+        event_booking.id,
+        event_booking.booked_at,
+        event_booking.seats_number,
+        0,
+        event_booking.id_event,
+        event_booking.id_booking,
+        event_booking.id_event_booking_status
+      );
+      this.eventBookingService
+      .updateEventBooking(event_bookingDTO)
+      .subscribe(data => (event_bookingDTO = data), error => (this.error = error));
       setTimeout(() => {
         //requete http suppression ...
         this.router.navigate(["/adminBookingDetail"], {
@@ -118,6 +136,7 @@ export class AdminAddEventBookingComponent {
       null,
       null,
       10,
+      1,
       event.id,
       parseInt(id_booking),
       1,

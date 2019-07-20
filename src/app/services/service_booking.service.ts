@@ -27,7 +27,7 @@ export class ServiceBookingService {
 
   /** Retourne la liste de toutes les reservations de service d'une reservation **/
   getAllServicesBookingsByIdBooking(id_booking: number): Observable<ServiceBooking[]> {
-    return this.http.get<ServiceBooking[]>(this.GET_ALL_SERVICE_BOOKING + '?id_booking=' + id_booking).pipe(catchError(this.handleError));
+    return this.http.get<ServiceBooking[]>(this.GET_ALL_SERVICE_BOOKING + '?id_booking=' + id_booking + '&&available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type ServiceBooking **/
@@ -42,6 +42,13 @@ export class ServiceBookingService {
     console.log("creating ...");
     console.log('id : '+service_bookingDTO.id+',booked_at : '+service_bookingDTO.booked_at+',realised_at : '+service_bookingDTO.realised_at+',id_service : '+service_bookingDTO.id_service+',id_booking : '+service_bookingDTO.id_booking+',id_service_booking_status : '+service_bookingDTO.id_service_booking_status)
     return this.http.post(this.GET_ALL_SERVICE_BOOKING + '/add', JSON.stringify(service_bookingDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** update un ServiceBooking **/
+  updateServiceBooking(service_bookingDTO : ServiceBookingDTO): Observable<any> {
+    console.log("updating ...");
+    console.log('id : '+service_bookingDTO.id+',booked_at : '+service_bookingDTO.booked_at+',realised_at : '+service_bookingDTO.realised_at+',available : '+service_bookingDTO.available+',id_service : '+service_bookingDTO.id_service+',id_booking : '+service_bookingDTO.id_booking+',id_service_booking_status : '+service_bookingDTO.id_service_booking_status)
+    return this.http.post(this.GET_ALL_SERVICE_BOOKING + '/update', JSON.stringify(service_bookingDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

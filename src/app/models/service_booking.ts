@@ -6,6 +6,8 @@ export class ServiceBooking {
     /***/
     realised_at: string;
     /***/
+    available: number;
+    /***/
     id_service: number;
     /***/
     id_booking: number;   

@@ -6,6 +6,8 @@ export class EventBooking {
     /***/
     seats_number: number;
     /***/
+    available: number;
+    /***/
     id_event: number;
     /***/
     id_booking: number;   

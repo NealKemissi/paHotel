@@ -21,6 +21,8 @@ export class AdminAddServiceBookingComponent {
   /***/
   name: string;
   /***/
+  id_service_to_delete: number;
+  /***/
   error: string;
   /***/
   loading: boolean = true;
@@ -81,8 +83,9 @@ export class AdminAddServiceBookingComponent {
     });
   }
 
-  deleteServiceFromBooking() {
+  deleteServiceFromBooking(id_service_to_delete : number) {
     this.msgConfirm = true;
+    this.id_service_to_delete = id_service_to_delete
   }
 
   onConfirm(value: number) {
@@ -91,15 +94,29 @@ export class AdminAddServiceBookingComponent {
     } else {
       this.msgConfirm = false;
 
-      var id: string;
+      var id_booking: string;
       this.route.queryParams.subscribe(params => {
-        id = params["id"];
+        id_booking = params["id"];
       });
       this.msgUpdate = true;
+      let service_booking : ServiceBooking = this.services_booking.find(
+        s => s.id_service == this.id_service_to_delete
+      );
+      let service_bookingDTO: ServiceBookingDTO = new ServiceBookingDTO(
+        service_booking.id,
+        service_booking.booked_at,
+        service_booking.realised_at,
+        0,
+        service_booking.id_service,
+        service_booking.id_booking
+      );
+      this.serviceBookingService
+      .updateServiceBooking(service_bookingDTO)
+      .subscribe(data => (service_bookingDTO = data), error => (this.error = error));
       setTimeout(() => {
         //requete http suppression ...
         this.router.navigate(["/adminBookingDetail"], {
-          queryParams: { id: id }
+          queryParams: { id: id_booking }
         });
       }, 2500);
     }
@@ -118,6 +135,7 @@ export class AdminAddServiceBookingComponent {
       null,
       null,
       null,
+      1,
       service.id,
       parseInt(id_booking)
     );
