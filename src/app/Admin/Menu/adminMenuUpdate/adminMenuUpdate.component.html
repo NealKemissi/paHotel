@@ -1,3 +1,17 @@
+<div *ngIf="msgConfirm" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ATTENTION</strong>
+        </h3><br />
+        <h6>
+            Le plat sera définitivement retiré du menu, êtes-vous sur ?
+            <br /><br />
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+            &nbsp;
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+        </h6>
+    </div>
+</div>
 <div *ngIf="error" class="col-md-4 offset-md-4">
     <div class="alert alert-danger">
         <h3>
@@ -31,19 +45,32 @@
         <div class="my-div-center-content" *ngIf="!error">
             <form>
                 <div class="form-group col-md-10 col offset-md-1">
-                    <h5><label>Plat(s) du Menu :</label></h5>
-                    <ul *ngFor="let dish of menu_detail">
-                        <li>{{dish.name}}</li>
-                    </ul>
-                </div>
-                <br />
-                <div class="form-group col-md-10 col offset-md-1">
                     <h5><label>Nom</label></h5>
                     <input type="text" class="form-control" [(ngModel)]="menu.name" name="menu.name"
                         value="{{menu?.name}}">
                 </div>
                 <br />
-                <div class="form-group">
+                <div class="form-group col-md-10 col offset-md-1">
+                    <h5><label>Composition</label></h5>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Plat</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dish of menu_detail">
+                                <td>{{dish.name}}</td>
+                                <td><button class="btn btn-danger"
+                                        (click)="deleteDishFromMenu(dish.id)">Retirer</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+
+                <div class="form-group col-md-10 col offset-md-1">
                     <h5><label>Ajouter un plat</label></h5>
                     <select class="form-control" [(ngModel)]="dish" name="dish" required>
                         <option *ngFor="let d of dishes">{{d.name}}</option>

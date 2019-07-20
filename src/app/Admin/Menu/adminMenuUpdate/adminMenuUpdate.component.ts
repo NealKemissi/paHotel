@@ -24,9 +24,13 @@ export class AdminMenuUpdate {
   /***/
   dish: string;
   /***/
+  id_dish_to_delete: number;
+  /***/
   error: string;
   /***/
   loading: boolean = false;
+  /***/
+  msgConfirm: boolean = false;
   /***/
   msgUpdate: boolean = false;
 
@@ -67,6 +71,24 @@ export class AdminMenuUpdate {
     });
   }
 
+  deleteDishFromMenu(dish_id : number){
+    console.log('didddsh : '+dish_id);
+    this.id_dish_to_delete = dish_id;
+    this.msgConfirm = true;
+  }
+
+  onConfirm(value: number){
+    if (value == 0) {
+      this.msgConfirm = false;
+    } else {
+      this.msgConfirm = false;
+      let dish_to_delete: Dishes = this.all_dishes_of_restaurant.find(d => d.id == this.id_dish_to_delete);
+      this.updateDish(dish_to_delete, null);
+      this.msgUpdate = true;
+      this.finish();
+    }
+  }
+
   addTempDish(dish_name: string) {
     if (dish_name != undefined) {
       this.dishes_to_add.push(dish_name);
@@ -100,19 +122,19 @@ export class AdminMenuUpdate {
         d => d.name == dish
       );
       if (dish_to_update != undefined) {
-        this.updateDish(dish_to_update);
+        this.updateDish(dish_to_update, this.menu.id);
       }
     });
   }
 
-  updateDish(dish_to_update: Dishes) {
+  updateDish(dish_to_update: Dishes, id_of_menu: number) {
     let dishDTO: DishesDTO = new DishesDTO(
       dish_to_update.id,
       dish_to_update.name,
       dish_to_update.price,
       dish_to_update.available,
       dish_to_update.id_dish_type,
-      this.menu.id
+      id_of_menu
     );
     this.menuDishBookingService
       .updateDish(dishDTO)
