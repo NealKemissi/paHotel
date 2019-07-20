@@ -7,4 +7,6 @@ export class Event {
     beginning: string;
     /***/
     description: string;
+    /***/
+    available: number;
 }

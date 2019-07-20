@@ -22,7 +22,7 @@ export class RoomService {
 
   /** Retourne la liste de toutes les chambres de l'hotel **/
   getAllRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.GET_ALL_ROOMS).pipe(catchError(this.handleError));
+    return this.http.get<Room[]>(this.GET_ALL_ROOMS + '?available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne la liste de toutes les chambres de l'hotel en fonction des places **/

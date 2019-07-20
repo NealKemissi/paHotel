@@ -12,5 +12,7 @@ export class Room {
     /***/
     price: number;
     /***/
+    available : number;
+    /***/
     id_room_status: number;
 }

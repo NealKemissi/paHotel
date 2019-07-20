@@ -1,8 +1,49 @@
+<div *ngIf="msgDelete" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ATTENTION</strong>
+        </h3>
+        <br />
+        <h6>
+            La chambre sera définitivement supprimée, êtes-vous sur ?
+            <br /><br />
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirmDelete(1)">Oui</button>
+            &nbsp;
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirmDelete(0)">Non</button>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<!--==================================================================================================================================-->
+<!--========================================================== ROW ===================================================================-->
+<!--==================================================================================================================================-->
 <div class="row">
     <div class="col-md-6 col offset-md-3">
         <div class="container">
             <h2>
-                <strong><img src="./assets/img/room-logo.png" style="max-width:30px; max-height:70px;"> DETAILS DE LA CHAMBRE {{room.number}}</strong>
+                <strong><img src="./assets/img/room-logo.png" style="max-width:30px; max-height:70px;"> DETAILS DE LA
+                    CHAMBRE {{room.number}}</strong>
             </h2>
             <br /><br />
             <div class="my-div-left-content">
@@ -22,7 +63,8 @@
                 </h5>
             </div>
             <button class="btn btn-primary" (click)="onClean()">
-                <span *ngIf="!room.cleared">Valider nettoyage femme de ménage</span><span *ngIf="room.cleared">Signaler que la chambre est sale</span>
+                <span *ngIf="!room.cleared">Valider nettoyage femme de ménage</span><span *ngIf="room.cleared">Signaler
+                    que la chambre est sale</span>
             </button>
             &nbsp;
             <button class="btn btn-danger my-2 my-sm-0" (click)="onDelete()">Supprimer la chambre</button>
@@ -30,36 +72,3 @@
     </div>
 </div>
 <br />
-<!--==================================================================================================================================-->
-<!--========================================================== ROW ===================================================================-->
-<!--==================================================================================================================================-->
-<div *ngIf="msgDelete" class="row">
-    <div class="col-md-4 offset-md-4">
-        <div class="alert alert-danger">
-            <h3>
-                <strong>ATTENTION</strong>
-            </h3>
-            <br />
-            <h6>
-                La chambre sera définitivement supprimée, êtes-vous sur ?
-                <br /><br />
-                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirmDelete(1)">Oui</button>
-                &nbsp;
-                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirmDelete(0)">Non</button>
-            </h6>
-        </div>
-    </div>
-</div>
-<div *ngIf="msgClean" class="row">
-    <div class="col-md-4 offset-md-4">
-        <div class="alert alert-primary">
-            <h3>
-                <strong>VALIDATION ...</strong>
-            </h3>
-            <br />
-            <h6>
-                <spinner></spinner>
-            </h6>
-        </div>
-    </div>
-</div>

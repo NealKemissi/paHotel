@@ -22,7 +22,7 @@ export class ServiceService {
 
   /** Retourne la liste de tous les services de l'hotel **/
   getAllServices(): Observable<Service[]> {
-    return this.http.get<Service[]>(this.GET_ALL_SERVICES).pipe(catchError(this.handleError));
+    return this.http.get<Service[]>(this.GET_ALL_SERVICES + "?available=1").pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type Service **/

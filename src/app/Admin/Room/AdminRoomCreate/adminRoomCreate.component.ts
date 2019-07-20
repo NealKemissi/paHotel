@@ -49,7 +49,8 @@ export class AdminRoomCreateComponent {
                 this.description.toString(),
                 this.seats,
                 cleared,
-                3
+                1,
+                3//voir avec Ahmed
             );
             this.msgCreating = true;
             this.roomService.createRoom(roomDTO).subscribe(data => roomDTO = data, error => this.error = error);

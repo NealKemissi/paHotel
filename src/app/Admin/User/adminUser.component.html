@@ -1,3 +1,39 @@
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgConfirm" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ATTENTION</strong>
+        </h3><br />
+        <h6>
+            Le compte client sera définitivement supprimé, êtes-vous sur ?
+            <br /><br />
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+            &nbsp;
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+        </h6>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-7">
         <div class="container">
@@ -54,7 +90,8 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true"></pagination-controls>
+            <pagination-controls style="text-align: center;" (pageChange)="page = $event" id="1" responsive="true">
+            </pagination-controls>
             <br />
         </div>
     </div>
@@ -62,7 +99,8 @@
     <div class="col-md-5">
         <div class="container">
             <h2>
-                <strong><img src="./assets/img/info-logo.png" style="max-width:30px; max-height:70px;"> DETAIL CLIENT</strong>
+                <strong><img src="./assets/img/info-logo.png" style="max-width:30px; max-height:70px;"> DETAIL
+                    CLIENT</strong>
             </h2>
             <br /><br />
             <div *ngIf="user!=undefined" class="my-div-left-content">
@@ -77,7 +115,8 @@
                     <br /><br />
                     <ul *ngFor="let booking of bookings">
                         <li>
-                            <strong><button class="btn btn-primary my-2 my-sm-0" (click)="onBookingDetail(booking.id)">{{booking.id}}</button></strong>
+                            <strong><button class="btn btn-primary my-2 my-sm-0"
+                                    (click)="onBookingDetail(booking.id)">{{booking.id}}</button></strong>
                         </li>
                     </ul>
                     <br />
@@ -89,21 +128,5 @@
         </div>
         <br />
         <button class="btn btn-info my-2 my-sm-0" (click)="onCreate()">+ Ajouter nouvel utilisateur</button>
-    </div>
-</div>
-<div *ngIf="msgConfirm" class="row">
-    <div class="col-md-4 offset-md-4">
-        <div class="alert alert-danger">
-            <h3>
-                <strong>ATTENTION</strong>
-            </h3><br />
-            <h6>
-                Le compte client sera définitivement supprimé, êtes-vous sur ?
-                <br /><br />
-                <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
-                &nbsp;
-                <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
-            </h6>
-        </div>
     </div>
 </div>

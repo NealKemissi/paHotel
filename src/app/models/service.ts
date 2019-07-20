@@ -9,4 +9,6 @@ export class Service {
     description: string;
     /***/
     price: number;
+    /***/
+    available: number;
 }

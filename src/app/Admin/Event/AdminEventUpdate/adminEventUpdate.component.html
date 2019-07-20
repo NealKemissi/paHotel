@@ -1,3 +1,25 @@
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>MISE A JOUR ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
 <div class="col-md-6 col offset-md-3">
     <div class="container" *ngIf="!loading">
         <h2>
@@ -33,26 +55,4 @@
         </div>
     </div>
     <br />
-</div>
-<div *ngIf="error" class="col-md-4 offset-md-4">
-    <div class="alert alert-danger">
-        <h3>
-            <strong>ERREUR</strong>
-        </h3>
-        <br />
-        <h6>
-            {{error}}
-        </h6>
-    </div>
-</div>
-<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
-    <div class="alert alert-primary">
-        <h3>
-            <strong>MISE A JOUR ...</strong>
-        </h3>
-        <br />
-        <h6>
-            <spinner></spinner>
-        </h6>
-    </div>
 </div>

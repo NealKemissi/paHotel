@@ -13,8 +13,12 @@ export class UserDTO {
     firstname : string;
     /***/
     birthday : string;
+    /***/
+    admin : number;
+    /***/
+    active : number;
 
-    constructor(id : number, email: string, password: string, password2: string, lastname: string, firstname: string, birthday: string) {
+    constructor(id : number, email: string, password: string, password2: string, lastname: string, firstname: string, birthday: string, admin: number, active:number) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -22,6 +26,8 @@ export class UserDTO {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthday = birthday;
+        this.admin = admin;
+        this.active = active;
     }
   }
   

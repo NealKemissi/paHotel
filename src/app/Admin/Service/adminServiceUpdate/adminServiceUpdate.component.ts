@@ -40,7 +40,7 @@ export class adminServiceUpdateComponent {
     onUpdate() {
         if (!this.msgUpdate) {
             this.msgUpdate = true;
-            let service: ServiceDTO = new ServiceDTO(this.service.id, this.service.name, this.service.description, this.service.price);
+            let service: ServiceDTO = new ServiceDTO(this.service.id, this.service.name, this.service.description, this.service.price, this.service.available);
             console.log('new service ici :' + this.service.description);
             this.serviceService.updateService(service).subscribe(data => service = data, error => this.error = error);
             setTimeout(() => {

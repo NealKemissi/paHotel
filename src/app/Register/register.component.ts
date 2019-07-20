@@ -66,7 +66,9 @@ export class RegisterComponent {
         this.confirm,
         this.nom,
         this.prenom,
-        this.birthday
+        this.birthday,
+        0,
+        1
       );
       this.userService.createUser(userDTO).subscribe(
         data => {

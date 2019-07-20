@@ -27,7 +27,7 @@ export class UserService {
     console.log(localStorage.getItem("token"))
     //httpOptions.headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
     console.log(httpOptions.headers.keys())
-    return this.http.get<User[]>(this.GET_ALL_USERS, httpOptions).pipe(catchError(this.handleError));
+    return this.http.get<User[]>(this.GET_ALL_USERS + "?active=1", httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type User **/

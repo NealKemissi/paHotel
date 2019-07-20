@@ -59,7 +59,9 @@ export class AdminUserUpdateComponent {
         this.user.password,
         this.user.lastname,
         this.user.firstname,
-        this.user.birthday
+        this.user.birthday,
+        this.user.admin,
+        this.user.active
       );
       this.userService
         .updateUser(user_DTO)

@@ -37,7 +37,8 @@ export class AdminEventCreateComponent {
                 null,
                 this.name,
                 this.beginning,
-                this.description
+                this.description,
+                1
             );
             this.msgCreating = true;
             this.eventService.createEvent(eventDTO).subscribe(data => eventDTO = data, error => this.error = error);

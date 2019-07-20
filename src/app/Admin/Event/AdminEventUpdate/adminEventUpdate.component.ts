@@ -45,7 +45,8 @@ export class AdminEventUpdateComponent {
                 this.event.id,
                 this.event.name,
                 this.event.beginning,
-                this.event.description
+                this.event.description,
+                this.event.available
             );
             this.eventService.updateEvent(eventDTO).subscribe(data => eventDTO = data, error => this.error = error);
             setTimeout(() => {

@@ -22,7 +22,7 @@ export class EventService {
 
   /** Retourne la liste de tous les évenements de l'hotel **/
   getAllEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.GET_ALL_EVENTS).pipe(catchError(this.handleError));
+    return this.http.get<Event[]>(this.GET_ALL_EVENTS + '?available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type Event **/

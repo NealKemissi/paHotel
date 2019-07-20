@@ -16,6 +16,7 @@ export class User {
   /***/
   admin : number;
   /***/
-  enabled : number;
+  active : number;
   /***/
+  enabled : number;
 }
