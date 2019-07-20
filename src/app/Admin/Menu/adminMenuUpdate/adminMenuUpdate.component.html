@@ -31,7 +31,7 @@
         <div class="my-div-center-content" *ngIf="!error">
             <form>
                 <div class="form-group col-md-10 col offset-md-1">
-                    <h5><label>Plats :</label></h5>
+                    <h5><label>Plat(s) du Menu :</label></h5>
                     <ul *ngFor="let dish of menu_detail">
                         <li>{{dish.name}}</li>
                     </ul>
@@ -48,13 +48,25 @@
                     <select class="form-control" [(ngModel)]="dish" name="dish" required>
                         <option *ngFor="let d of dishes">{{d.name}}</option>
                     </select>
-                    <span *ngIf="dish!=undefined">
-                        <br />
-                        Le plat {{dish}} sera ajouté à : {{menu?.name}}
-                    </span>
-                    <br /><br />
-                    <button class="btn btn-danger" (click)="revert()">Annuler</button>
+                    <br />
+                    <button class="btn btn-success" (click)="addTempDish(dish)">Ajouter
+                        '{{dish}}'</button>
                 </div>
+                <br /><br />
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Plat(s) à ajouter</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dish of dishes_to_add">
+                            <td>{{dish}}</td>
+                            <td><button class="btn btn-danger" (click)="deleteTempDish(dish)">x</button></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <br /><br />
                 <button class="btn btn-lg btn-primary btn-block" (click)="onUpdate()" type="submit">Modifier
                     le menu</button>

@@ -23,7 +23,8 @@
 <div class="col-md-6 col offset-md-3">
     <div class="container">
         <h2>
-            <strong><img src="./assets/img/dish-logo.png" style="max-width:30px; max-height:70px;"> NOUVEAU PLAT</strong>
+            <strong><img src="./assets/img/dish-logo.png" style="max-width:30px; max-height:70px;"> NOUVEAU
+                PLAT</strong>
         </h2>
         <br /><br />
         <div class="my-div-center-content">
@@ -49,9 +50,12 @@
                 </div>
                 <br />
                 <div class="form-group col-md-6 col offset-md-3">
-                    <h5><label>ID du Menu</label></h5>
-                    <input type="number" class="form-control" [(ngModel)]="id_menu" name="id_menu" min="1"
-                        (keyup)="preventInput()" required>
+                    <h5><label>Menu du plat</label></h5>
+                    <select class="form-control" [(ngModel)]="menu_name" name="menu_name">
+                        <option *ngFor="let menu of all_menus_of_restaurant">
+                            {{menu?.name}}
+                        </option>
+                    </select>
                 </div>
                 <br /><br />
                 <button class="btn btn-lg btn-info btn-block" (click)="onCreate()" type="submit">Créer</button>
