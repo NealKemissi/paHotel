@@ -35,7 +35,7 @@ export class MenuDishBookingService {
 
   /** Retourne la liste de tous les menus de l'hotel **/
   getAllMenus(): Observable<Menu[]> {
-    return this.http.get<Menu[]>(this.GET_ALL_MENU).pipe(catchError(this.handleError));
+    return this.http.get<Menu[]>(this.GET_ALL_MENU + '?available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type Menu **/
@@ -62,7 +62,7 @@ export class MenuDishBookingService {
 
   /** Retourne la liste de tous les plats de l'hotel **/
   getAllDishes(): Observable<Dishes[]> {
-    return this.http.get<Dishes[]>(this.GET_ALL_DISHES).pipe(catchError(this.handleError));
+    return this.http.get<Dishes[]>(this.GET_ALL_DISHES + '?available=1').pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type Dishes **/

@@ -1,3 +1,39 @@
+<div *ngIf="msgConfirm" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ATTENTION</strong>
+        </h3><br />
+        <h6>
+            Cet élement sera définitivement supprimé, êtes-vous sur ?
+            <br /><br />
+            <button class="btn btn-danger my-2 my-sm-0" (click)="onConfirm(1)">Oui</button>
+            &nbsp;
+            <button class="btn btn-primary my-2 my-sm-0" (click)="onConfirm(0)">Non</button>
+        </h6>
+    </div>
+</div>
+<div *ngIf="error" class="col-md-4 offset-md-4">
+    <div class="alert alert-danger">
+        <h3>
+            <strong>ERREUR</strong>
+        </h3>
+        <br />
+        <h6>
+            {{error}}
+        </h6>
+    </div>
+</div>
+<div *ngIf="msgUpdate" class="col-md-4 offset-md-4">
+    <div class="alert alert-primary">
+        <h3>
+            <strong>VALIDATION ...</strong>
+        </h3>
+        <br />
+        <h6>
+            <spinner></spinner>
+        </h6>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-4">
         <div class="container">
