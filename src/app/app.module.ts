@@ -54,6 +54,7 @@ import { HotelServicesComponent } from './HotelServices/hotel-services-component
 import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBooking/adminAddEventBooking.component';
 import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestaurantOrderDetail/adminRestaurantOrder.component';
 import { DashboardService } from './services/dashboard.service';
+import { AdminEmployeeCreateComponent } from './Admin/User/adminEmployeeCreate/adminEmployeeCreate.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { DashboardService } from './services/dashboard.service';
     AdminHotelDashboardUpdateComponent,
     /***/
     AdminUserComponent,
+    AdminEmployeeCreateComponent,
     AdminUserCreateComponent,
     AdminUserUpdateComponent,
     /***/

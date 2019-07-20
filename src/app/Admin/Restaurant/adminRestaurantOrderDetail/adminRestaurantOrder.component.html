@@ -41,12 +41,13 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong><img src="./assets/img/restaurant-logo.png" style="max-width:30px; max-height:70px;"> TABLE n°{{table_booking?.id_table}}</strong>
+                <strong><img src="./assets/img/restaurant-logo.png" style="max-width:30px; max-height:70px;"> TABLE
+                    n°{{table_booking?.id_table}}</strong>
             </h2>
             <h4>
                 <div class="my-div-center-content">
                     <br /><br />
-                    Arrivée du client : <strong>{{table_booking?.arrival}}</strong>
+                    Arrivée du client : <strong>{{table_booking?.arrival | myDateFormat}}</strong>
                     <br /><br />
                     Prix total à payer : <strong>{{final_price}} €</strong>
                     <br /><br />
@@ -60,7 +61,8 @@
     <div class="col-md-4">
         <div class="container">
             <h2>
-                <strong><img src="./assets/img/menu-logo.png" style="max-width:30px; max-height:70px;"> DETAIL COMMANDE</strong>
+                <strong><img src="./assets/img/menu-logo.png" style="max-width:30px; max-height:70px;"> DETAIL
+                    COMMANDE</strong>
             </h2>
             <br /><br />
             <h4>
@@ -71,18 +73,36 @@
                         <li>{{dish.name}}</li>
                     </ul>
                     <br /><br />
-                    <button class="btn btn-info my-2 my-sm-0" (click)="onAdd()">+ Ajouter un plat</button>
                 </div>
+                <button class="btn btn-info my-2 my-sm-0" (click)="onAdd()">+ Ajouter un plat</button>
+                &nbsp;
+                <button class="btn btn-info my-2 my-sm-0" (click)="onAddMenu()">+ Ajouter un menu</button>
             </h4>
 
         </div>
     </div>
     <!---------------------------------------------------------------------------------------------------------------------------------->
-    <div class="col-md-4" *ngIf="creating">
+    <div class="col-md-4" *ngIf="creating && !creatingMenu">
         <div class="container">
             <h2>
-                <strong><img src="./assets/img/menu-logo.png" style="max-width:30px; max-height:70px;"> AJOUTER UN PLAT</strong>
+                <strong><img src="./assets/img/menu-logo.png" style="max-width:30px; max-height:70px;"> AJOUTER UN
+                    PLAT</strong>
             </h2>
+            <br /><br />
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Plat(s) à ajouter</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dish of dishes_to_add">
+                        <td>{{dish}}</td>
+                        <td><button class="btn btn-danger" (click)="deleteTempDish(dish)">x</button></td>
+                    </tr>
+                </tbody>
+            </table>
             <br /><br />
             <h4>
                 <div class="my-div-center-content">
@@ -93,13 +113,58 @@
                                 {{dish?.name}}
                             </option>
                         </select>
+                        <br />
+                        <button class="btn btn-success" (click)="addTempDish(name)">Ajouter
+                                '{{name}}'</button>
                     </div>
                     <br /><br />
-                    <button *ngIf="name" class="btn btn-lg btn-primary btn-block" (click)="addDish()"
-                        type="submit">Ajouter le plat '{{name}}'</button>
+                    <button *ngIf="name" class="btn btn-lg btn-primary btn-block" (click)="createOrder()"
+                        type="submit">Finaliser la commande</button>
                 </div>
             </h4>
-
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-4" *ngIf="creatingMenu && !creating">
+        <div class="container">
+            <h2>
+                <strong><img src="./assets/img/menu-logo.png" style="max-width:30px; max-height:70px;"> AJOUTER UN
+                    MENU</strong>
+            </h2>
+            <br /><br />
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Menu(s) à ajouter</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dish of dishes_to_add">
+                        <td>{{dish}}</td>
+                        <td><button class="btn btn-danger" (click)="deleteTempDish(dish)">x</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /><br />
+            <h4>
+                <div class="my-div-center-content">
+                    <div class="form-group">
+                        <h5><label>Choisir</label></h5>
+                        <select class="form-control" [(ngModel)]="menu_name" name="menu_name" required>
+                            <option *ngFor="let menu of all_menus_of_restaurant">
+                                {{menu?.name}}
+                            </option>
+                        </select>
+                        <br />
+                        <button class="btn btn-success" (click)="addTempMenu(menu_name)">Ajouter
+                            '{{menu_name}}'</button>
+                    </div>
+                    <br /><br />
+                    <button *ngIf="menu_name" class="btn btn-lg btn-primary btn-block" (click)="createOrder()"
+                        type="submit">Finaliser la commande</button>
+                </div>
+            </h4>
         </div>
     </div>
 </div>

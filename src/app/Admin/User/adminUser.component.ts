@@ -64,6 +64,10 @@ export class AdminUserComponent {
     this.router.navigate(["/adminUserCreate"]);
   }
 
+  onAdminCreate() {
+    this.router.navigate(["/adminEmployeeCreate"]);
+  }
+
   onUpdate() {
     this.router.navigate(["/adminUserUpdate"], {
       queryParams: { email: this.user.email }
