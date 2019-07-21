@@ -102,6 +102,7 @@ export class RoomBookingComponent {
 
   onBooking() {
     this.msgCreating = true;
+    this.error = undefined;
     if (this.id_user != undefined) {
       this.createBooking(this.id_user);
     } else if (this.hasAccount == true) {
@@ -156,9 +157,11 @@ export class RoomBookingComponent {
       this.msgCreating = false;
       this.error = "l'email n'est pas renseigné..";
     } else {
-      this.userService.getUser(this.email).subscribe(
+      let id : number;
+      this.userService.getUserAccount(this.email).subscribe(
         data => {
-          let id = data.id;
+          id = data.id;
+          console.log('id user : '+id);
           this.createBooking(id);
         },
         error => {
@@ -196,9 +199,10 @@ export class RoomBookingComponent {
         0,
         1
       );
+      let id_u : number;
       this.userService.createUser(userDTO).subscribe(
         data => {
-          let id_u = data.id;
+          id_u = data.id;
           this.createBooking(id_u);
         },
         error => {

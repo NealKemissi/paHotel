@@ -30,6 +30,11 @@ export class UserService {
     return this.http.get<User[]>(this.GET_ALL_USERS + "?active=1", httpOptions).pipe(catchError(this.handleError));
   }
 
+  getUserAccount(user_email : string): Observable<User> {
+    return this.http.get<User>(this.GET_ALL_USERS + '/checkMail?email=' + user_email, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   /** Retourne un objet de type User **/
   getUser(user_email : string): Observable<User> {
     return this.http.get<User[]>(this.GET_USER_EMAIL + user_email, httpOptions)

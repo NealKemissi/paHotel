@@ -33,10 +33,13 @@ export class LoginComponent {
       this.msgUpdate = true;
       console.log("email : " + this.email + "password :" + this.password);
       let userDTO: UserLoginDTO = new UserLoginDTO(this.email, this.password);
+      let id : string;
+      let admin : string;;
+      let token : string;
       this.userService.login(userDTO).subscribe(data => {
-        let id = data.id;
-        let admin = data.admin;
-        let token = data.token;
+        id = data.id;
+        admin = data.admin;
+        token = data.token;
         console.log(JSON.stringify(data));
         localStorage.setItem('id', id);
         localStorage.setItem('admin', admin);
