@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserDTO } from '../models/dto/userDTO';
 import { UserLoginDTO } from '../models/dto/user_loginDTO';
-import { User } from '../models/user';
 
 @Component({
   selector: "login",
@@ -28,6 +26,7 @@ export class LoginComponent {
   ngOnInit() {}
 
   onLogin(): void {
+    this.error = undefined;
     if (this.email == undefined || this.password == undefined) {
       this.error = "Tous les champs doivent être remplis !";
     } else {

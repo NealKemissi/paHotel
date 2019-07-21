@@ -150,4 +150,8 @@ export class AdminRestaurantComponent {
   onDetail(){
     this.router.navigate(["/adminRestaurantOrder"], {queryParams: { id: this.table_info.id }});
   }
+
+  onRestaurantTable(){
+    this.router.navigate(["/adminRestaurantTable"]);
+  }
 }

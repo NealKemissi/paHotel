@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Table } from '../models/table';
+import { TableDTO } from '../models/dto/tableDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
     'Content-type':'application/json'
-  })
+  }).set('Authorization', localStorage.getItem("token"))
 };
 
 @Injectable()
@@ -21,7 +22,7 @@ export class TableService {
 
   /** Retourne la liste de toutes les tables du resto de l'hotel **/
   getAllTables(): Observable<Table[]> {
-    return this.http.get<Table[]>(this.GET_ALL_TABLE).pipe(catchError(this.handleError));
+    return this.http.get<Table[]>(this.GET_ALL_TABLE + "?available=1").pipe(catchError(this.handleError));
   }
 
   /** Retourne un objet de type Table **/
@@ -29,6 +30,18 @@ export class TableService {
     return this.http.get<Table[]>(this.GET_TABLE + table_id)
       .pipe(map(res => res.find(table => table.id == table_id)), 
         catchError(this.handleError));
+  }
+
+  /** Créer une Table **/
+  createTable(tableDTO : TableDTO): Observable<any> {
+    console.log("creating ...");
+    return this.http.post(this.GET_ALL_TABLE + '/add', JSON.stringify(tableDTO), httpOptions).pipe(catchError(this.handleError));
+  }
+
+  /** Met à jour objet de type Table **/
+  updateTable(tableDTO : TableDTO): Observable<any> {
+    console.log("updating ...");
+    return this.http.post(this.GET_ALL_TABLE + '/update', JSON.stringify(tableDTO), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** Gestion  d'erreur **/

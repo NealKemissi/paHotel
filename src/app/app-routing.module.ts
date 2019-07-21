@@ -30,6 +30,7 @@ import { HotelServicesComponent } from './HotelServices/hotel-services-component
 import { AdminAddEventBookingComponent } from './Admin/Booking/AdminAddEventBooking/adminAddEventBooking.component';
 import { AdminRestaurantOrderComponent } from './Admin/Restaurant/adminRestaurantOrderDetail/adminRestaurantOrder.component';
 import { AdminEmployeeCreateComponent } from './Admin/User/adminEmployeeCreate/adminEmployeeCreate.component';
+import { AdminRestaurantTableComponent } from './Admin/Restaurant/adminRestaurantTable/adminRestaurantTable.component';
 
 const routes: Routes = [
   /******** Accueil **********/
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'adminEventUpdate', component: AdminEventUpdateComponent },
   /******** Gestion du restaurant **********/
   { path: 'adminRestaurant', component: AdminRestaurantComponent},
+  { path: 'adminRestaurantTable', component: AdminRestaurantTableComponent},
   { path: 'adminRestaurantBookingCreate', component: AdminRestaurantBookingCreate},
   { path: 'adminRestaurantOrder', component: AdminRestaurantOrderComponent},
   /******** Gestion des plats **********/
